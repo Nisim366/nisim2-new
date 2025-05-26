@@ -151,6 +151,7 @@
     "JUnit.RadioButtonTest.selectMultipuleRadioButton.executor": "Run",
     "JUnit.RadioButtonTest.testRadioButton.executor": "Run",
     "JUnit.Screan1.checkbbelTextIsCorrect.executor": "Run",
+    "JUnit.Screan1.checkboxDeselectsAfterSecondClick.executor": "Run",
     "JUnit.Screan1.checkboxIsNotSelectedInitially.executor": "Run",
     "JUnit.Screan1.checkboxLabelTextIsCorrect.executor": "Run",
     "JUnit.Screan1.checkboxSelectsAfterClick.executor": "Run",
@@ -225,23 +226,7 @@
       <recent name="p" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Screan1.checkboxLabelTextIsCorrect">
-    <configuration name="FirstLastNameFieldTests.testDeleteCharsFromLastNameInput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="nisim2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Generic.Test.Part1.Screens.Screen2.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Generic.Test.Part1.Screens.Screen2" />
-      <option name="MAIN_CLASS_NAME" value="Generic.Test.Part1.Screens.Screen2.FirstLastNameFieldTests" />
-      <option name="METHOD_NAME" value="testDeleteCharsFromLastNameInput" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.Screan1.checkboxDeselectsAfterSecondClick">
     <configuration name="Screan1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="nisim2" />
       <extension name="coverage">
@@ -253,6 +238,22 @@
       <option name="PACKAGE_NAME" value="Generic.Test.Part1.Screens.Screen1" />
       <option name="MAIN_CLASS_NAME" value="Generic.Test.Part1.Screens.Screen1.Screan1" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Screan1.checkboxDeselectsAfterSecondClick" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="nisim2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Generic.Test.Part1.Screens.Screen1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Generic.Test.Part1.Screens.Screen1" />
+      <option name="MAIN_CLASS_NAME" value="Generic.Test.Part1.Screens.Screen1.Screan1" />
+      <option name="METHOD_NAME" value="checkboxDeselectsAfterSecondClick" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -336,20 +337,20 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="JUnit.Screan1.checkboxDeselectsAfterSecondClick" />
       <item itemvalue="JUnit.Screan1.checkboxIsNotSelectedInitially" />
       <item itemvalue="JUnit.Screan1.checkboxLabelTextIsCorrect" />
-      <item itemvalue="JUnit.FirstLastNameFieldTests.testDeleteCharsFromLastNameInput" />
       <item itemvalue="JUnit.Screan1.checkboxSelectsAfterClick" />
       <item itemvalue="JUnit.Screan1" />
       <item itemvalue="Maven.maven test" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Screan1.checkboxLabelTextIsCorrect" />
-        <item itemvalue="JUnit.Screan1" />
+        <item itemvalue="JUnit.Screan1.checkboxDeselectsAfterSecondClick" />
         <item itemvalue="JUnit.Screan1.checkboxSelectsAfterClick" />
         <item itemvalue="JUnit.Screan1.checkboxIsNotSelectedInitially" />
-        <item itemvalue="JUnit.FirstLastNameFieldTests.testDeleteCharsFromLastNameInput" />
+        <item itemvalue="JUnit.Screan1" />
+        <item itemvalue="JUnit.Screan1.checkboxLabelTextIsCorrect" />
       </list>
     </recent_temporary>
   </component>
