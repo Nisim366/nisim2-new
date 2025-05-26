@@ -1,1 +1,6 @@
 ECHO is on.
+# Mac system file
+.DS_Store
+
+# Windows system file
+Thumbs.db
