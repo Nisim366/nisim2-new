@@ -1,0 +1,13 @@
+QADEMO\tests\part3\javascript\JavaScriptTest.class
+QADEMO\tests\part4\Windows\WindowsTest.class
+QADEMO\tests\part3\Widgets\DateTest.class
+QADEMO\tests\part3\forms\CheckBoxTest.class
+QADEMO\tests\part3\elements\LinksTest.class
+QADEMO\tests\part4\Frames\FramesTest.class
+QADEMO\tests\part3\forms\RadioButtonTest.class
+QADEMO\tests\part4\alerts\AlertsTest.class
+QADEMO\tests\part4\Dynamic_wait\DynemicWaitTest.class
+QADEMO\Base\BaseTest_QADEMO.class
+QADEMO\tests\part3\elements\WebTablesTests.class
+QADEMO\tests\part3\Widgets\selectDropDownTest.class
+QADEMO\tests\part4\models\ModalTest.class

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: QADEMO.tests.part3.Widgets.DateTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 22.55 s -- in QADEMO.tests.part3.Widgets.DateTest

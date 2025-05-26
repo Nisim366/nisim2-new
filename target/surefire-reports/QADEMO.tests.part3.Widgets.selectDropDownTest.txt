@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: QADEMO.tests.part3.Widgets.selectDropDownTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 17.09 s -- in QADEMO.tests.part3.Widgets.selectDropDownTest
