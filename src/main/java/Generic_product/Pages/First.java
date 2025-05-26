@@ -66,6 +66,7 @@ public class First extends Generic_BasePage {
             System.out.println("Clicked on 'Continue' button.");
         } catch (Exception e) {
             System.out.println("Failed to click 'Continue' button: " + e.getMessage());
+            System.out.println("ssss");
         }
     }
 
