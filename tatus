@@ -1,0 +1,424 @@
+warning: in the working copy of '.idea/workspace.xml', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/.idea/workspace.xml b/.idea/workspace.xml[m
+[1mindex 0246db2..d600294 100644[m
+[1m--- a/.idea/workspace.xml[m
+[1m+++ b/.idea/workspace.xml[m
+[36m@@ -5,9 +5,8 @@[m
+   </component>[m
+   <component name="ChangeListManager">[m
+     <list default="true" id="2603ccee-769b-4670-939a-5dee28474120" name="Changes" comment="">[m
+[31m-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />[m
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />[m
+[31m-      <change beforePath="$PROJECT_DIR$/target/classes/Generic_product/Pages/First.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Generic_product/Pages/First.class" afterDir="false" />[m
+[32m+[m[32m      <change beforePath="$PROJECT_DIR$/src/main/java/greenlend/logginPage/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/greenlend/logginPage/LoginPage.java" afterDir="false" />[m
+     </list>[m
+     <option name="SHOW_DIALOG" value="false" />[m
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />[m
+[36m@@ -39,198 +38,198 @@[m
+     <option name="hideEmptyMiddlePackages" value="true" />[m
+     <option name="showLibraryContents" value="true" />[m
+   </component>[m
+[31m-  <component name="PropertiesComponent"><![CDATA[{[m
+[31m-  "keyToString": {[m
+[31m-    "Application.Main.executor": "Run",[m
+[31m-    "JUnit.AlertsTest.alertsInfoItem.executor": "Run",[m
+[31m-    "JUnit.AlertsTest.executor": "Run",[m
+[31m-    "JUnit.AlertsTest.testConfirmAlert.executor": "Run",[m
+[31m-    "JUnit.AlertsTest.testPronptAlert.executor": "Run",[m
+[31m-    "JUnit.BaseTest_part3.fassil.executor": "Run",[m
+[31m-    "JUnit.CalculatorTests.executor": "Run",[m
+[31m-    "JUnit.CalculatorTests.testAddition.executor": "Run",[m
+[31m-    "JUnit.CheckBoxTest (1).executor": "Run",[m
+[31m-    "JUnit.CheckBoxTest.MusicCheckBox.executor": "Run",[m
+[31m-    "JUnit.CheckBoxTest.ReadingCheckBox.executor": "Run",[m
+[31m-    "JUnit.CheckBoxTest.SelecALLCheckBoxex.executor": "Run",[m
+[31m-    "JUnit.CheckBoxTest.SelecAllCheckBoxex.executor": "Run",[m
+[31m-    "JUnit.CheckBoxTest.SelectMusicCheckBox.executor": "Run",[m
+[31m-    "JUnit.CheckBoxTest.SelectReadingCheckBox.executor": "Run",[m
+[31m-    "JUnit.CheckBoxTest.SelectSportCheckBox.executor": "Run",[m
+[31m-    "JUnit.CheckBoxTest.SportCheckBox.executor": "Run",[m
+[31m-    "JUnit.CheckBoxTest.Unclick.executor": "Run",[m
+[31m-    "JUnit.CheckBoxTest.UnclickAfterClicking.executor": "Run",[m
+[31m-    "JUnit.CheckBoxTest.UnclickWithoutClicking.executor": "Run",[m
+[31m-    "JUnit.CheckBoxTest.ZeroState.executor": "Run",[m
+[31m-    "JUnit.CheckBoxTest.a.executor": "Run",[m
+[31m-    "JUnit.CheckBoxTest.executor": "Run",[m
+[31m-    "JUnit.CheckBoxTest.selectAllCheckBoxes.executor": "Run",[m
+[31m-    "JUnit.CheckBoxTest.testReadingCheckBox.executor": "Run",[m
+[31m-    "JUnit.CheckBoxTest.testSportCheckBox.executor": "Debug",[m
+[31m-    "JUnit.CheckBoxTest.unclickedReadingCheckBox.executor": "Run",[m
+[31m-    "JUnit.DateTest.TestSelectingDate.executor": "Run",[m
+[31m-    "JUnit.DateTest.a (1).executor": "Run",[m
+[31m-    "JUnit.DateTest.a.executor": "Run",[m
+[31m-    "JUnit.DateTest.dayIsNotInMonthTest.executor": "Run",[m
+[31m-    "JUnit.DateTest.dayIsNotInMounthTest.executor": "Run",[m
+[31m-    "JUnit.DateTest.deselectOptionByIndexTest.executor": "Run",[m
+[31m-    "JUnit.DateTest.executor": "Run",[m
+[31m-    "JUnit.DateTest.getDatePickerPageTest (1).executor": "Run",[m
+[31m-    "JUnit.DateTest.getDatePickerPageTest.executor": "Run",[m
+[31m-    "JUnit.DateTest.getInDatePickerPageTest.executor": "Run",[m
+[31m-    "JUnit.DateTest.testDatePicker.executor": "Run",[m
+[31m-    "JUnit.DateTest.testDatePickerPage.executor": "Run",[m
+[31m-    "JUnit.DateTest.testDateSelection (1).executor": "Run",[m
+[31m-    "JUnit.DateTest.testDateSelection.executor": "Run",[m
+[31m-    "JUnit.DateTest.testInvalidCharacterInputIsRejected.executor": "Run",[m
+[31m-    "JUnit.DateTest.testInvalidDayCharacters.executor": "Run",[m
+[31m-    "JUnit.DynemicWaitTest.tesProgressBar.executor": "Run",[m
+[31m-    "JUnit.DynemicWaitTest.testGoToDynemicPage.executor": "Run",[m
+[31m-    "JUnit.DynemicWaitTest.testGoToProgressBarPage.executor": "Run",[m
+[31m-    "JUnit.DynemicWaitTest.testProgressBar.executor": "Run",[m
+[31m-    "JUnit.DynemicWaitTest.testVisibleAfterButtonText.executor": "Run",[m
+[31m-    "JUnit.Elements1.aVoid.executor": "Run",[m
+[31m-    "JUnit.Elements1.checkboxIsDisplayed.executor": "Run",[m
+[31m-    "JUnit.Elements1.executor": "Run",[m
+[31m-    "JUnit.EnterValue.executor": "Run",[m
+[31m-    "JUnit.EnterValue.testNameFields.executor": "Run",[m
+[31m-    "JUnit.ExampleTest.executor": "Run",[m
+[31m-    "JUnit.FirstLastNameFieldTests.executor": "Run",[m
+[31m-    "JUnit.FirstLastNameFieldTests.testDeleteCharsFromLastNameInput.executor": "Run",[m
+[31m-    "JUnit.FirstLastNameFieldTests.testFirstNameErrorMessageRequired.executor": "Run",[m
+[31m-    "JUnit.FirstLastNameFieldTests.testFirstNameInputIsDisplayedAndRequired (1).executor": "Run",[m
+[31m-    "JUnit.FirstLastNameFieldTests.testFirstNameInputIsDisplayedAndRequired.executor": "Run",[m
+[31m-    "JUnit.FirstLastNameFieldTests.testLastNameInputIsDisplayedAndRequired.executor": "Run",[m
+[31m-    "JUnit.FirstLastNameFieldTests.testSetAndGetFirstName.executor": "Run",[m
+[31m-    "JUnit.FirstLastNameFieldTests.testSetAndGetLastName.executor": "Run",[m
+[31m-    "JUnit.FirstLastNameTests.testSetAndGetLastName.executor": "Run",[m
+[31m-    "JUnit.First_LastName.executor": "Run",[m
+[31m-    "JUnit.First_LastNameTests.executor": "Run",[m
+[31m-    "JUnit.First_LastNameTests.testFirstNameInputIsRequired.executor": "Run",[m
+[31m-    "JUnit.FramesTest.executor": "Run",[m
+[31m-    "JUnit.FramesTest.testFrameSmallBox.executor": "Run",[m
+[31m-    "JUnit.FramesTest.testFramesBigBox.executor": "Run",[m
+[31m-    "JUnit.JavaScriptTest.executor": "Run",[m
+[31m-    "JUnit.JavaScriptTest.scroolAndClickForms.executor": "Run",[m
+[31m-    "JUnit.JavaScriptTest.testScrollingToEllemet.executor": "Run",[m
+[31m-    "JUnit.LinksTest.executor": "Run",[m
+[31m-    "JUnit.LinksTest.testCreatLink.executor": "Run",[m
+[31m-    "JUnit.LinksTest.testCreateLink.executor": "Run",[m
+[31m-    "JUnit.LinksTest.testErrorLink.executor": "Run",[m
+[31m-    "JUnit.LinksTest.testLinks.executor": "Run",[m
+[31m-    "JUnit.Loggin.a.executor": "Run",[m
+[31m-    "JUnit.Loggin.completeLoginTest.executor": "Run",[m
+[31m-    "JUnit.Loggin.loggin.executor": "Run",[m
+[31m-    "JUnit.Loggin.loginFlow.executor": "Run",[m
+[31m-    "JUnit.Loggin.testEmailInput.executor": "Run",[m
+[31m-    "JUnit.LoginTest.executor": "Run",[m
+[31m-    "JUnit.LoginTest.loginFlow.executor": "Run",[m
+[31m-    "JUnit.LoginTests (1).executor": "Run",[m
+[31m-    "JUnit.LoginTests.executor": "Run",[m
+[31m-    "JUnit.LoginTests.foorLoopTest (1).executor": "Run",[m
+[31m-    "JUnit.LoginTests.foorLoopTest.executor": "Run",[m
+[31m-    "JUnit.LoginTests.testLoginErrorMessage.executor": "Run",[m
+[31m-    "JUnit.LoginTests.testValidLogin.executor": "Run",[m
+[31m-    "JUnit.ModalTest.executor": "Run",[m
+[31m-    "JUnit.ModalTest.testModelDialog.executor": "Run",[m
+[31m-    "JUnit.NameTest.deleteLastCharacter.executor": "Run",[m
+[31m-    "JUnit.NameTest.enterFirstName.executor": "Run",[m
+[31m-    "JUnit.NameTest.enterLastName.executor": "Run",[m
+[31m-    "JUnit.NameTest.enterValueAndDelete.executor": "Run",[m
+[31m-    "JUnit.NameTest.executor": "Run",[m
+[31m-    "JUnit.NameTest.flow.executor": "Run",[m
+[31m-    "JUnit.NameTest.refreshPage.executor": "Run",[m
+[31m-    "JUnit.Phone.executor": "Run",[m
+[31m-    "JUnit.Phone.testTooltipTextIsCorrect.executor": "Run",[m
+[31m-    "JUnit.PhoneFieldTests.executor": "Run",[m
+[31m-    "JUnit.PhoneFieldTests.testTooltipTextIsCorrect.executor": "Run",[m
+[31m-    "JUnit.PhoneFieldTests.testTooltipTextIsVisibleAfterClick.executor": "Run",[m
+[31m-    "JUnit.PhoneFieldTestsTests.executor": "Run",[m
+[31m-    "JUnit.RadioButtonTest.RadioButtonSelection.executor": "Run",[m
+[31m-    "JUnit.RadioButtonTest.chanceRadioButton.executor": "Run",[m
+[31m-    "JUnit.RadioButtonTest.clickingRadioButton.executor": "Run",[m
+[31m-    "JUnit.RadioButtonTest.daubleClick.executor": "Run",[m
+[31m-    "JUnit.RadioButtonTest.executor": "Run",[m
+[31m-    "JUnit.RadioButtonTest.initialStateShouldBeUnchecked.executor": "Run",[m
+[31m-    "JUnit.RadioButtonTest.qui.executor": "Run",[m
+[31m-    "JUnit.RadioButtonTest.quickClick.executor": "Run",[m
+[31m-    "JUnit.RadioButtonTest.quickClickRadioButton.executor": "Run",[m
+[31m-    "JUnit.RadioButtonTest.refreshPage.executor": "Run",[m
+[31m-    "JUnit.RadioButtonTest.selectMultipuleRadioButton.executor": "Run",[m
+[31m-    "JUnit.RadioButtonTest.testRadioButton.executor": "Run",[m
+[31m-    "JUnit.Screan1.checkbbelTextIsCorrect.executor": "Run",[m
+[31m-    "JUnit.Screan1.checkboxDeselectsAfterSecondClick.executor": "Run",[m
+[31m-    "JUnit.Screan1.checkboxIsNotSelectedInitially.executor": "Run",[m
+[31m-    "JUnit.Screan1.checkboxLabelTextIsCorrect.executor": "Run",[m
+[31m-    "JUnit.Screan1.checkboxSelectsAfterClick.executor": "Run",[m
+[31m-    "JUnit.Screan1.clickOnCeckboxLabel.executor": "Run",[m
+[31m-    "JUnit.Screan1.clickOnCheckboxLabel.executor": "Run",[m
+[31m-    "JUnit.Screan1.executor": "Run",[m
+[31m-    "JUnit.Screan1.testUserIsOnSecondScreen.executor": "Run",[m
+[31m-    "JUnit.Screan2.executor": "Run",[m
+[31m-    "JUnit.Screan2.testBackButtonReturnsToFirstScreen.executor": "Run",[m
+[31m-    "JUnit.Screan2.testClearFirstNameInputByBackspace.executor": "Run",[m
+[31m-    "JUnit.Screan2.testDeleteSpecificNumberOfChars.executor": "Run",[m
+[31m-    "JUnit.Screan2.testDeleteSpecificNumberOfCharsFromFirstName.executor": "Run",[m
+[31m-    "JUnit.Screan2.testFirstNameErrorMessageRequiredShownWhenEmpty.executor": "Run",[m
+[31m-    "JUnit.Screan2.testFirstNameInputCanBeCleared.executor": "Run",[m
+[31m-    "JUnit.Screan2.testFirstNameInputField.executor": "Run",[m
+[31m-    "JUnit.Screan2.testFirstNameInputNoErrorForHebrew.executor": "Run",[m
+[31m-    "JUnit.Screan2.testFirstNameInputShowsErrorForInvalidInput.executor": "Run",[m
+[31m-    "JUnit.Screan2.testFirstNameInputShowsErrorForNonHebrew.executor": "Run",[m
+[31m-    "JUnit.SecondScreenNavigationTests.executor": "Run",[m
+[31m-    "JUnit.SelectDropDown.executor": "Run",[m
+[31m-    "JUnit.SelectDropDown.testMultiSelectDropDown.executor": "Run",[m
+[31m-    "JUnit.SelectMenuItemPageTest.testSelectStandartMultiByString.executor": "Run",[m
+[31m-    "JUnit.SelectMenueItemPage.testSelectMultipleOptions.executor": "Run",[m
+[31m-    "JUnit.WebTablesTests (1).executor": "Run",[m
+[31m-    "JUnit.WebTablesTests.executor": "Run",[m
+[31m-    "JUnit.WebTablesTests.setAgeTest.executor": "Run",[m
+[31m-    "JUnit.WebTablesTests.setSalaryTest.executor": "Run",[m
+[31m-    "JUnit.WebTablesTests.testWebTable (1).executor": "Run",[m
+[31m-    "JUnit.WebTablesTests.testWebTable.executor": "Run",[m
+[31m-    "JUnit.WebTablesTests.testWebTables.executor": "Run",[m
+[31m-    "JUnit.WindowsTest.a.executor": "Run",[m
+[31m-    "JUnit.WindowsTest.testNewWindowURL.executor": "Run",[m
+[31m-    "JUnit.WindowsTest.testWindowText.executor": "Run",[m
+[31m-    "JUnit.WindowsTest.testWindowURL.executor": "Run",[m
+[31m-    "JUnit.checkBoxTest.executor": "Run",[m
+[31m-    "JUnit.checkBoxTest.ss.executor": "Run",[m
+[31m-    "JUnit.checkBoxTest.testCheckBox.executor": "Run",[m
+[31m-    "JUnit.forms in nisim2.executor": "Run",[m
+[31m-    "JUnit.productTest.executor": "Run",[m
+[31m-    "JUnit.productTest.testProductHaederIsDisplayed.executor": "Run",[m
+[31m-    "JUnit.selectDropDownTest.deselectOptionByIndexTest.executor": "Run",[m
+[31m-    "JUnit.selectDropDownTest.deselectTest.executor": "Run",[m
+[31m-    "JUnit.selectDropDownTest.executor": "Run",[m
+[31m-    "JUnit.selectDropDownTest.isExpectedOptionSelectedTest.executor": "Run",[m
+[31m-    "JUnit.selectDropDownTest.openSelectManueTest.executor": "Run",[m
+[31m-    "JUnit.widgetsTest.aTest.executor": "Run",[m
+[31m-    "JUnit.widgetsTest.deselectTest.executor": "Run",[m
+[31m-    "JUnit.widgetsTest.executor": "Run",[m
+[31m-    "JUnit.widgetsTest.isExpectedOptionSelectedTest.executor": "Run",[m
+[31m-    "JUnit.widgetsTest.openSelectManueTest.executor": "Run",[m
+[31m-    "JUnit.widgetsTest.test.executor": "Run",[m
+[31m-    "JUnit.widgetsTest.x.executor": "Run",[m
+[31m-    "Maven.maven test.executor": "Run",[m
+[31m-    "Maven.nisim1 [clean].executor": "Run",[m
+[31m-    "Maven.nisim1 [compile].executor": "Run",[m
+[31m-    "Maven.nisim2 [clean].executor": "Run",[m
+[31m-    "Maven.nisim2 [compile].executor": "Run",[m
+[31m-    "ModuleVcsDetector.initialDetectionPerformed": "true",[m
+[31m-    "RunOnceActivity.ShowReadmeOnStart": "true",[m
+[31m-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",[m
+[31m-    "git-widget-placeholder": "nisim-branch",[m
+[31m-    "ignore.virus.scanning.warn.message": "true",[m
+[31m-    "kotlin-language-version-configured": "true",[m
+[31m-    "last_directory_selection": "C:/Users/NisimBengayev/IdeaProjects/nisim2/src/main/java/com/example",[m
+[31m-    "last_opened_file_path": "C:/Users/NisimBengayev/IdeaProjects/nisim2-new",[m
+[31m-    "project.structure.last.edited": "Modules",[m
+[31m-    "project.structure.proportion": "0.15722656",[m
+[31m-    "project.structure.side.proportion": "0.2",[m
+[31m-    "settings.editor.selected.configurable": "vcs.Git"[m
+[32m+[m[32m  <component name="PropertiesComponent">{[m
+[32m+[m[32m  &quot;keyToString&quot;: {[m
+[32m+[m[32m    &quot;Application.Main.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.AlertsTest.alertsInfoItem.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.AlertsTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.AlertsTest.testConfirmAlert.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.AlertsTest.testPronptAlert.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.BaseTest_part3.fassil.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.CalculatorTests.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.CalculatorTests.testAddition.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.CheckBoxTest (1).executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.CheckBoxTest.MusicCheckBox.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.CheckBoxTest.ReadingCheckBox.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.CheckBoxTest.SelecALLCheckBoxex.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.CheckBoxTest.SelecAllCheckBoxex.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.CheckBoxTest.SelectMusicCheckBox.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.CheckBoxTest.SelectReadingCheckBox.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.CheckBoxTest.SelectSportCheckBox.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.CheckBoxTest.SportCheckBox.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.CheckBoxTest.Unclick.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.CheckBoxTest.UnclickAfterClicking.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.CheckBoxTest.UnclickWithoutClicking.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.CheckBoxTest.ZeroState.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.CheckBoxTest.a.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.CheckBoxTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.CheckBoxTest.selectAllCheckBoxes.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.CheckBoxTest.testReadingCheckBox.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.CheckBoxTest.testSportCheckBox.executor&quot;: &quot;Debug&quot;,[m
+[32m+[m[32m    &quot;JUnit.CheckBoxTest.unclickedReadingCheckBox.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.DateTest.TestSelectingDate.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.DateTest.a (1).executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.DateTest.a.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.DateTest.dayIsNotInMonthTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.DateTest.dayIsNotInMounthTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.DateTest.deselectOptionByIndexTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.DateTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.DateTest.getDatePickerPageTest (1).executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.DateTest.getDatePickerPageTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.DateTest.getInDatePickerPageTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.DateTest.testDatePicker.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.DateTest.testDatePickerPage.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.DateTest.testDateSelection (1).executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.DateTest.testDateSelection.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.DateTest.testInvalidCharacterInputIsRejected.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.DateTest.testInvalidDayCharacters.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.DynemicWaitTest.tesProgressBar.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.DynemicWaitTest.testGoToDynemicPage.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.DynemicWaitTest.testGoToProgressBarPage.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.DynemicWaitTest.testProgressBar.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.DynemicWaitTest.testVisibleAfterButtonText.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Elements1.aVoid.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Elements1.checkboxIsDisplayed.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Elements1.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.EnterValue.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.EnterValue.testNameFields.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.ExampleTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.FirstLastNameFieldTests.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.FirstLastNameFieldTests.testDeleteCharsFromLastNameInput.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.FirstLastNameFieldTests.testFirstNameErrorMessageRequired.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.FirstLastNameFieldTests.testFirstNameInputIsDisplayedAndRequired (1).executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.FirstLastNameFieldTests.testFirstNameInputIsDisplayedAndRequired.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.FirstLastNameFieldTests.testLastNameInputIsDisplayedAndRequired.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.FirstLastNameFieldTests.testSetAndGetFirstName.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.FirstLastNameFieldTests.testSetAndGetLastName.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.FirstLastNameTests.testSetAndGetLastName.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.First_LastName.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.First_LastNameTests.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.First_LastNameTests.testFirstNameInputIsRequired.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.FramesTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.FramesTest.testFrameSmallBox.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.FramesTest.testFramesBigBox.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.JavaScriptTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.JavaScriptTest.scroolAndClickForms.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.JavaScriptTest.testScrollingToEllemet.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.LinksTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.LinksTest.testCreatLink.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.LinksTest.testCreateLink.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.LinksTest.testErrorLink.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.LinksTest.testLinks.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Loggin.a.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Loggin.completeLoginTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Loggin.loggin.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Loggin.loginFlow.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Loggin.testEmailInput.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.LoginTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.LoginTest.loginFlow.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.LoginTests (1).executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.LoginTests.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.LoginTests.foorLoopTest (1).executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.LoginTests.foorLoopTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.LoginTests.testLoginErrorMessage.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.LoginTests.testValidLogin.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.ModalTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.ModalTest.testModelDialog.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.NameTest.deleteLastCharacter.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.NameTest.enterFirstName.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.NameTest.enterLastName.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.NameTest.enterValueAndDelete.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.NameTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.NameTest.flow.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.NameTest.refreshPage.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Phone.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Phone.testTooltipTextIsCorrect.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.PhoneFieldTests.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.PhoneFieldTests.testTooltipTextIsCorrect.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.PhoneFieldTests.testTooltipTextIsVisibleAfterClick.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.PhoneFieldTestsTests.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.RadioButtonTest.RadioButtonSelection.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.RadioButtonTest.chanceRadioButton.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.RadioButtonTest.clickingRadioButton.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.RadioButtonTest.daubleClick.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.RadioButtonTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.RadioButtonTest.initialStateShouldBeUnchecked.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.RadioButtonTest.qui.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.RadioButtonTest.quickClick.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.RadioButtonTest.quickClickRadioButton.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.RadioButtonTest.refreshPage.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.RadioButtonTest.selectMultipuleRadioButton.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.RadioButtonTest.testRadioButton.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Screan1.checkbbelTextIsCorrect.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Screan1.checkboxDeselectsAfterSecondClick.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Screan1.checkboxIsNotSelectedInitially.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Screan1.checkboxLabelTextIsCorrect.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Screan1.checkboxSelectsAfterClick.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Screan1.clickOnCeckboxLabel.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Screan1.clickOnCheckboxLabel.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Screan1.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Screan1.testUserIsOnSecondScreen.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Screan2.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Screan2.testBackButtonReturnsToFirstScreen.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Screan2.testClearFirstNameInputByBackspace.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Screan2.testDeleteSpecificNumberOfChars.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Screan2.testDeleteSpecificNumberOfCharsFromFirstName.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Screan2.testFirstNameErrorMessageRequiredShownWhenEmpty.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Screan2.testFirstNameInputCanBeCleared.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Screan2.testFirstNameInputField.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Screan2.testFirstNameInputNoErrorForHebrew.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Screan2.testFirstNameInputShowsErrorForInvalidInput.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.Screan2.testFirstNameInputShowsErrorForNonHebrew.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.SecondScreenNavigationTests.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.SelectDropDown.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.SelectDropDown.testMultiSelectDropDown.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.SelectMenuItemPageTest.testSelectStandartMultiByString.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.SelectMenueItemPage.testSelectMultipleOptions.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.WebTablesTests (1).executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.WebTablesTests.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.WebTablesTests.setAgeTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.WebTablesTests.setSalaryTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.WebTablesTests.testWebTable (1).executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.WebTablesTests.testWebTable.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.WebTablesTests.testWebTables.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.WindowsTest.a.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.WindowsTest.testNewWindowURL.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.WindowsTest.testWindowText.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.WindowsTest.testWindowURL.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.checkBoxTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.checkBoxTest.ss.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.checkBoxTest.testCheckBox.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.forms in nisim2.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.productTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.productTest.testProductHaederIsDisplayed.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.selectDropDownTest.deselectOptionByIndexTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.selectDropDownTest.deselectTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.selectDropDownTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.selectDropDownTest.isExpectedOptionSelectedTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.selectDropDownTest.openSelectManueTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.widgetsTest.aTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.widgetsTest.deselectTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.widgetsTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.widgetsTest.isExpectedOptionSelectedTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.widgetsTest.openSelectManueTest.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.widgetsTest.test.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;JUnit.widgetsTest.x.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;Maven.maven test.executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;Maven.nisim1 [clean].executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;Maven.nisim1 [compile].executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;Maven.nisim2 [clean].executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;Maven.nisim2 [compile].executor&quot;: &quot;Run&quot;,[m
+[32m+[m[32m    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,[m
+[32m+[m[32m    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,[m
+[32m+[m[32m    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,[m
+[32m+[m[32m    &quot;git-widget-placeholder&quot;: &quot;nisim-branch&quot;,[m
+[32m+[m[32m    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,[m
+[32m+[m[32m    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,[m
+[32m+[m[32m    &quot;last_directory_selection&quot;: &quot;C:/Users/NisimBengayev/IdeaProjects/nisim2/src/main/java/com/example&quot;,[m
+[32m+[m[32m    &quot;last_opened_file_path&quot;: &quot;C:/Users/NisimBengayev/IdeaProjects/nisim2-new&quot;,[m
+[32m+[m[32m    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,[m
+[32m+[m[32m    &quot;project.structure.proportion&quot;: &quot;0.15722656&quot;,[m
+[32m+[m[32m    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,[m
+[32m+[m[32m    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;[m
+   }[m
+[31m-}]]></component>[m
+[32m+[m[32m}</component>[m
+   <component name="RecentsManager">[m
+     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">[m
+       <recent name="com.example" />[m
+[36m@@ -376,6 +375,17 @@[m
+     </task>[m
+     <servers />[m
+   </component>[m
+[32m+[m[32m  <component name="Vcs.Log.Tabs.Properties">[m
+[32m+[m[32m    <option name="TAB_STATES">[m
+[32m+[m[32m      <map>[m
+[32m+[m[32m        <entry key="MAIN">[m
+[32m+[m[32m          <value>[m
+[32m+[m[32m            <State />[m
+[32m+[m[32m          </value>[m
+[32m+[m[32m        </entry>[m
+[32m+[m[32m      </map>[m
+[32m+[m[32m    </option>[m
+[32m+[m[32m  </component>[m
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">[m
+     <SUITE FILE_PATH="coverage/nisim2$LoginTests__1_.ic" NAME="LoginTests (1) Coverage Results" MODIFIED="1743945319846" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">[m
+       <FILTER>com.example.*</FILTER>[m
