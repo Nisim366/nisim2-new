@@ -84,6 +84,8 @@ public class LoginPage extends BasePage {
             }
         } catch (TimeoutException e) {
             System.out.println("Login button not clickable or not found.");
+            System.out.println("Login button not clickable or not found.");
+
         }
     }
 }
