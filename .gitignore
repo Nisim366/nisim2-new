@@ -1,9 +1,36 @@
-ECHO is on.
-# Mac system file
+# Mac system files
 .DS_Store
 
-# Windows system file
+# Windows system files
 Thumbs.db
 
-# IntelliJ IDEA files
+# IntelliJ IDEA
 .idea/
+*.iml
+*.iws
+out/
+workspace.xml
+tasks.xml
+usage.statistics.xml
+dictionaries/
+
+# Maven
+target/
+
+# Logs
+*.log
+
+# Compiled class files
+*.class
+
+# Temporary files
+*.tmp
+*.temp
+
+# VS Code
+.vscode/
+
+# Others
+*.jar
+*.war
+*.ear
