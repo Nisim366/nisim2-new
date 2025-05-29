@@ -4,3 +4,6 @@ ECHO is on.
 
 # Windows system file
 Thumbs.db
+
+# IntelliJ IDEA files
+.idea/
