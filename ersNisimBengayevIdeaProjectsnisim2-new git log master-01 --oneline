@@ -1,0 +1,15 @@
+[33m68dab16[m[33m ([m[1;31morigin/master-01[m[33m, [m[1;32mmaster-01[m[33m)[m t
+[33me230e36[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m שינויים ב-LoginPage
+[33mee237af[m Merge branch 'nisim-branch'
+[33mbc5bf04[m[33m ([m[1;32mnisim-branch[m[33m)[m Save changes in nisim-branch
+[33m283cb11[m Save changes in master before merge
+[33m495b087[m Update .gitignore and remove .idea from git tracking
+[33m55ceaab[m Fix: added duplicate log in catch block
+[33m4742456[m Remove nisim directory from git tracking
+[33mdfa47dc[m Remove .idea from git tracking and add .gitignore
+[33m8ec6fea[m[33m ([m[1;31morigin/nisim-branch[m[33m)[m השינויים שעשיתי בענף החדש
+[33mfb27dd9[m[33m ([m[1;31morigin/TEST[m[33m)[m הוספתי תכונה חדשה ב-feature-xyz
+[33m0c70dd8[m Add .gitignore to exclude system files like .DS_Store and Thumbs.db
+[33m7802e98[m Add .gitignore to exclude IDE and build files
+[33maab8da1[m Initial commit
+[33mad999a9[m[33m ([m[1;33mtag: [m[1;33mv1.0.0[m[33m)[m Initial commit - adding existing project files
