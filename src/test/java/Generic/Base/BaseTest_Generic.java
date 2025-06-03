@@ -1,13 +1,13 @@
 package Generic.Base;
 
 import Generic_product.Generic_HomePage;
+import Generic_product.Pages.Second.Second;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.JavaScriptUtility;
 
@@ -35,6 +35,13 @@ public class BaseTest_Generic {
         jsUtil = new JavaScriptUtility(driver);
         homePage = new Generic_HomePage(driver);
         js = (JavascriptExecutor) driver;
+    }
+
+    @AfterEach
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 
 
