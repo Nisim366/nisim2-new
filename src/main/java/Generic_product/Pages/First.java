@@ -12,7 +12,7 @@ import java.time.Duration;
 
 public class First extends Generic_BasePage {
 
-    private JavaScriptUtility jsUtil;
+    private JavaScriptUtility js;
 
     private final By checkboxInput = By.xpath("//input[@id='meta.consents.privacyNote-checkbox']");
     private final By checkboxLabel = By.xpath("//label[@id='meta.consents.privacyNote-label']//span[contains(@class, 'MuiFormControlLabel-label')]");
@@ -25,18 +25,32 @@ public class First extends Generic_BasePage {
 
     public First(WebDriver driver) {
         super(driver);
-        jsUtil = new JavaScriptUtility(driver);
+        js = new JavaScriptUtility(driver);
     }
 
-    public void clickCheckbox() {
+    public boolean clickCheckbox() {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         try {
-            WebElement checkboxVisual = wait.until(ExpectedConditions.elementToBeClickable(checkboxSpan));
-            checkboxVisual.click();
-        } catch (Exception e) {
-            System.out.println("Failed to click checkbox: " + e.getMessage());
+            // First, click the label (visual clickable element)
+            WebElement label = wait.until(ExpectedConditions.elementToBeClickable(checkboxLabel));
+            label.click();
+            System.out.println("Clicked checkbox label successfully.");
+            return true;
+        } catch (Exception e1) {
+            System.out.println("Failed to click label: " + e1.getMessage());
+            try {
+                // Fallback: click the input directly using JavaScript
+                WebElement inputCheckbox = wait.until(ExpectedConditions.presenceOfElementLocated(checkboxInput));
+                js.clickElementByJS(checkboxInput);
+                System.out.println("Clicked checkbox input using JavaScript.");
+                return true;
+            } catch (Exception e2) {
+                System.out.println("Failed to click checkbox input: " + e2.getMessage());
+                return false;
+            }
         }
     }
+
 
 
     public String getCheckboxLabelText() {
@@ -52,12 +66,14 @@ public class First extends Generic_BasePage {
 
     public boolean isCheckboxSelected() {
         try {
-            return getDriver().findElement(checkboxInput).isSelected();
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+            WebElement checkbox = wait.until(ExpectedConditions.presenceOfElementLocated(checkboxInput));
+            return checkbox.isSelected();
         } catch (Exception e) {
-            System.out.println("Checkbox not found or error: " + e.getMessage());
             return false;
         }
     }
+
 
 
     public void clickContinueButton() {

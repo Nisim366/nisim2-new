@@ -21,7 +21,7 @@ public class BaseTest_Generic {
     protected JavaScriptUtility jsUtil;
     protected WebDriverWait wait;
 
-    private final String Generic_URL = "https://app.stage.greenlend.co.il/customer/wizard?channel=uvXXp9";
+    private final String Generic_URL = "https://app.stage.greenlend.co.il/customer/wizard?channel=c4poqltt";
 
     @BeforeEach
     public void setUp() {
@@ -37,12 +37,7 @@ public class BaseTest_Generic {
         js = (JavascriptExecutor) driver;
     }
 
-    @AfterEach
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
+
 
 
 }

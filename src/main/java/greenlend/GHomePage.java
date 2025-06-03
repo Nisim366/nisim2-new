@@ -1,7 +1,7 @@
 package greenlend;
 
 import greenlend.base.BasePage;
-import greenlend.logginPage.pages.LoginPage;
+import greenlend.logginPage.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utilities.JavaScriptUtility;
