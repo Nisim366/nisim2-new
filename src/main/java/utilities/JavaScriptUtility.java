@@ -64,4 +64,30 @@ public class JavaScriptUtility {
     public void deleteLastChar(WebElement input) {
         input.sendKeys(Keys.BACK_SPACE);
     }
+
+    // --- תוספות ללא שינוי קיים ---
+
+    // Click element directly by JS using locator (בלי להמתין)
+    public void clickElementByJS(By locator) {
+        try {
+            WebElement element = driver.findElement(locator);
+            scrollToElementJS(locator);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+            logger.info("Successfully clicked element (directly by JS): " + locator);
+        } catch (Exception e) {
+            logger.severe("Error in clickElementByJS for locator: " + locator + " - " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    // Click element directly by JS using WebElement
+    public void clickElementByJS(WebElement element) {
+        try {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+            logger.info("Successfully clicked WebElement (directly by JS)");
+        } catch (Exception e) {
+            logger.severe("Error in clickElementByJS for WebElement - " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 }

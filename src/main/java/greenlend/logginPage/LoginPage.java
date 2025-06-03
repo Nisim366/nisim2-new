@@ -1,4 +1,4 @@
-package greenlend.logginPage.pages;
+package greenlend.logginPage;
 
 import greenlend.base.BasePage;
 import org.openqa.selenium.*;
