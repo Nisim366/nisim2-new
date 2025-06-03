@@ -1,4 +1,4 @@
-package Generic.Test.Part1.Screens.Screen1;
+package Generic.Test.Part1.Screens.Screen1.First;
 
 import Generic.Base.BaseTest_Generic;
 import Generic_product.Pages.First;

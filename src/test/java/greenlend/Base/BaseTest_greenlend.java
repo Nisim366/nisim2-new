@@ -32,11 +32,11 @@ public class BaseTest_greenlend {
         js = (JavascriptExecutor) driver;
     }
 
-//    @AfterEach
-//    public void tearDown() {
-//        if (driver != null) {
-//            driver.quit();
-//        }
-//    }
+    @AfterEach
+    public void tearDown() {
+       if (driver != null) {
+            driver.quit();
+        }
+    }
 
 }
