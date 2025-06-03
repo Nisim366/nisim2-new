@@ -257,10 +257,4 @@ public class TestFirst_LastName extends BaseTest_Generic {
         assertTrue(page.isLastNameErrorDisplayed(), "שגיאה לא הופיעה עבור קלט משולב לא חוקי בשם המשפחה");
     }
 
-
-
-
-
-
-
 }

@@ -95,4 +95,18 @@ public class First extends Generic_BasePage {
             return false;
         }
     }
+    public boolean verifyReturnedToFirstPage() {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(headerFirstPage));
+            String text = getText(headerFirstPage);
+            boolean result = text.contains("זו תקופה מרגשת");
+            System.out.println("Verify returned to first page: " + result);
+            return result;
+        } catch (Exception e) {
+            System.out.println("Not returned to first page: " + e.getMessage());
+            return false;
+        }
+    }
+
 }
