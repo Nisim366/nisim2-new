@@ -2,6 +2,7 @@ package Generic_product.Pages.Second_screen;
 
 import Generic_product.Base.Generic_BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -45,11 +46,13 @@ public class EmailFields extends Generic_BasePage {
     public String getEmail() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(emailInput)).getAttribute("value");
     }
-
     public void clearEmail() {
         WebElement input = wait.until(ExpectedConditions.visibilityOfElementLocated(emailInput));
-        input.clear();
+        input.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        input.sendKeys(Keys.DELETE);
+        wait.until(ExpectedConditions.attributeToBe(emailInput, "value", ""));
     }
+
 
     public boolean isEmailRequiredErrorDisplayed() {
         return isErrorVisible(emailErrorRequired);
@@ -89,7 +92,9 @@ public class EmailFields extends Generic_BasePage {
 
     public void setEmailConfirmation(String email) {
         WebElement input = wait.until(ExpectedConditions.visibilityOfElementLocated(emailConfirmationInput));
-        input.clear();
+        input.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        input.sendKeys(Keys.DELETE);
+
         input.sendKeys(email);
     }
 
@@ -99,7 +104,9 @@ public class EmailFields extends Generic_BasePage {
 
     public void clearEmailConfirmation() {
         WebElement input = wait.until(ExpectedConditions.visibilityOfElementLocated(emailConfirmationInput));
-        input.clear();
+        input.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        input.sendKeys(Keys.DELETE);
+
     }
 
     public boolean isEmailConfirmationRequiredErrorDisplayed() {

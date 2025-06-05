@@ -31,9 +31,14 @@ public class First_lastName extends Generic_BasePage {
 
     public void setFirstName(String name) {
         WebElement input = getFirstNameInput();
-        input.clear();
-        input.sendKeys(name);
+
+        input.click();  // מביא פוקוס לשדה - חשוב לאתרים שמצפים לפוקוס
+        input.sendKeys(Keys.chord(Keys.CONTROL, "a"));  // בוחר את כל הטקסט בשדה
+        input.sendKeys(Keys.DELETE);  // מוחק את הבחירה (כל הטקסט)
+
+        input.sendKeys(name);  // מזין את השם החדש
     }
+
 
     public String getFirstName() {
         return getFirstNameInput().getAttribute("value");
@@ -109,7 +114,9 @@ public class First_lastName extends Generic_BasePage {
 
     public void setLastName(String lastName) {
         WebElement input = getLastNameInput();
-        input.clear();
+        input.click();
+        input.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        input.sendKeys(Keys.DELETE);
         input.sendKeys(lastName);
     }
 
