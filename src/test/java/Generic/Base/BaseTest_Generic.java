@@ -1,6 +1,7 @@
 package Generic.Base;
 
 import Generic_product.Generic_HomePage;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -35,6 +36,13 @@ public class BaseTest_Generic {
             System.out.println("Jumped to step: " + targetScreen);
         } else {
             System.out.println("No target screen set, continuing without jump.");
+        }
+    }
+    @AfterEach
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+            System.out.println("Browser closed.");
         }
     }
 

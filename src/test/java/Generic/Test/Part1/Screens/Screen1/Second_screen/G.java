@@ -25,6 +25,11 @@ public class G extends BaseTest_Generic {
     private EmailFields emailFields;
     private Third_screen thirdPage;
     private final String phone = "0532407762";
+    private  final  String  firstName = "חן";
+    private  final  String  lastName = "הניגון";
+    private  final  String GMail = "yossi@example.com";
+
+
 
     // מתודה שמבצעת ניווט מהמסך הראשון לשני ומחזירה את האובייקט של המסך השני (Second)
     private Second navigateToSecondPage() {
@@ -54,20 +59,20 @@ public class G extends BaseTest_Generic {
     @Test
     public void testFillAllFieldsOnSecondScreenAndContinueToThird() {
         // הזנת ערכים בשדות במסך השני
-        firstLastName.setFirstName("יוסי");
-        firstLastName.setLastName("כהן");
+        firstLastName.setFirstName(firstName);
+        firstLastName.setLastName(lastName);
 
         phoneField.setPhoneInput(phone);
 
-        emailFields.setEmail("yossi@example.com");
-        emailFields.setEmailConfirmation("yossi@example.com");
+        emailFields.setEmail(GMail);
+        emailFields.setEmailConfirmation(GMail);
 
         // בדיקות שהשדות הוזנו כראוי
-        Assertions.assertEquals("יוסי", firstLastName.getFirstName());
-        Assertions.assertEquals("כהן", firstLastName.getLastName());
+        Assertions.assertEquals(firstName, firstLastName.getFirstName());
+        Assertions.assertEquals(lastName, firstLastName.getLastName());
         Assertions.assertEquals(phoneField.normalizePhoneForComparison(phone), phoneField.getNormalizedPhoneValue());
-        Assertions.assertEquals("yossi@example.com", emailFields.getEmail());
-        Assertions.assertEquals("yossi@example.com", emailFields.getEmailConfirmation());
+        Assertions.assertEquals(GMail, emailFields.getEmail());
+        Assertions.assertEquals(GMail, emailFields.getEmailConfirmation());
 
         // מעבר למסך השלישי
         secondPage.clickContinueButton();

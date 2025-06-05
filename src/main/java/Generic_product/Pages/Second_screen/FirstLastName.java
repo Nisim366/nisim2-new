@@ -197,13 +197,14 @@ public class FirstLastName extends Generic_BasePage {
         input.sendKeys(Keys.TAB);
     }
     public void leaveFirstNameField() {
-        WebElement firstNameInput = driver.findElement(By.xpath("//input[@data-testid='applicant.fullName.firstName-input']"));
-        firstNameInput.sendKeys(Keys.TAB);
+        WebElement element = driver.findElement(firstNameInput);
+        element.sendKeys(Keys.TAB);
     }
 
+
     public void leaveLastNameField() {
-        WebElement lastNameInput = driver.findElement(By.xpath("//input[@data-testid='applicant.fullName.lastName-input']"));
-        lastNameInput.sendKeys(Keys.TAB);
+        WebElement element = driver.findElement(lastNameInput);
+        element.sendKeys(Keys.TAB);
     }
 
 
