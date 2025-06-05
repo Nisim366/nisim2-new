@@ -14,6 +14,11 @@ public class Screan1 extends BaseTest_Generic {
         Assertions.assertTrue(obj.isOnFirstPage(), "Should be on the first page");
         System.out.println("\u001B[32m=== TEST isOnFirstPageReturnsTrue PASSED ===\u001B[0m");
     }
+    @Test
+    public void a(){
+        First obj = homePage.goToPractice();
+
+    }
 
 
     @Test
