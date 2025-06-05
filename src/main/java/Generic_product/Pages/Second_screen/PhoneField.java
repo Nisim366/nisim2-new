@@ -1,4 +1,4 @@
-package Generic_product.Pages.Second;
+package Generic_product.Pages.Second_screen;
 
 import Generic_product.Base.Generic_BasePage;
 import org.openqa.selenium.By;

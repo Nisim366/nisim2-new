@@ -1,4 +1,4 @@
-package Generic_product.Pages;
+package Generic_product.Pages.First_screen;
 
 import Generic_product.Base.Generic_BasePage;
 import org.openqa.selenium.By;

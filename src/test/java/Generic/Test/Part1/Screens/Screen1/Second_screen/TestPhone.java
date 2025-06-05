@@ -1,8 +1,8 @@
-package Generic.Test.Part1.Screens.Screen1.Second;
+package Generic.Test.Part1.Screens.Screen1.Second_screen;
 
 import Generic.Base.BaseTest_Generic;
-import Generic_product.Pages.First;
-import Generic_product.Pages.Second.PhoneField;
+import Generic_product.Pages.First_screen.First;
+import Generic_product.Pages.Second_screen.PhoneField;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

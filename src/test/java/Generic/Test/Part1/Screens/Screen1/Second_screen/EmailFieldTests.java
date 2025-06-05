@@ -1,10 +1,10 @@
-package Generic.Test.Part1.Screens.Screen1.Second;
+package Generic.Test.Part1.Screens.Screen1.Second_screen;
 
 import Generic.Base.BaseTest_Generic;
 import Generic_product.Generic_HomePage;
-import Generic_product.Pages.First;
-import Generic_product.Pages.Second.EmailFields;
-import Generic_product.Pages.Second.First_lastName;
+import Generic_product.Pages.First_screen.First;
+import Generic_product.Pages.Second_screen.EmailFields;
+import Generic_product.Pages.Second_screen.First_lastName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;

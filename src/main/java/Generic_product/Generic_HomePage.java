@@ -1,7 +1,7 @@
 package Generic_product;
 
 import Generic_product.Base.Generic_BasePage;
-import Generic_product.Pages.First;
+import Generic_product.Pages.First_screen.First;
 import org.openqa.selenium.WebDriver;
 import utilities.JavaScriptUtility;
 
