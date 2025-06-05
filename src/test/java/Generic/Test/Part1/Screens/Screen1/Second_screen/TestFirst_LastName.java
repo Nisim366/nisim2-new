@@ -3,7 +3,7 @@ package Generic.Test.Part1.Screens.Screen1.Second_screen;
 import Generic.Base.BaseTest_Generic;
 import Generic_product.Generic_HomePage;
 import Generic_product.Pages.First_screen.First;
-import Generic_product.Pages.Second_screen.First_lastName;
+import Generic_product.Pages.Second_screen.FirstLastName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestFirst_LastName extends BaseTest_Generic {
 
-    private First_lastName navigateToSecondPage() {
+    private FirstLastName navigateToSecondPage() {
         Generic_HomePage homePage = new Generic_HomePage(driver);
         First firstPage = homePage.goToPractice();
 
@@ -28,19 +28,19 @@ public class TestFirst_LastName extends BaseTest_Generic {
 
         System.out.println("Navigated to second screen");
 
-        return new First_lastName(driver);
+        return new FirstLastName(driver);
     }
 
     @Test
     public void testLastNameInputIsDisplayedAndRequired() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         assertTrue(page.isLastNameVisible(), "שדה שם המשפחה לא מוצג");
         assertTrue(page.isLastNameRequired(), "שדה שם המשפחה לא מסומן כנדרש");
     }
 
     @Test
     public void testSetAndGetFirstName() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         String testName = "ישראל";
         page.setFirstName(testName);
         assertEquals(testName, page.getFirstName(), "ערך השם הפרטי לא נשמר כראוי");
@@ -48,7 +48,7 @@ public class TestFirst_LastName extends BaseTest_Generic {
 
     @Test
     public void testSetAndGetLastName() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         String testLastName = "כהן";
         page.setLastName(testLastName);
         assertEquals(testLastName, page.getLastName(), "ערך שם המשפחה לא נשמר כראוי");
@@ -56,7 +56,7 @@ public class TestFirst_LastName extends BaseTest_Generic {
 
     @Test
     public void testClearFirstNameUsingJS() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         page.setFirstName("ישראל");
         page.clearFirstNameUsingJS();
         assertEquals("", page.getFirstName(), "שדה השם הפרטי לא נוקה כראוי");
@@ -64,7 +64,7 @@ public class TestFirst_LastName extends BaseTest_Generic {
 
     @Test
     public void testClearLastNameUsingJS() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         page.setLastName("כהן");
         page.clearLastNameUsingJS();
         assertEquals("", page.getLastName(), "שדה שם המשפחה לא נוקה כראוי");
@@ -72,7 +72,7 @@ public class TestFirst_LastName extends BaseTest_Generic {
 
     @Test
     public void testDeleteCharsFromFirstNameInput() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         String name = "ישראל";
         page.setFirstName(name);
         page.deleteFirstNameChars(2);
@@ -82,7 +82,7 @@ public class TestFirst_LastName extends BaseTest_Generic {
 
     @Test
     public void testDeleteCharsFromLastNameInput() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         String lastName = "כהן";
         page.setLastName(lastName);
         page.deleteLastNameChars(1);
@@ -92,7 +92,7 @@ public class TestFirst_LastName extends BaseTest_Generic {
 
     @Test
     public void testFirstNameErrorMessageRequired() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         page.setFirstName(""); // ערך ריק כדי לגרום לשגיאה
         page.leaveFirstNameField();
 
@@ -102,7 +102,7 @@ public class TestFirst_LastName extends BaseTest_Generic {
 
     @Test
     public void testLastNameErrorMessageRequired() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         page.setLastName(""); // ערך ריק כדי לגרום לשגיאה
         page.leaveLastNameField();
 
@@ -112,7 +112,7 @@ public class TestFirst_LastName extends BaseTest_Generic {
 
     @Test
     public void testFirstNameErrorMessageHebrewOnly() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         page.setFirstName("abc123"); // ערך לא חוקי
         page.leaveFirstNameField();
 
@@ -122,7 +122,7 @@ public class TestFirst_LastName extends BaseTest_Generic {
 
     @Test
     public void testLastNameErrorMessageHebrewOnly() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         page.setLastName("123abc"); // ערך לא חוקי
         page.leaveLastNameField();
 
@@ -132,7 +132,7 @@ public class TestFirst_LastName extends BaseTest_Generic {
 
     @Test
     public void testFirstNameAriaInvalidAttribute() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         page.setFirstName(""); // ריק - אמור להפעיל שגיאת חובה
         page.leaveFirstNameField();
 
@@ -143,7 +143,7 @@ public class TestFirst_LastName extends BaseTest_Generic {
 
     @Test
     public void testLastNameAriaInvalidAttribute() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         page.setLastName(""); // ריק - אמור להפעיל שגיאת חובה
         page.leaveLastNameField();
 
@@ -154,7 +154,7 @@ public class TestFirst_LastName extends BaseTest_Generic {
 
     @Test
     public void testFirstNameErrorClearsAfterValidInput() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         page.setFirstName(""); // מפעיל שגיאה
         page.leaveFirstNameField();
 
@@ -167,7 +167,7 @@ public class TestFirst_LastName extends BaseTest_Generic {
 
     @Test
     public void testLastNameErrorClearsAfterValidInput() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         page.setLastName(""); // מפעיל שגיאה
         page.leaveLastNameField();
 
@@ -179,14 +179,14 @@ public class TestFirst_LastName extends BaseTest_Generic {
     }
     @Test
     public void testFirstNameWithOnlySpaces() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         page.setFirstName("     ");
         page.leaveFirstNameField();
         assertTrue(page.isFirstNameErrorDisplayed(), "לא הופיעה שגיאה על קלט שהוא רק רווחים");
     }
     @Test
     public void testFirstNameMaxLengthAllowed() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         String validName = "שששששששששששששששששששששדדדדדדדדד"; // 30 תווים
         page.setFirstName(validName);
         assertEquals(validName, page.getFirstName(), "שם תקני באורך מקסימלי לא התקבל");
@@ -194,7 +194,7 @@ public class TestFirst_LastName extends BaseTest_Generic {
 
     @Test
     public void testFirstNameTooLong() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         String longName = "שששששששששששששששששששששדדדדדדדדדד"; // 31 תווים
         page.setFirstName(longName);
         String actual = page.getFirstName();
@@ -202,7 +202,7 @@ public class TestFirst_LastName extends BaseTest_Generic {
     }
     @Test
     public void testFirstNameErrorNotShownWhileTyping() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         page.setFirstName("");
         // בלי לצאת מהשדה
         assertFalse(page.isFirstNameErrorDisplayed(), "שגיאה הופיעה למרות שהשדה בפוקוס");
@@ -211,14 +211,14 @@ public class TestFirst_LastName extends BaseTest_Generic {
 
     @Test
     public void testFirstNameMixedValidAndInvalidCharacters() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         page.setFirstName("ש123ק");
         page.leaveFirstNameField();
         assertTrue(page.isFirstNameErrorDisplayed(), "שגיאה לא הופיעה עבור קלט משולב לא חוקי");
     }
     @Test
     public void testLastNameWithOnlySpaces() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         page.setLastName("     ");
         page.leaveLastNameField();
         assertTrue(page.isLastNameErrorDisplayed(), "לא הופיעה שגיאה על קלט שהוא רק רווחים בשם המשפחה");
@@ -226,7 +226,7 @@ public class TestFirst_LastName extends BaseTest_Generic {
 
     @Test
     public void testLastNameMaxLengthAllowed() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         String validLastName = "שששששששששששששששששששששדדדדדדדדד"; // 30 תווים
         page.setLastName(validLastName);
         assertEquals(validLastName, page.getLastName(), "שם משפחה תקני באורך מקסימלי לא התקבל");
@@ -234,7 +234,7 @@ public class TestFirst_LastName extends BaseTest_Generic {
 
     @Test
     public void testLastNameTooLong() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         String longLastName = "שששששששששששששששששששששדדדדדדדדדד"; // 31 תווים
         page.setLastName(longLastName);
         String actual = page.getLastName();
@@ -243,7 +243,7 @@ public class TestFirst_LastName extends BaseTest_Generic {
 
     @Test
     public void testLastNameErrorNotShownWhileTyping() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         page.setLastName("");
         // בלי לצאת מהשדה
         assertFalse(page.isLastNameErrorDisplayed(), "שגיאה הופיעה על שם משפחה למרות שהשדה בפוקוס");
@@ -251,7 +251,7 @@ public class TestFirst_LastName extends BaseTest_Generic {
 
     @Test
     public void testLastNameMixedValidAndInvalidCharacters() {
-        First_lastName page = navigateToSecondPage();
+        FirstLastName page = navigateToSecondPage();
         page.setLastName("ש123ק");
         page.leaveLastNameField();
         assertTrue(page.isLastNameErrorDisplayed(), "שגיאה לא הופיעה עבור קלט משולב לא חוקי בשם המשפחה");

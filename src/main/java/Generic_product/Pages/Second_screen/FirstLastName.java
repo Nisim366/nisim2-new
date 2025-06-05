@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import utilities.JavaScriptUtility;
 
 
-public class First_lastName extends Generic_BasePage {
+public class FirstLastName extends Generic_BasePage {
 
     private JavaScriptUtility js;
 
@@ -18,7 +18,7 @@ public class First_lastName extends Generic_BasePage {
     private By firstNameErrorMessage = By.id(":r3:-helper-text");
     private By lastNameErrorMessage = By.id(":r4:-helper-text");
 
-    public First_lastName(WebDriver driver) {
+    public FirstLastName(WebDriver driver) {
         super(driver);
         js = new JavaScriptUtility(driver);
     }

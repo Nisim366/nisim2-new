@@ -3,12 +3,16 @@ package Generic_product.Base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class Generic_BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
+
+    // Locator לכפתור Back - ניתן לשנות לפי הצורך
+    private final By backButton = By.cssSelector("[data-testid='back-button']");
 
     public Generic_BasePage(WebDriver driver) {
         this.driver = driver;
@@ -34,5 +38,10 @@ public class Generic_BasePage {
 
     protected String getText(By elementLocator) {
         return find(elementLocator).getText();
+    }
+
+    // לחיצה על כפתור Back
+    public void clickBackButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(backButton)).click();
     }
 }

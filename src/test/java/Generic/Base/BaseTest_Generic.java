@@ -27,12 +27,7 @@ public class BaseTest_Generic {
         startDriver();
     }
 
-    @AfterEach
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
+
 
     // אתחול WebDriver + הגדרות
     protected void startDriver() {

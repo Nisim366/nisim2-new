@@ -37,6 +37,31 @@ public class PhoneField extends Generic_BasePage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(phoneInput));
     }
 
+    public String getNormalizedPhoneValue() {
+        String rawValue = getPhoneInputValue();
+        if (rawValue == null) return "";
+
+        return rawValue
+                .replaceAll("\\s+", "")    // הסרת רווחים
+                .replace("+972", "0");     // החלפת קידומת בינלאומית לקידומת מקומית
+    }
+
+    public String normalizePhoneForComparison(String phone) {
+        if (phone == null) return "";
+
+        phone = phone.replaceAll("\\s+", "");
+
+        if (phone.startsWith("+972")) {
+            String numberPart = phone.substring(4);
+            if (!numberPart.startsWith("0")) {
+                numberPart = "0" + numberPart;
+            }
+            return numberPart;
+        }
+
+        return phone;
+    }
+
     private WebElement getPhoneErrorElement() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(phoneErrorMessage));
     }
@@ -88,14 +113,24 @@ public class PhoneField extends Generic_BasePage {
 
     public void setPhoneInput(String phoneDigitsOnly) {
         if (phoneDigitsOnly == null) phoneDigitsOnly = "";
+
+        // מסירים כל תו שהוא לא ספרה
         phoneDigitsOnly = phoneDigitsOnly.replaceAll("\\D", "");
-        if (phoneDigitsOnly.length() > 10) {
-            phoneDigitsOnly = phoneDigitsOnly.substring(0, 10);
+
+        // אם המספר מתחיל ב-0, מסירים אותו כי נתייחס לקידומת +972
+        if (phoneDigitsOnly.startsWith("0")) {
+            phoneDigitsOnly = phoneDigitsOnly.substring(1);
+        }
+
+        // חותכים ל־9 ספרות (מספר טלפון ישראלי ללא הקידומת)
+        if (phoneDigitsOnly.length() > 9) {
+            phoneDigitsOnly = phoneDigitsOnly.substring(0, 9);
         }
 
         ensurePrefixPresent();
         WebElement input = getPhoneInput();
 
+        // ניקוי התוכן אחרי הקידומת
         String currentValue = input.getAttribute("value");
         if (currentValue.length() > fixedPrefix.length()) {
             input.sendKeys(Keys.END);
@@ -104,8 +139,10 @@ public class PhoneField extends Generic_BasePage {
             }
         }
 
+        // מזין את המספר ללא אפס תחילתי, רק הספרות הבאות
         input.sendKeys(phoneDigitsOnly);
     }
+
 
     public void deleteCharsFromPhoneInput(int charsToDelete) {
         WebElement input = getPhoneInput();
