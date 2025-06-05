@@ -1,13 +1,13 @@
 package Generic.Base;
 
 import Generic_product.Generic_HomePage;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.DevToolsHelper;
 import utilities.JavaScriptUtility;
 
 import java.time.Duration;
@@ -19,17 +19,25 @@ public class BaseTest_Generic {
     protected JavascriptExecutor js;
     protected JavaScriptUtility jsUtil;
     protected WebDriverWait wait;
+    protected DevToolsHelper devTools;
 
     private final String Generic_URL = "https://app.stage.greenlend.co.il/customer/wizard?channel=c4poqltt";
+
+    // ** כאן תקבע את שם המסך שאליו רוצים לעבור לפני כל בדיקה **
+    protected String targetScreen = null;  // ברירת מחדל - לא לקפוץ לשום מקום
 
     @BeforeEach
     public void setUp() {
         startDriver();
+
+        if (targetScreen != null && !targetScreen.isEmpty()) {
+            devTools.jumpToScreen(targetScreen);
+            System.out.println("Jumped to step: " + targetScreen);
+        } else {
+            System.out.println("No target screen set, continuing without jump.");
+        }
     }
 
-
-
-    // אתחול WebDriver + הגדרות
     protected void startDriver() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
@@ -41,16 +49,16 @@ public class BaseTest_Generic {
         jsUtil = new JavaScriptUtility(driver);
         homePage = new Generic_HomePage(driver);
         js = (JavascriptExecutor) driver;
+
+        devTools = new DevToolsHelper(driver);
     }
 
-    // ניקוי cookies ו-storage עם JS
     protected void clearCacheAndStorage() {
         driver.manage().deleteAllCookies();
         js.executeScript("window.sessionStorage.clear();");
         js.executeScript("window.localStorage.clear();");
     }
 
-    // אם תרצה לאתחל מחדש את הדפדפן בין בדיקות (לשיפור יציבות)
     protected void restartDriver() {
         if (driver != null) {
             driver.quit();

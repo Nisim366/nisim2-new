@@ -1,0 +1,161 @@
+[33mcommit 5c2960067a90e4e3e75dbdb19269fe565782eb94[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Thu Jun 5 13:43:21 2025 +0300
+
+    Reached third screen
+
+[33mcommit da0de3f23d55770daa28335d5329f432ef3d7db1[m[33m ([m[1;33mtag: [m[1;33mimproved-methods-tests-second-screen[m[33m)[m
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Thu Jun 5 11:39:06 2025 +0300
+
+    Improved methods and tests up to second screen
+
+[33mcommit cd6093f65710f4b632a6dead38084e7801afdcf5[m
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Thu Jun 5 10:20:09 2025 +0300
+
+    Remove accidental file
+
+[33mcommit 396a46b1814ff2d72dcb282bbfa73ed037e646ea[m
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Thu Jun 5 10:19:21 2025 +0300
+
+    Up to second screen tests + methods working correctly
+
+[33mcommit 958406038ecba68cc097885c4d1fbd26affeefbb[m[33m ([m[1;32mtemp-branch[m[33m)[m
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Thu Jun 5 09:53:04 2025 +0300
+
+    סידוק תיקיות
+
+[33mcommit 79cc37b97361c21f1b717153ef0d9ed429fb2db2[m[33m ([m[1;33mtag: [m[1;33memail-field-tests-completed[m[33m, [m[1;33mtag: [m[1;33memail-field-tests-added[m[33m)[m
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Thu Jun 5 09:33:29 2025 +0300
+
+    Add and update EmailFields and EmailFieldTests
+
+[33mcommit 5bb482239e57b2273e2654906a5da856a8a949ce[m[33m ([m[1;33mtag: [m[1;33mphone_field_methods_tests[m[33m)[m
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Tue Jun 3 16:56:39 2025 +0300
+
+    הוספת מתודות ובדיקות שדה טלפון
+
+[33mcommit bece2315b689d162e5bf759756846698bc8d4003[m[33m ([m[1;33mtag: [m[1;33madd-first-lastname-tests[m[33m)[m
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Tue Jun 3 15:43:40 2025 +0300
+
+    הוספת בדיקות עבור עמוד שני - שדות שם פרטי ושם משפחה
+
+[33mcommit d44adb86a04fe0b37672b3e70c439dc0f5dad809[m
+Merge: d6734c9 870a4cc
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Tue Jun 3 13:43:42 2025 +0300
+
+    Merge branch 'master-01'
+    שינויים
+
+[33mcommit 870a4cce1e276b09f46efed1b21aca09c5be4d25[m
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Tue Jun 3 13:35:53 2025 +0300
+
+    הוספת בדיקות ומעבר לעמוד הבא
+
+[33mcommit d6734c90e7854bc4b78904b9e546ac979b9eebe5[m
+Merge: e230e36 68dab16
+Author: Nisim366 <nisimb@greenlend.co.il>
+Date:   Tue Jun 3 13:03:38 2025 +0300
+
+    Merge pull request #1 from Nisim366/master-01
+    
+    t
+
+[33mcommit 68dab167ba228d4f43fa74573bae7e8b0c01fde9[m
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Tue Jun 3 13:02:20 2025 +0300
+
+    t
+
+[33mcommit e230e365d68b6352fc0f257148850f265fda86bc[m
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Thu May 29 15:28:37 2025 +0300
+
+    שינויים ב-LoginPage
+
+[33mcommit ee237af1426517042160850f7aec1adeb9d06fce[m
+Merge: 283cb11 bc5bf04
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Thu May 29 14:43:31 2025 +0300
+
+    Merge branch 'nisim-branch'
+
+[33mcommit bc5bf04ee4869cae023cf3027def0ce38206242b[m[33m ([m[1;32mnisim-branch[m[33m)[m
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Thu May 29 14:22:52 2025 +0300
+
+    Save changes in nisim-branch
+
+[33mcommit 283cb112ecebf9ac683fb0a69f98bed6f1b23a59[m
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Thu May 29 14:21:54 2025 +0300
+
+    Save changes in master before merge
+
+[33mcommit 495b087a51eddae5015621d322c4446ab8403c13[m
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Thu May 29 14:13:17 2025 +0300
+
+    Update .gitignore and remove .idea from git tracking
+
+[33mcommit 55ceaab315502d7111a9f008b87c2436643a65d9[m
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Thu May 29 14:07:50 2025 +0300
+
+    Fix: added duplicate log in catch block
+
+[33mcommit 47424563d100dd03d542358bbde587777da5fdee[m
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Thu May 29 14:00:46 2025 +0300
+
+    Remove nisim directory from git tracking
+
+[33mcommit dfa47dcb832b5c84d47879919c0e13832124de4c[m
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Thu May 29 13:59:26 2025 +0300
+
+    Remove .idea from git tracking and add .gitignore
+
+[33mcommit 8ec6fea78282c138b4df2d2c51b05bdd016dfe16[m[33m ([m[1;31morigin/nisim-branch[m[33m)[m
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Mon May 26 15:05:40 2025 +0300
+
+    השינויים שעשיתי בענף החדש
+
+[33mcommit fb27dd99f9436096a0d0d92fbf1114304e4dc560[m[33m ([m[1;31morigin/TEST[m[33m)[m
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Mon May 26 12:08:45 2025 +0300
+
+    הוספתי תכונה חדשה ב-feature-xyz
+
+[33mcommit 0c70dd8f9ee47463a6056ef598f9fdd8aed9f213[m
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Mon May 26 12:01:47 2025 +0300
+
+    Add .gitignore to exclude system files like .DS_Store and Thumbs.db
+
+[33mcommit 7802e98b544998be0fd5e2f46e79f72402f5f366[m
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Mon May 26 12:00:22 2025 +0300
+
+    Add .gitignore to exclude IDE and build files
+
+[33mcommit aab8da1acc86e1efaa03250cef7e87aff77243bc[m
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Mon May 26 11:46:30 2025 +0300
+
+    Initial commit
+
+[33mcommit ad999a94f5760a420e61e6b44aafc53ca908f0ee[m
+Author: Nisim Bengayev <nisimb@greenlend.co.il>
+Date:   Mon May 26 10:26:57 2025 +0300
+
+    Initial commit - adding existing project files
