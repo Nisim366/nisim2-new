@@ -24,6 +24,18 @@ public class BaseTest_Generic {
 
     @BeforeEach
     public void setUp() {
+        startDriver();
+    }
+
+    @AfterEach
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+
+    // אתחול WebDriver + הגדרות
+    protected void startDriver() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
         driver = new ChromeDriver(options);
@@ -36,14 +48,18 @@ public class BaseTest_Generic {
         js = (JavascriptExecutor) driver;
     }
 
-    @AfterEach
-    public void tearDown() {
+    // ניקוי cookies ו-storage עם JS
+    protected void clearCacheAndStorage() {
+        driver.manage().deleteAllCookies();
+        js.executeScript("window.sessionStorage.clear();");
+        js.executeScript("window.localStorage.clear();");
+    }
+
+    // אם תרצה לאתחל מחדש את הדפדפן בין בדיקות (לשיפור יציבות)
+    protected void restartDriver() {
         if (driver != null) {
             driver.quit();
         }
+        startDriver();
     }
-
-
-
-
 }
