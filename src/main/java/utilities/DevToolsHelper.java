@@ -60,7 +60,7 @@ public class DevToolsHelper {
         By stepLocator = By.cssSelector("[data-step-name='" + stepName + "']");
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(stepLocator));
-        } catch (Exception e) {
+        } catch (TimeoutException e) {
             System.out.println("⚠️ Timeout waiting for step: " + stepName);
         }
     }

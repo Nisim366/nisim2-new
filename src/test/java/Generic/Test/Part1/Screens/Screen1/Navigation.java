@@ -7,7 +7,7 @@ import utilities.DevToolsHelper;
 
 public class Navigation extends BaseTest_Generic {
 
-    public static String targetScreen = "scrollableConsent";
+    public static String targetScreen = "contactDetailsGeneric";
     private DevToolsHelper devTools;
 
     @BeforeEach
@@ -20,6 +20,7 @@ public class Navigation extends BaseTest_Generic {
     public void openDevToolsAndJumpToTargetScreen() {
         // פותחים את DevTools ועוברים ל־Console
         devTools.openDevToolsAndGoToConsole();
+
 
         // מדלגים למסך הרצוי
         System.out.println("Jumping to screen: " + targetScreen);

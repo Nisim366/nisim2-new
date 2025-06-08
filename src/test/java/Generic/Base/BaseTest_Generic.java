@@ -38,6 +38,7 @@ public class BaseTest_Generic {
             System.out.println("No target screen set, continuing without jump.");
         }
     }
+
     @AfterEach
     public void tearDown() {
         if (driver != null) {
@@ -49,6 +50,7 @@ public class BaseTest_Generic {
     protected void startDriver() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
+        // אין כאן פתיחת DevTools אוטומטית
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));

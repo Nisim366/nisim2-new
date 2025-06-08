@@ -1,12 +1,9 @@
 package Generic_product.Pages.Second_screen;
 
 import Generic_product.Base.Generic_BasePage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import utilities.JavaScriptUtility;
-
 
 public class FirstLastName extends Generic_BasePage {
 
@@ -39,7 +36,6 @@ public class FirstLastName extends Generic_BasePage {
         input.sendKeys(name);  // מזין את השם החדש
     }
 
-
     public String getFirstName() {
         return getFirstNameInput().getAttribute("value");
     }
@@ -68,14 +64,7 @@ public class FirstLastName extends Generic_BasePage {
         }
     }
 
-    public boolean isFirstNameErrorDisplayed() {
-        try {
-            WebElement errorElement = driver.findElement(firstNameErrorMessage);
-            return errorElement.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
-    }
+
 
     public String getFirstNameErrorMessage() {
         try {
@@ -105,6 +94,21 @@ public class FirstLastName extends Generic_BasePage {
             return false;
         }
     }
+
+    // ** תוספת חדשה **
+    public String getFirstNameAriaInvalidAttribute() {
+        try {
+            WebElement input = getFirstNameInput();
+            return input.getAttribute("aria-invalid");
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    public String getLastNameAriaInvalidAttribute() {
+        return getLastNameInput().getAttribute("aria-invalid");
+    }
+
+
 
     // --- Last Name ---
 
@@ -148,14 +152,8 @@ public class FirstLastName extends Generic_BasePage {
         }
     }
 
-    public boolean isLastNameErrorDisplayed() {
-        try {
-            WebElement errorElement = driver.findElement(lastNameErrorMessage);
-            return errorElement.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
-    }
+
+
 
     public String getLastNameErrorMessage() {
         try {
@@ -192,19 +190,17 @@ public class FirstLastName extends Generic_BasePage {
 
     // --- הגדרת מתודה גנרית ליציאה מכל שדה ---
 
-    public void leaveField(By fieldLocator) {
+    private void leaveField(By fieldLocator) {
         WebElement input = driver.findElement(fieldLocator);
         input.sendKeys(Keys.TAB);
     }
+
     public void leaveFirstNameField() {
-        WebElement element = driver.findElement(firstNameInput);
-        element.sendKeys(Keys.TAB);
+        leaveField(firstNameInput);
     }
 
-
     public void leaveLastNameField() {
-        WebElement element = driver.findElement(lastNameInput);
-        element.sendKeys(Keys.TAB);
+        leaveField(lastNameInput);
     }
 
 

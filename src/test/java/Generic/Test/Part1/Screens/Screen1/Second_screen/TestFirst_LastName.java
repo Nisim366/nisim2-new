@@ -1,33 +1,28 @@
 package Generic.Test.Part1.Screens.Screen1.Second_screen;
 
 import Generic.Base.BaseTest_Generic;
-import Generic_product.Generic_HomePage;
-import Generic_product.Pages.First_screen.First;
 import Generic_product.Pages.Second_screen.FirstLastName;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
+import utilities.DevToolsHelper;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestFirst_LastName extends BaseTest_Generic {
 
+    public static String targetScreen = "contactDetailsGeneric";
+    private DevToolsHelper devTools;
+
+    @BeforeEach
+    public void setUp() {
+        super.setUp();
+        devTools = new DevToolsHelper(driver);
+        devTools.openDevToolsAndGoToConsole();
+
+    }
+
     private FirstLastName navigateToSecondPage() {
-        Generic_HomePage homePage = new Generic_HomePage(driver);
-        First firstPage = homePage.goToPractice();
-
-        if (!firstPage.isCheckboxSelected()) {
-            firstPage.clickCheckbox();
-        }
-
-        firstPage.clickContinueButton();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@data-testid='applicant.fullName.firstName-input']")));
-
-        System.out.println("Navigated to second screen");
-
+        devTools.jumpToScreen(targetScreen);
         return new FirstLastName(driver);
     }
 
@@ -96,7 +91,6 @@ public class TestFirst_LastName extends BaseTest_Generic {
         page.setFirstName(""); // ערך ריק כדי לגרום לשגיאה
         page.leaveFirstNameField();
 
-        assertTrue(page.isFirstNameErrorDisplayed(), "הודעת שגיאה על שם פרטי לא הופיעה");
         assertTrue(page.isFirstNameErrorRequiredMessage(), "הודעת השגיאה לא מצביעה על שדה חובה");
     }
 
@@ -106,7 +100,6 @@ public class TestFirst_LastName extends BaseTest_Generic {
         page.setLastName(""); // ערך ריק כדי לגרום לשגיאה
         page.leaveLastNameField();
 
-        assertTrue(page.isLastNameErrorDisplayed(), "הודעת שגיאה על שם משפחה לא הופיעה");
         assertTrue(page.isLastNameErrorRequiredMessage(), "הודעת השגיאה לא מצביעה על שדה חובה");
     }
 
@@ -116,7 +109,6 @@ public class TestFirst_LastName extends BaseTest_Generic {
         page.setFirstName("abc123"); // ערך לא חוקי
         page.leaveFirstNameField();
 
-        assertTrue(page.isFirstNameErrorDisplayed(), "הודעת שגיאה על שם פרטי לא הופיעה");
         assertTrue(page.isFirstNameErrorHebrewOnlyMessage(), "הודעת השגיאה לא מצביעה על אותיות עבריות בלבד");
     }
 
@@ -126,7 +118,6 @@ public class TestFirst_LastName extends BaseTest_Generic {
         page.setLastName("123abc"); // ערך לא חוקי
         page.leaveLastNameField();
 
-        assertTrue(page.isLastNameErrorDisplayed(), "הודעת שגיאה על שם משפחה לא הופיעה");
         assertTrue(page.isLastNameErrorHebrewOnlyMessage(), "הודעת השגיאה לא מצביעה על אותיות עבריות בלבד");
     }
 
@@ -136,9 +127,7 @@ public class TestFirst_LastName extends BaseTest_Generic {
         page.setFirstName(""); // ריק - אמור להפעיל שגיאת חובה
         page.leaveFirstNameField();
 
-        assertTrue(page.isFirstNameErrorDisplayed(), "הודעת שגיאה על שם פרטי לא הופיעה");
-        WebElement firstNameInput = driver.findElement(By.xpath("//input[@data-testid='applicant.fullName.firstName-input']"));
-        assertEquals("true", firstNameInput.getAttribute("aria-invalid"), "שדה השם הפרטי לא מסומן כ-invalid בעת שגיאה");
+        assertEquals("true", page.getFirstNameAriaInvalidAttribute(), "שדה השם הפרטי לא מסומן כ-invalid בעת שגיאה");
     }
 
     @Test
@@ -147,9 +136,7 @@ public class TestFirst_LastName extends BaseTest_Generic {
         page.setLastName(""); // ריק - אמור להפעיל שגיאת חובה
         page.leaveLastNameField();
 
-        assertTrue(page.isLastNameErrorDisplayed(), "הודעת שגיאה על שם משפחה לא הופיעה");
-        WebElement lastNameInput = driver.findElement(By.xpath("//input[@data-testid='applicant.fullName.lastName-input']"));
-        assertEquals("true", lastNameInput.getAttribute("aria-invalid"), "שדה שם המשפחה לא מסומן כ-invalid בעת שגיאה");
+        assertEquals("true", page.getLastNameAriaInvalidAttribute(), "שדה שם המשפחה לא מסומן כ-invalid בעת שגיאה");
     }
 
     @Test
@@ -158,11 +145,13 @@ public class TestFirst_LastName extends BaseTest_Generic {
         page.setFirstName(""); // מפעיל שגיאה
         page.leaveFirstNameField();
 
-        assertTrue(page.isFirstNameErrorDisplayed(), "הודעת שגיאה לא הופיעה");
+        assertTrue(page.isFirstNameErrorRequiredMessage(), "הודעת שגיאה על שדה ריק לא הופיעה");
+
         page.setFirstName("ישראל"); // מזין ערך תקין
-        assertFalse(page.isFirstNameErrorDisplayed(), "הודעת השגיאה לא נעלמה אחרי הזנת ערך תקין");
-        WebElement firstNameInput = driver.findElement(By.xpath("//input[@data-testid='applicant.fullName.firstName-input']"));
-        assertEquals("false", firstNameInput.getAttribute("aria-invalid"), "שדה השם הפרטי עדיין מסומן כ-invalid אחרי תיקון");
+
+        assertEquals("", page.getFirstNameErrorMessage(), "הודעת השגיאה לא נעלמה אחרי הזנת ערך תקין");
+
+        assertEquals("false", page.getFirstNameAriaInvalidAttribute(), "שדה השם הפרטי עדיין מסומן כ-invalid אחרי תיקון");
     }
 
     @Test
@@ -171,19 +160,24 @@ public class TestFirst_LastName extends BaseTest_Generic {
         page.setLastName(""); // מפעיל שגיאה
         page.leaveLastNameField();
 
-        assertTrue(page.isLastNameErrorDisplayed(), "הודעת שגיאה לא הופיעה");
+        assertTrue(page.isLastNameErrorRequiredMessage(), "הודעת שגיאה על שדה ריק לא הופיעה");
+
         page.setLastName("כהן"); // מזין ערך תקין
-        assertFalse(page.isLastNameErrorDisplayed(), "הודעת השגיאה לא נעלמה אחרי הזנת ערך תקין");
-        WebElement lastNameInput = driver.findElement(By.xpath("//input[@data-testid='applicant.fullName.lastName-input']"));
-        assertEquals("false", lastNameInput.getAttribute("aria-invalid"), "שדה שם המשפחה עדיין מסומן כ-invalid אחרי תיקון");
+
+        assertEquals("", page.getLastNameErrorMessage(), "הודעת השגיאה לא נעלמה אחרי הזנת ערך תקין");
+
+        assertEquals("false", page.getLastNameAriaInvalidAttribute(), "שדה שם המשפחה עדיין מסומן כ-invalid אחרי תיקון");
     }
+
     @Test
     public void testFirstNameWithOnlySpaces() {
         FirstLastName page = navigateToSecondPage();
-        page.setFirstName("     ");
+        page.setFirstName("     "); // קלט של רווחים בלבד
         page.leaveFirstNameField();
-        assertTrue(page.isFirstNameErrorDisplayed(), "לא הופיעה שגיאה על קלט שהוא רק רווחים");
+
+        assertTrue(page.isFirstNameErrorRequiredMessage(), "לא הופיעה שגיאה על קלט שהוא רק רווחים (שדה חובה)");
     }
+
     @Test
     public void testFirstNameMaxLengthAllowed() {
         FirstLastName page = navigateToSecondPage();
@@ -200,28 +194,31 @@ public class TestFirst_LastName extends BaseTest_Generic {
         String actual = page.getFirstName();
         assertTrue(actual.length() <= 30, "שדה השם הפרטי קיבל ערך ארוך מהמותר");
     }
+
     @Test
     public void testFirstNameErrorNotShownWhileTyping() {
         FirstLastName page = navigateToSecondPage();
         page.setFirstName("");
         // בלי לצאת מהשדה
-        assertFalse(page.isFirstNameErrorDisplayed(), "שגיאה הופיעה למרות שהשדה בפוקוס");
+        assertTrue(page.getFirstNameErrorMessage().isEmpty(), "שגיאה הופיעה למרות שהשדה בפוקוס");
     }
-
 
     @Test
     public void testFirstNameMixedValidAndInvalidCharacters() {
         FirstLastName page = navigateToSecondPage();
         page.setFirstName("ש123ק");
         page.leaveFirstNameField();
-        assertTrue(page.isFirstNameErrorDisplayed(), "שגיאה לא הופיעה עבור קלט משולב לא חוקי");
+        assertTrue(page.getFirstNameErrorMessage().contains("אותיות עבריות בלבד") ||
+                        page.isFirstNameErrorHebrewOnlyMessage(),
+                "שגיאה לא הופיעה עבור קלט משולב לא חוקי");
     }
+
     @Test
     public void testLastNameWithOnlySpaces() {
         FirstLastName page = navigateToSecondPage();
         page.setLastName("     ");
         page.leaveLastNameField();
-        assertTrue(page.isLastNameErrorDisplayed(), "לא הופיעה שגיאה על קלט שהוא רק רווחים בשם המשפחה");
+        assertTrue(page.isLastNameErrorRequiredMessage(), "לא הופיעה שגיאה על קלט שהוא רק רווחים בשם המשפחה");
     }
 
     @Test
@@ -246,7 +243,7 @@ public class TestFirst_LastName extends BaseTest_Generic {
         FirstLastName page = navigateToSecondPage();
         page.setLastName("");
         // בלי לצאת מהשדה
-        assertFalse(page.isLastNameErrorDisplayed(), "שגיאה הופיעה על שם משפחה למרות שהשדה בפוקוס");
+        assertFalse(page.isLastNameInvalid(), "שגיאה הופיעה על שם משפחה למרות שהשדה בפוקוס");
     }
 
     @Test
@@ -254,7 +251,7 @@ public class TestFirst_LastName extends BaseTest_Generic {
         FirstLastName page = navigateToSecondPage();
         page.setLastName("ש123ק");
         page.leaveLastNameField();
-        assertTrue(page.isLastNameErrorDisplayed(), "שגיאה לא הופיעה עבור קלט משולב לא חוקי בשם המשפחה");
+        assertFalse(page.getLastNameErrorMessage().isEmpty(), "שגיאה לא הופיעה עבור קלט משולב לא חוקי בשם המשפחה");
     }
-
 }
+
