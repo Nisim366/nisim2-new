@@ -8,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utilities.DevToolsHelper;
 import utilities.JavaScriptUtility;
 
 import java.time.Duration;
@@ -20,59 +19,36 @@ public class BaseTest_Generic {
     protected JavascriptExecutor js;
     protected JavaScriptUtility jsUtil;
     protected WebDriverWait wait;
-    protected DevToolsHelper devTools;
 
     private final String Generic_URL = "https://app.stage.greenlend.co.il/customer/wizard?channel=c4poqltt";
-
-    // ** כאן תקבע את שם המסך שאליו רוצים לעבור לפני כל בדיקה **
-    protected String targetScreen = null;  // ברירת מחדל - לא לקפוץ לשום מקום
+    protected static String targetScreen = null;
 
     @BeforeEach
     public void setUp() {
-        startDriver();
-
-        if (targetScreen != null && !targetScreen.isEmpty()) {
-            devTools.jumpToScreen(targetScreen);
-            System.out.println("Jumped to step: " + targetScreen);
-        } else {
-            System.out.println("No target screen set, continuing without jump.");
-        }
-    }
-
-    @AfterEach
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-            System.out.println("Browser closed.");
-        }
-    }
-
-    protected void startDriver() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
-        // אין כאן פתיחת DevTools אוטומטית
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         driver.get(Generic_URL);
 
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         jsUtil = new JavaScriptUtility(driver);
         homePage = new Generic_HomePage(driver);
         js = (JavascriptExecutor) driver;
 
-        devTools = new DevToolsHelper(driver);
+        // אין פה אתחול של devTools יותר
     }
 
-    protected void clearCacheAndStorage() {
-        driver.manage().deleteAllCookies();
-        js.executeScript("window.sessionStorage.clear();");
-        js.executeScript("window.localStorage.clear();");
-    }
-
-    protected void restartDriver() {
-        if (driver != null) {
-            driver.quit();
+    @AfterEach
+    public void globalTearDown() {
+        try {
+            if (driver != null) {
+                driver.quit();
+                System.out.println("✅ Browser closed.");
+            }
+        } catch (Exception e) {
+            System.err.println("❌ Error in globalTearDown:");
+            e.printStackTrace();
         }
-        startDriver();
     }
 }

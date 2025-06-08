@@ -18,7 +18,6 @@ public class PhoneField extends Generic_BasePage {
     private final By phoneTooltipButton = By.cssSelector("[data-testid='applicant.mobile.phone-tooltipToggle']");
     private final By phoneErrorMessage = By.xpath("//p[contains(text(),'יש להקליד מספר נייד תקין')]");
     private final By tooltipText = By.xpath("//span[contains(text(),'לנייד זה יישלח כעת קוד אימות')]");
-    private final By backButton = By.cssSelector("[data-testid='back-button']");
 
     private WebDriverWait wait;
     private JavaScriptUtility jsUtil;
@@ -74,9 +73,6 @@ public class PhoneField extends Generic_BasePage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(tooltipText));
     }
 
-    private WebElement getBackButton() {
-        return wait.until(ExpectedConditions.elementToBeClickable(backButton));
-    }
 
     public String getPhoneInputValue() {
         try {
@@ -244,9 +240,6 @@ public class PhoneField extends Generic_BasePage {
         }
     }
 
-    public void clickBackButton() {
-        getBackButton().click();
-    }
 
     public boolean isOnSecondPage() {
         return isPhoneInputVisible();
