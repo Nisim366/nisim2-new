@@ -3,18 +3,19 @@ package Generic.Test.Part1.Screens.Screen1.Second_screen;
 import Generic.Base.BaseTest_Generic;
 import Generic_product.Pages.First_screen.First;
 import Generic_product.Pages.Second_screen.PhoneField;
+import Generic_product.Pages.Second_screen.Second;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import utilities.DevToolsHelper;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestPhone extends BaseTest_Generic {
 
     private PhoneField phoneField;
+    private Second secondPage;
+
 
 
     private PhoneField navigateToSecondPage() {
@@ -23,6 +24,8 @@ public class TestPhone extends BaseTest_Generic {
             obj.clickCheckbox();
         }
         obj.clickContinueButton();
+        secondPage = new Second(driver);
+        Assertions.assertTrue(secondPage.isOnSecondPage(), "לא הגעת למסך השני בהצלחה");
         return new PhoneField(driver);
     }
 
@@ -30,9 +33,6 @@ public class TestPhone extends BaseTest_Generic {
     public void setup() {
         phoneField = navigateToSecondPage();
     }
-
-
-
 
     @Test
     public void testPhonePrefixIsPresent() {

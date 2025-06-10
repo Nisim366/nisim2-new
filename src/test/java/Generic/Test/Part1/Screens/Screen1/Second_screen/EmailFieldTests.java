@@ -3,6 +3,8 @@ package Generic.Test.Part1.Screens.Screen1.Second_screen;
 import Generic.Base.BaseTest_Generic;
 import Generic_product.Pages.First_screen.First;
 import Generic_product.Pages.Second_screen.EmailFields;
+import Generic_product.Pages.Second_screen.Second;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,6 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class EmailFieldTests extends BaseTest_Generic {
 
     private EmailFields emailFields;
+    private Second secondPage;
+
 
     private EmailFields navigateToSecondPage() {
         First obj = homePage.goToPractice();
@@ -17,6 +21,8 @@ public class EmailFieldTests extends BaseTest_Generic {
             obj.clickCheckbox();
         }
         obj.clickContinueButton();
+        secondPage = new Second(driver);
+        Assertions.assertTrue(secondPage.isOnSecondPage(), "לא הגעת למסך השני בהצלחה");
         return new EmailFields(driver);
     }
 
