@@ -16,7 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class G extends BaseTest_Generic {
+public class Screen2 extends BaseTest_Generic {
 
     private First firstPage;
     private Second secondPage;

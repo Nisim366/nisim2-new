@@ -6,7 +6,7 @@ import Generic_product.Pages.Second_screen.Second;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class Screan1 extends BaseTest_Generic {
+public class Screen1 extends BaseTest_Generic {
 
     @Test
     public void isOnFirstPageReturnsTrue() {

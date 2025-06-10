@@ -1,6 +1,9 @@
 package Generic_product.Pages.Second_screen;
 
 import Generic_product.Base.Generic_BasePage;
+import Generic_product.Generic_HomePage;
+import Generic_product.Pages.First_screen.First;
+import demo.qa.HomePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +12,7 @@ import utilities.JavaScriptUtility;
 
 public class Second extends Generic_BasePage {
     private JavaScriptUtility js;
+
     private final By headerSecondPage = By.xpath("//h1[@id='page-header' and contains(text(),'נתחיל בכמה פרטים אישיים')]");
     private final By continueButton = By.cssSelector("button[data-testid='continue-button']");
 
