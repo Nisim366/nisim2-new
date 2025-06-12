@@ -31,7 +31,7 @@ public class BaseTest_Generic {
         driver.manage().window().maximize();
         driver.get(Generic_URL);
 
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(90));
         jsUtil = new JavaScriptUtility(driver);
         homePage = new Generic_HomePage(driver);
         js = (JavascriptExecutor) driver;

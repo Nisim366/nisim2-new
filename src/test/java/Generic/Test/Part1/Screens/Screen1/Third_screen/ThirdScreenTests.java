@@ -117,7 +117,5 @@ public class ThirdScreenTests extends BaseTest_Generic {
         thirdScreen.clickBackButton();
 
         System.out.println("Demonstrating waitForNextPageHeader after back button click.");
-        // Consider verifying the actual header text of the second screen, if applicable.
-        // E.g., secondPage.waitForNextPageHeader("Expected Header of Second Screen");
     }
 }
