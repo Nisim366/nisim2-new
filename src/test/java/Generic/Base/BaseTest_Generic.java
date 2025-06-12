@@ -9,7 +9,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.JavaScriptUtility;
-
 import java.time.Duration;
 
 public class BaseTest_Generic {
@@ -21,12 +20,10 @@ public class BaseTest_Generic {
     protected WebDriverWait wait;
 
     private final String Generic_URL = "https://app.stage.greenlend.co.il/customer/wizard?channel=c4poqltt";
-    protected static String targetScreen = null;
 
     @BeforeEach
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--incognito");
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.get(Generic_URL);
@@ -36,7 +33,6 @@ public class BaseTest_Generic {
         homePage = new Generic_HomePage(driver);
         js = (JavascriptExecutor) driver;
 
-        // אין פה אתחול של devTools יותר
     }
 
     @AfterEach
@@ -44,7 +40,6 @@ public class BaseTest_Generic {
         try {
             if (driver != null) {
                 driver.quit();
-                System.out.println("✅ Browser closed.");
             }
         } catch (Exception e) {
             System.err.println("❌ Error in globalTearDown:");

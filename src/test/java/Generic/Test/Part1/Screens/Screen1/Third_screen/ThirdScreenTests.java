@@ -11,9 +11,7 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ThirdScreenTests extends BaseTest_Generic {
@@ -81,13 +79,9 @@ public class ThirdScreenTests extends BaseTest_Generic {
         navigateToThirdPage();
 
         assertTrue(thirdScreen.isOnThirdPage(), "Should be on third screen with OTP input.");
-
         assertTrue(thirdScreen.isTopImageDisplayedAndCorrect(), "Top image should be displayed and have correct attributes.");
         assertTrue(thirdScreen.isImageLoaded(By.cssSelector("img.ScreenWrapper__top-image[src*='generic_phase_1_icon.svg']")), "Top image should be loaded and not broken.");
-
-
-        assertTrue(thirdScreen.isVerificationCodeTextDisplayedImmediately(),
-                "Verification code sent text should be displayed immediately upon page entry.");
+        assertTrue(thirdScreen.isVerificationCodeTextDisplayedImmediately(), "Verification code sent text should be displayed immediately upon page entry.");
 
         int initialTimerCheckWaitSeconds = 5;
         assertTrue(thirdScreen.isTimerTextAndCountingDown(initialTimerCheckWaitSeconds),
@@ -96,7 +90,6 @@ public class ThirdScreenTests extends BaseTest_Generic {
         assertTrue(thirdScreen.areResendAndCallButtonsDisabledImmediately(),
                 "Resend and Call buttons should be disabled immediately upon page entry.");
 
-        System.out.println("Waiting for timer to expire (approx. 35 seconds) and buttons to enable...");
         try {
             Thread.sleep(Duration.ofSeconds(35).toMillis());
         } catch (InterruptedException e) {
@@ -117,7 +110,5 @@ public class ThirdScreenTests extends BaseTest_Generic {
         thirdScreen.clickBackButton();
 
         System.out.println("Demonstrating waitForNextPageHeader after back button click.");
-        // Consider verifying the actual header text of the second screen, if applicable.
-        // E.g., secondPage.waitForNextPageHeader("Expected Header of Second Screen");
     }
 }
