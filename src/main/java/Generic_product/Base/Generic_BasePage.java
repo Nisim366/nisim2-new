@@ -16,7 +16,7 @@ public class Generic_BasePage {
 
     public Generic_BasePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
     public WebDriver getDriver() {

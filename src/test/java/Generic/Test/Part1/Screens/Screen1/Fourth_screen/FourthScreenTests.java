@@ -1,22 +1,14 @@
 package Generic.Test.Part1.Screens.Screen1.Fourth_screen;
 
 import Generic.Base.BaseTest_Generic;
-import Generic_product.Pages.First_screen.First;
-import Generic_product.Pages.Second_screen.EmailFields;
-import Generic_product.Pages.Second_screen.FirstLastName;
-import Generic_product.Pages.Second_screen.PhoneField;
-import Generic_product.Pages.Second_screen.Second;
-import Generic_product.Pages.Third_screen.Third_screen;
 import Generic_product.Pages.Fourth_screen.FourthScreen;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.NoSuchElementException;
-
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -24,105 +16,32 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class FourthScreenTests extends BaseTest_Generic {
 
-    private FirstLastName firstLastName;
-    private PhoneField phoneField;
-    private EmailFields emailFields;
-    private Second secondPage;
-    private Third_screen thirdScreen;
     private FourthScreen fourthScreen;
 
+    private final String EXPECTED_HEADER_TEXT_SCREEN_4 = "עכשיו כמה פרטים מזהים";
+    private final String JS_COMMAND_STEP_SCREEN_4 = "identificationDetailsGeneric";
 
-    private final String phone = "0532407762";
-    private final String firstName = "חן";
-    private final String lastName = "הניגון";
-    private final String GMail = "yossi@example.com";
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
+    // נתיב זה נשאר למרות שיש הודעות שגיאה ספציפיות יותר ב-PO
     private final By ERROR_MESSAGE_XPATH = By.xpath("//p[@class='MuiTypography-root MuiTypography-body1 MaterialTypography muirtl-mmrqvv' and contains(text(), 'הפרטים שהוזנו אינם נכונים, נא לנסות שנית')]");
 
 
-    private Second navigateToSecondPage() {
-        First obj = homePage.goToPractice();
-        if (!obj.isCheckboxSelected()) {
-            obj.clickCheckbox();
-        }
-        obj.clickContinueButton();
-
-        Second secondPage = new Second(driver);
-        assertTrue(secondPage.isOnSecondPage(), "Failed to reach the second screen.");
-
-        firstLastName = new FirstLastName(driver);
-        phoneField = new PhoneField(driver);
-        emailFields = new EmailFields(driver);
-
-        return secondPage;
-    }
-
-    private Third_screen navigateToThirdPage() {
-        firstLastName.setFirstName(firstName);
-        firstLastName.setLastName(lastName);
-        phoneField.setPhoneInput(phone);
-        emailFields.setEmail(GMail);
-        emailFields.setEmailConfirmation(GMail);
-
-        assertEquals(firstName, firstLastName.getFirstName());
-        assertEquals(lastName, firstLastName.getLastName());
-        assertEquals(phoneField.normalizePhoneForComparison(phone), phoneField.getNormalizedPhoneValue());
-        assertEquals(GMail, emailFields.getEmail());
-        assertEquals(GMail, emailFields.getEmailConfirmation());
-
-        secondPage.clickContinueButton();
-
-        thirdScreen = new Third_screen(driver);
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-
-        try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(), 'קוד האימות נשלח למספר')]")));
-        } catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException e) {
-            try {
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(., 'לא קיבלתי קוד? שלחו שוב')]")));
-            } catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException ex) {
-                fail("Failed to reach the third screen within expected time. Neither verification text nor resend button found.");
-            }
-        }
-
-        // המיקום לבדיקה ולריפרש
-        try {
-            wait.withTimeout(Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfElementLocated(ERROR_MESSAGE_XPATH));
-            driver.navigate().refresh();
-            // המתנה מחודשת לאלמנט לאחר הריענון
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(), 'קוד האימות נשלח למספר')]")));
-        } catch (TimeoutException | NoSuchElementException e) {
-            // ההודעה לא הופיעה, ממשיכים כרגיל
-        }
-
-        assertTrue(thirdScreen.isOnThirdPage(), "Failed to confirm being on the third screen after element visibility.");
-
-        thirdScreen.waitForManualOtpInput();
-
-
-
-        return thirdScreen;
-    }
-    private FourthScreen navigateToFourthPageAfterOtp() {
-        WebDriverWait waitFourthScreen = new WebDriverWait(driver, Duration.ofSeconds(90));
-        driver.navigate().refresh();
-        // Using the birthDateInput locator as a reliable indicator for the Fourth Screen's presence
-        waitFourthScreen.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[text()='תאריך לידה']/following-sibling::div//input")));
-
-        fourthScreen = new FourthScreen(driver);
-        assertTrue(fourthScreen.isOnFourthScreen(), "Failed to reach the fourth screen after OTP submission.");
-
-        return fourthScreen;
-    }
-
     @BeforeEach
     public void setup() {
-        secondPage = navigateToSecondPage();
-        thirdScreen = navigateToThirdPage();
-        fourthScreen = navigateToFourthPageAfterOtp();
+        try {
+            navigateToApplicationUrl();
+            waitForManualConsoleInputAndScreenTransition(JS_COMMAND_STEP_SCREEN_4);
+            verifyNewScreenHeader(EXPECTED_HEADER_TEXT_SCREEN_4);
+            // המתנה ספציפית לאלמנט שדה תאריך לידה כאינדיקטור למסך הרביעי
+            WebDriverWait localWait = new WebDriverWait(driver, Duration.ofSeconds(30));
+            localWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[text()='תאריך לידה']/following-sibling::div//input")));
 
+            fourthScreen = new FourthScreen(driver);
+            assertTrue(fourthScreen.isOnFourthScreen(), "אובייקט ה-Page Object של המסך הרביעי לא אושר כטוען נכון.");
+
+        } catch (Exception e) {
+            fail("❌ כשל בהכנת הסביבה (setup) למסך הרביעי: " + e.getMessage());
+        }
     }
 
     @Test
@@ -244,7 +163,7 @@ public class FourthScreenTests extends BaseTest_Generic {
     void testIssueDate_SelectOldestAllowedDate_1904() {
         fourthScreen.clickIssueDateCalendarIcon();
         fourthScreen.selectDateFromDatePicker("01/01/1904");
-        String actualValue = fourthScreen.getIdNumberInputField().getAttribute("value"); // Fixed here: was getIssueDateInputField()
+        String actualValue = fourthScreen.getIssueDateInputField().getAttribute("value");
         assertEquals("01/01/1904", actualValue);
         String actualErrorMessage = fourthScreen.getIssueDateErrorText();
         assertNull(actualErrorMessage, "לא אמורה להיות הודעת שגיאה עבור 01/01/1904");

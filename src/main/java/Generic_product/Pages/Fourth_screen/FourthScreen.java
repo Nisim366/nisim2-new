@@ -15,7 +15,7 @@ import java.time.format.DateTimeParseException;
 public class FourthScreen extends Generic_BasePage {
 
     // Locators for existing fields
-    private final By idNumberInput = By.id(":rf:");
+    private final By idNumberInput = By.cssSelector("[data-testid='applicant.identifier-input']");
     private final By idNumberErrorText = By.id(":rf:-helper-text");
     private final By continueButton = By.xpath("//*[@data-testid='continue-button']");
 
