@@ -3,11 +3,11 @@ package Generic.Test.Part1.Screens.Screen1.Second_screen;
 import Generic.Base.BaseTest_Generic;
 import Generic_product.Pages.First_screen.First;
 import Generic_product.Pages.Second_screen.FirstLastName;
+import Generic_product.Pages.Second_screen.PhoneField;
 import Generic_product.Pages.Second_screen.Second;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestFirst_LastName extends BaseTest_Generic {
@@ -15,22 +15,40 @@ public class TestFirst_LastName extends BaseTest_Generic {
     private FirstLastName FirstLastNameField;
     private Second secondPage;
 
+    private final String EXPECTED_HEADER_TEXT_SCREEN_2 = "נתחיל בכמה פרטים אישיים";
+    private final String JS_COMMAND_STEP_SCREEN_2 = "ezbob.actions.userState.setCurrentStepByName('contactDetailsGeneric')";
 
-    // נווט אל המסך השני (שם ושם משפחה)
-    private FirstLastName navigateToSecondPage() {
-        First firstPage = homePage.goToPractice();  // כניסה למסך הראשון
-        if (!firstPage.isCheckboxSelected()) {
-            firstPage.clickCheckbox();
+
+    /*
+    private PhoneField navigateToSecondPage() {
+        First obj = homePage.goToPractice();
+        if (!obj.isCheckboxSelected()) {
+            obj.clickCheckbox();
         }
-        firstPage.clickContinueButton();
+        obj.clickContinueButton();
         secondPage = new Second(driver);
         Assertions.assertTrue(secondPage.isOnSecondPage(), "לא הגעת למסך השני בהצלחה");
-        return new FirstLastName(driver);  // מחזיר מופע של המסך השני
+        return new PhoneField(driver);
     }
+    */
 
     @BeforeEach
     public void setup() {
-        FirstLastNameField = navigateToSecondPage();  // אתחל את המסך השני (FirstLastName)
+        try {
+            navigateToApplicationUrl();
+            waitForManualConsoleInputAndScreenTransition(JS_COMMAND_STEP_SCREEN_2);
+            verifyNewScreenHeader(EXPECTED_HEADER_TEXT_SCREEN_2);
+
+            secondPage = new Second(driver);
+            FirstLastNameField = new FirstLastName(driver);
+
+            assertTrue(secondPage.isOnSecondPage(), "אובייקט ה-Page Object של המסך השני לא אושר כטוען נכון.");
+            assertTrue(FirstLastNameField.isLastNameVisible(), "שדה שם משפחה אינו גלוי לאחר טעינת המסך השני.");
+
+
+        } catch (Exception e) {
+            fail("❌ כשל בהכנת הסביבה (setup) למסך השני: " + e.getMessage());
+        }
     }
 
     @Test

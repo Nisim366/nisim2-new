@@ -3,6 +3,7 @@ package Generic.Test.Part1.Screens.Screen1.Second_screen;
 import Generic.Base.BaseTest_Generic;
 import Generic_product.Pages.First_screen.First;
 import Generic_product.Pages.Second_screen.EmailFields;
+import Generic_product.Pages.Second_screen.PhoneField;
 import Generic_product.Pages.Second_screen.Second;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,8 +15,11 @@ public class EmailFieldTests extends BaseTest_Generic {
     private EmailFields emailFields;
     private Second secondPage;
 
+    private final String EXPECTED_HEADER_TEXT_SCREEN_2 = "נתחיל בכמה פרטים אישיים";
+    private final String JS_COMMAND_STEP_SCREEN_2 = "ezbob.actions.userState.setCurrentStepByName('contactDetailsGeneric')";
 
-    private EmailFields navigateToSecondPage() {
+    /*
+    private PhoneField navigateToSecondPage() {
         First obj = homePage.goToPractice();
         if (!obj.isCheckboxSelected()) {
             obj.clickCheckbox();
@@ -23,12 +27,26 @@ public class EmailFieldTests extends BaseTest_Generic {
         obj.clickContinueButton();
         secondPage = new Second(driver);
         Assertions.assertTrue(secondPage.isOnSecondPage(), "לא הגעת למסך השני בהצלחה");
-        return new EmailFields(driver);
+        return new PhoneField(driver);
     }
+    */
 
     @BeforeEach
     public void setup() {
-        emailFields = navigateToSecondPage();
+        try {
+            navigateToApplicationUrl();
+            waitForManualConsoleInputAndScreenTransition(JS_COMMAND_STEP_SCREEN_2);
+            verifyNewScreenHeader(EXPECTED_HEADER_TEXT_SCREEN_2);
+
+            secondPage = new Second(driver);
+            emailFields = new EmailFields(driver);
+
+            assertTrue(secondPage.isOnSecondPage(), "אובייקט ה-Page Object של המסך השני לא אושר כטוען נכון.");
+
+
+        } catch (Exception e) {
+            fail("❌ כשל בהכנת הסביבה (setup) למסך השני: " + e.getMessage());
+        }
     }
 
     @Test

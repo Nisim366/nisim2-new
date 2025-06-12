@@ -24,7 +24,7 @@ public class ManualScreenTransitionControlTest extends BaseTest_Generic {
     }
 
     public void step2_waitForManualConsoleInputAndScreenTransition(String jsCommandToEnter) {
-        System.out.println("   3. הקלד: " + jsCommandToEnter);
+        System.out.println(jsCommandToEnter);
         boolean manualInterventionDone = true;
     }
 

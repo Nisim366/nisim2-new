@@ -66,7 +66,7 @@ public class BaseTest_Generic {
     }
 
     public void waitForManualConsoleInputAndScreenTransition(String jsCommandToEnter) {
-        System.out.println("   3. הקלד: ezbob.actions.userState.setCurrentStepByName('" + jsCommandToEnter + "')");
+        System.out.println(jsCommandToEnter);
         boolean manualInterventionDone = true; // הגדר כאן Breakpoint
         // אין צורך בטיפול שגיאות נוסף כאן, כי זהו שלב המתנה ידני
     }
