@@ -1,6 +1,7 @@
 package Generic_product.Pages.Third_screen;
 
 import Generic_product.Base.Generic_BasePage;
+import Generic_product.Pages.Fourth_screen.FourthScreen;
 import Generic_product.Pages.Second_screen.Second;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -299,5 +300,9 @@ public class Third_screen extends Generic_BasePage {
             System.err.println("An unexpected error occurred while checking if image is loaded: " + e.getMessage());
             return false;
         }
+    }
+    public FourthScreen waitForManualOTPInputAndProceed() {
+
+        return new FourthScreen(driver);
     }
 }

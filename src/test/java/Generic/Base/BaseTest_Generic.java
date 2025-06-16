@@ -28,7 +28,6 @@ public class BaseTest_Generic {
     protected WebDriverWait wait;
 
     private final String Generic_URL = "https://app.stage.greenlend.co.il/customer/wizard?channel=c4poqltt";
-    protected static String targetScreen = null;
 
     @BeforeEach
     public void setUp() {

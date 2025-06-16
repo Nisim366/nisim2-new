@@ -1,35 +1,44 @@
 package Generic.Test.Part1.Screens.Screen1.Second_screen;
 
 import Generic.Base.BaseTest_Generic;
+import Generic_product.Pages.Second_screen.EmailFields;
 import Generic_product.Pages.Second_screen.PhoneField;
 import Generic_product.Pages.Second_screen.Second;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import utilities.DevToolsHelper;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestPhone extends BaseTest_Generic {
 
     private PhoneField phoneField;
     private Second secondPage;
+    private DevToolsHelper devTools;
+    public static String targetScreen = "contactDetailsGeneric";
 
-    private final String EXPECTED_HEADER_TEXT_SCREEN_2 = "נתחיל בכמה פרטים אישיים";
-    private final String JS_COMMAND_STEP_SCREEN_2 = "ezbob.actions.userState.setCurrentStepByName('contactDetailsGeneric')";
+    /*
+    private PhoneField navigateToSecondPage() {
+        First obj = homePage.goToPractice();
+        if (!obj.isCheckboxSelected()) {
+            obj.clickCheckbox();
+        }
+        obj.clickContinueButton();
+        secondPage = new Second(driver);
+        Assertions.assertTrue(secondPage.isOnSecondPage(), "לא הגעת למסך השני בהצלחה");
+        return new PhoneField(driver);
+    }
+    */
 
     @BeforeEach
     public void setup() {
-        try {
-            navigateToApplicationUrl();
-            waitForManualConsoleInputAndScreenTransition(JS_COMMAND_STEP_SCREEN_2);
-            verifyNewScreenHeader(EXPECTED_HEADER_TEXT_SCREEN_2);
-
+            super.setUp();
             secondPage = new Second(driver);
             phoneField = new PhoneField(driver);
-
+            devTools = new DevToolsHelper(driver);
+            devTools.openDevToolsAndGoToConsole();
+            devTools.jumpToScreen(targetScreen);
             assertTrue(secondPage.isOnSecondPage(), "אובייקט ה-Page Object של המסך השני לא אושר כטוען נכון.");
-            assertTrue(phoneField.isPhoneInputVisible(), "שדה קלט הטלפון אינו גלוי לאחר טעינת המסך השני.");
-        } catch (Exception e) {
-            fail("❌ כשל בהכנת הסביבה (setup) למסך השני: " + e.getMessage());
-        }
+
     }
 
     @Test

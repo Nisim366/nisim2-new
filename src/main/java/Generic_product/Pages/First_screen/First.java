@@ -1,6 +1,7 @@
 package Generic_product.Pages.First_screen;
 
 import Generic_product.Base.Generic_BasePage;
+import Generic_product.Pages.Second_screen.Second;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -34,7 +35,6 @@ public class First extends Generic_BasePage {
             // First, click the label (visual clickable element)
             WebElement label = wait.until(ExpectedConditions.elementToBeClickable(checkboxLabel));
             label.click();
-            System.out.println("Clicked checkbox label successfully.");
             return true;
         } catch (Exception e1) {
             System.out.println("Failed to click label: " + e1.getMessage());
@@ -66,7 +66,6 @@ public class First extends Generic_BasePage {
 
     public boolean isCheckboxSelected() {
         try {
-            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
             WebElement checkbox = wait.until(ExpectedConditions.presenceOfElementLocated(checkboxInput));
             return checkbox.isSelected();
         } catch (Exception e) {
@@ -82,7 +81,6 @@ public class First extends Generic_BasePage {
             System.out.println("Clicked on 'Continue' button.");
         } catch (Exception e) {
             System.out.println("Failed to click 'Continue' button: " + e.getMessage());
-            System.out.println("ssss");
         }
     }
 
@@ -96,7 +94,6 @@ public class First extends Generic_BasePage {
         }
     }
     public boolean verifyReturnedToFirstPage() {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(headerFirstPage));
             String text = getText(headerFirstPage);
@@ -106,6 +103,19 @@ public class First extends Generic_BasePage {
         } catch (Exception e) {
             System.out.println("Not returned to first page: " + e.getMessage());
             return false;
+        }
+    }
+    public Second completeFirstPageHappyFlow() {
+        try {
+            if (!isCheckboxSelected()) {
+                clickCheckbox();
+            }
+            clickContinueButton();
+            return new Second(driver);
+        } catch (IllegalStateException e) {
+            throw e; // זורק מחדש חריגות משיטות פנימיות או מקונסטרוקטור Screen2
+        } catch (Exception e) {
+            throw new RuntimeException("כשל כללי ב-Happy Flow של המסך הראשון.", e);
         }
     }
 

@@ -39,9 +39,10 @@ public class EmailFieldTests extends BaseTest_Generic {
         devTools = new DevToolsHelper(driver);
         devTools.openDevToolsAndGoToConsole();
         devTools.jumpToScreen(targetScreen);
+        assertTrue(secondPage.isOnSecondPage(), "אובייקט ה-Page Object של המסך השני לא אושר כטוען נכון.");
 
         secondPage = new Second(driver);
-        emailFields = new EmailFields(driver); // ⬅️ נוסף ייזום!
+        emailFields = new EmailFields(driver);
     }
 
 
