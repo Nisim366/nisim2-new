@@ -1,18 +1,16 @@
 package Generic_product.Pages.Second_screen;
 
 import Generic_product.Base.Generic_BasePage;
+import Generic_product.Pages.Fourth_screen.Fourth_screen;
 import Generic_product.Pages.Third_screen.Third_screen;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
 import utilities.JavaScriptUtility;
 
 public class Second extends Generic_BasePage {
-    private JavaScriptUtility js;
+    private final JavaScriptUtility js;
+
 
     private final By headerSecondPage = By.xpath("//h1[@id='page-header' and contains(text(),'נתחיל בכמה פרטים אישיים')]");
     private final By continueButton = By.cssSelector("button[data-testid='continue-button']");
@@ -40,28 +38,25 @@ public class Second extends Generic_BasePage {
         }
     }
 
-    /**
-     * מבצע את כל הפעולות למילוי שדות חובה במסך השני וממשיך למסך השלישי.
-     *
-     * @param firstName השם הפרטי למילוי
-     * @param lastName שם המשפחה למילוי
-     * @param phone מספר הטלפון למילוי
-     * @param email כתובת האימייל למילוי
-     * @return אובייקט Page Object של המסך השלישי (Third_screen) לאחר סיום הפעולות.
-     * @throws IllegalStateException אם קיימת בעיה במציאת או אינטראקציה עם אלמנטים.
-     * @throws RuntimeException אם מתרחשת שגיאה בלתי צפויה.
-     */
-    public Third_screen completeSecondScreenHappyFlow(String firstName, String lastName, String phone, String email) {
+    public void clickBackButton() {
+        super.clickBackButton();
+    }
+
+    public Third_screen completeSecondScreenHappyFlow() {
         FirstLastName firstLastName = new FirstLastName(driver);
         PhoneField phoneField = new PhoneField(driver);
         EmailFields emailFields = new EmailFields(driver);
 
+        // ערכים תקניים מראש
+        String firstName = "חן";
+        String lastName = "הניגון";
+        String phone = "0532407762";
+        String email = "yossi@example.com";
+
         try {
             firstLastName.setFirstName(firstName);
             firstLastName.setLastName(lastName);
-
             phoneField.setPhoneInput(phone);
-
             emailFields.setEmail(email);
             emailFields.setEmailConfirmation(email);
 
@@ -83,7 +78,12 @@ public class Second extends Generic_BasePage {
 
             clickContinueButton();
 
-            return new Third_screen(driver);
+            Third_screen thirdScreen = new Third_screen(driver);
+            if (!thirdScreen.isOnThirdScreen()) {
+                throw new IllegalStateException("שגיאה: לא עברנו למסך השלישי בהצלחה.");
+            }
+
+            return thirdScreen;
 
         } catch (IllegalStateException e) {
             throw e;
@@ -92,7 +92,9 @@ public class Second extends Generic_BasePage {
         }
     }
 
-    public void clickBackButton() {
-        super.clickBackButton();
+
+    public Third_screen goTothirdScreen() {
+        return completeSecondScreenHappyFlow(); // בלי פרמטרים
     }
+
 }

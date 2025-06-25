@@ -6,6 +6,7 @@ import Generic_product.Pages.Second_screen.EmailFields;
 import Generic_product.Pages.Second_screen.FirstLastName;
 import Generic_product.Pages.Second_screen.PhoneField;
 import Generic_product.Pages.Second_screen.Second;
+import Generic_product.Pages.Fourth_screen.Fourth_screen;
 import Generic_product.Pages.Third_screen.Third_screen;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,26 +31,24 @@ public class Screen2 extends BaseTest_Generic {
     private final String JS_COMMAND_STEP_SCREEN_2 = "ezbob.actions.userState.setCurrentStepByName('contactDetailsGeneric')";
 
     @BeforeEach
-    public void setup() {
-        try {
-            navigateToApplicationUrl();
-            waitForManualConsoleInputAndScreenTransition(JS_COMMAND_STEP_SCREEN_2);
-            verifyNewScreenHeader(EXPECTED_HEADER_TEXT_SCREEN_2);
+    public void set() {
+        firstPage = new First(driver);
+        secondPage = new Second(driver);
+        thirdPage = new  Third_screen (driver);
+        firstLastName = new FirstLastName(driver);
+        phoneField = new PhoneField(driver);
+        emailFields = new EmailFields(driver);
 
-            secondPage = new Second(driver);
-            firstLastName = new FirstLastName(driver);
-            phoneField = new PhoneField(driver);
-            emailFields = new EmailFields(driver);
-
-            assertTrue(secondPage.isOnSecondPage(), "אובייקט ה-Page Object של המסך השני לא אושר כטוען נכון.");
-
-        } catch (Exception e) {
-            fail("❌ כשל בהכנת הסביבה (setup) למסך השני: " + e.getMessage());
-        }
+        firstPage.goToSecondScreen();
+        secondPage.isOnSecondPage();
     }
 
+
     @Test
-    public void testFillAllFieldsOnSecondScreenAndContinueToThird() {
+    public void testGoToThirdScreen() {
+
+
+
         firstLastName.setFirstName(firstName);
         firstLastName.setLastName(lastName);
         phoneField.setPhoneInput(phone);
@@ -63,5 +62,9 @@ public class Screen2 extends BaseTest_Generic {
         Assertions.assertEquals(GMail, emailFields.getEmailConfirmation());
 
         secondPage.clickContinueButton();
+        Assertions.assertTrue(thirdPage.isOnThirdScreen(), "Should be on third page after clicking Continue");
+
+
+
     }
 }

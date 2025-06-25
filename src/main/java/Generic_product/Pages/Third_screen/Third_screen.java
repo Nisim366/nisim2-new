@@ -1,308 +1,245 @@
 package Generic_product.Pages.Third_screen;
 
 import Generic_product.Base.Generic_BasePage;
-import Generic_product.Pages.Fourth_screen.FourthScreen;
-import Generic_product.Pages.Second_screen.Second;
+import Generic_product.Pages.Fourth_screen.Fourth_screen;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.NoSuchElementException;
 
-import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Third_screen extends Generic_BasePage {
 
-    private final By header = By.id("page-header");
-    private final By backButton = By.cssSelector("button[data-testid='back-button']");
-    private final By containerLocator = By.cssSelector("h2.MuiTypography-subtitle2");
-    private final By timerLocator = By.cssSelector("h2 span + time[role='timer']");
-    private final By textSpanLocator = By.cssSelector("h2 span");
-    private final By verificationCodeSentTextLocator = By.xpath("//span[contains(text(), 'קוד האימות נשלח למספר')]");
-    private final By resendCodeButton = By.xpath("//button[contains(., 'לא קיבלתי קוד? שלחו שוב')]");
-    private final By callMeButton = By.xpath("//button[contains(., 'שלחו לי קוד בשיחת טלפון')]");
-    private final By topImage = By.cssSelector("img.ScreenWrapper__top-image[src*='generic_phase_1_icon.svg']");
+    // Locators for existing fields
+    private final By idNumberInput = By.cssSelector("[data-testid='applicant.identifier-input']");
+    private final By continueButton = By.xpath("//*[@data-testid='continue-button']");
 
-    private WebDriverWait wait;
+    // NEW LOCATORS for Issue Date
+    // תיקון - צריך להיות אלמנט input, לא p
+    private final By issueDateInput = By.cssSelector("[data-testid='applicant.identifierIssueDate-datePicker']");
+    private final By issueDateCalendarIcon = By.cssSelector("[data-testid='applicant.identifierIssueDate-datePicker'] + div button");
+
+    // NEW LOCATORS for Birth Date
+    private final By birthDateInput = By.xpath("//label[text()='תאריך לידה']/following-sibling::div//input");
+    private final By birthDateCalendarIcon = By.cssSelector("[data-testid='applicant.birthDate-datePicker'] + div button");
+
+    // לוקייטור גנרי להודעות שגיאה 'שדה זה הוא שדה חובה' לכל השדות עם aria-describedby שמתחיל ב-applicant.
+    private final By genericRequiredFieldErrorMessages = By.xpath("//p[contains(text(),'שדה זה הוא שדה חובה') and starts-with(@aria-describedby, 'applicant.')]");
+
+    // Locators for common DatePicker elements
+    private final By datePickerMonthYearHeader = By.cssSelector(".MuiPickersCalendarHeader-label");
+    private final By datePickerPrevMonthButton = By.cssSelector("button[aria-label='חודש קודם']");
+    private final By datePickerNextMonthButton = By.cssSelector("button[aria-label='חודש הבא']");
+    private final By datePickerYearSelectionButton = By.cssSelector(".MuiPickersCalendarHeader-switchHeader button[aria-label^='Select year']");
+    private final By datePickerDay = By.cssSelector(".MuiDayPicker-root button:not(.Mui-disabled)");
+    private final By datePickerYearInYearView = By.cssSelector(".MuiYearPicker-root button");
+    private final By datePickerView = By.cssSelector(".MuiDialog-container");
 
     public Third_screen(WebDriver driver) {
         super(driver);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public boolean isOnThirdPage() {
+    public boolean isOnThirdScreen() {
         try {
-            String headerText = wait.until(ExpectedConditions.visibilityOfElementLocated(header)).getText();
-            return headerText.contains("מה קוד האימות שקיבלת?");
-        } catch (TimeoutException e) {
-            System.err.println("Error: Third page header not found within expected time. Element: " + header + ". " + e.getMessage());
-            return false;
-        } catch (NoSuchElementException e) {
-            System.err.println("Error: Third page header element not present in DOM. Element: " + header + ". " + e.getMessage());
-            return false;
-        } catch (Exception e) {
-            System.err.println("An unexpected error occurred while checking if on Third Page: " + e.getMessage());
+            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(idNumberInput));
+            return element.isDisplayed();
+        } catch (TimeoutException | NoSuchElementException e) {
             return false;
         }
     }
 
-    public void waitForManualOtpInput() {
+    public WebElement getIdNumberInputField() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(idNumberInput));
+    }
+
+    public void enterIdNumber(String idNumber) {
+        set(idNumberInput, idNumber);
+    }
+
+    public String getIdNumberErrorText() {
         try {
-            new WebDriverWait(driver, Duration.ofSeconds(90)).until(d -> true);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(genericRequiredFieldErrorMessages));
+            return driver.findElement(By.xpath("//p[@aria-describedby='applicant.identifier-label' and contains(text(),'שדה זה הוא שדה חובה')]")).getText();
         } catch (TimeoutException e) {
-            System.err.println("Manual wait for OTP timed out after 90 seconds.");
-        } catch (Exception e) {
-            System.err.println("An unexpected error occurred during manual OTP wait: " + e.getMessage());
+            return null;
         }
     }
 
-    public void waitForNextPageHeader(String expectedText) {
+    public WebElement getIssueDateInputField() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(issueDateInput));
+    }
+
+    public void enterIssueDate(String dateToEnter) {
+        set(issueDateInput, dateToEnter);
+    }
+
+    public String getIssueDateErrorText() {
         try {
-            WebDriverWait dynamicWait = new WebDriverWait(driver, Duration.ofSeconds(60));
-            dynamicWait.until(ExpectedConditions.textToBePresentInElementLocated(header, expectedText));
-            System.out.println("Header with text '" + expectedText + "' found.");
+            wait.until(ExpectedConditions.visibilityOfElementLocated(genericRequiredFieldErrorMessages));
+            return driver.findElement(By.xpath("//p[@aria-describedby='applicant.identifierIssueDate-label' and contains(text(),'שדה זה הוא שדה חובה')]")).getText();
         } catch (TimeoutException e) {
-            System.err.println("Error: Next page header with text '" + expectedText + "' not found within 60 seconds. " + e.getMessage());
-        } catch (NoSuchElementException e) {
-            System.err.println("Error: Next page header element not present in DOM. Element: " + header + ". " + e.getMessage());
-        } catch (Exception e) {
-            System.err.println("An unexpected error occurred while waiting for next page header: " + e.getMessage());
+            return null;
         }
     }
 
-    public void clickBackButton() {
+    public void clickIssueDateCalendarIcon() {
+        click(issueDateCalendarIcon);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(datePickerView));
+    }
+
+    public WebElement getBirthDateInputField() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(birthDateInput));
+    }
+
+    public void enterBirthDate(String dateToEnter) {
+        set(birthDateInput, dateToEnter);
+    }
+
+    public String getBirthDateErrorText() {
         try {
-            wait.until(ExpectedConditions.elementToBeClickable(backButton)).click();
-            System.out.println("Back button clicked.");
-            Second secondScreen = new Second(driver);
-            if (secondScreen.isOnSecondPage()) {
-                System.out.println("Successfully navigated back to the Second Page.");
-            } else {
-                System.err.println("Verification Failed: Did not navigate back to the Second Page after clicking back button.");
+            wait.until(ExpectedConditions.visibilityOfElementLocated(genericRequiredFieldErrorMessages));
+            return driver.findElement(By.xpath("//p[@aria-describedby='applicant.birthDate-label' and contains(text(),'שדה זה הוא שדה חובה')]")).getText();
+        } catch (TimeoutException e) {
+            return null;
+        }
+    }
+
+    public void clickBirthDateCalendarIcon() {
+        click(birthDateCalendarIcon);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(datePickerView));
+    }
+
+    public void selectDayInDatePicker(String day) {
+        By dayLocator = By.xpath(String.format("//button[text()='%s' and not(contains(@class, 'Mui-disabled'))]", day));
+        click(dayLocator);
+    }
+
+    public void selectYearInDatePicker(String year) {
+        click(datePickerYearSelectionButton);
+        By yearLocator = By.xpath(String.format("//button[text()='%s']", year));
+        wait.until(ExpectedConditions.elementToBeClickable(yearLocator)).click();
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(datePickerYearInYearView));
+    }
+
+    public void navigateMonthsInDatePicker(int monthsToGo) {
+        if (monthsToGo > 0) {
+            for (int i = 0; i < monthsToGo; i++) {
+                click(datePickerNextMonthButton);
             }
-        } catch (TimeoutException e) {
-            System.err.println("Error: Back button not clickable within expected time. Element: " + backButton + ". " + e.getMessage());
-        } catch (NoSuchElementException e) {
-            System.err.println("Error: Back button element not present in DOM. Element: " + backButton + ". " + e.getMessage());
-        } catch (Exception e) {
-            System.err.println("An unexpected error occurred while clicking back button or verifying navigation: " + e.getMessage());
+        } else if (monthsToGo < 0) {
+            for (int i = 0; i > monthsToGo; i--) {
+                click(datePickerPrevMonthButton);
+            }
         }
     }
 
-    public boolean isTimerTextAndCountingDown(int maxWaitSeconds) {
+    public void selectDateFromDatePicker(String fullDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate targetDate;
         try {
-            WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(15));
-            WebElement container = shortWait.until(ExpectedConditions.visibilityOfElementLocated(containerLocator));
-            System.out.println("Debug: Timer container found and visible.");
-
-            WebElement textSpan = shortWait.until(ExpectedConditions.visibilityOf(container.findElement(textSpanLocator)));
-            String expectedText = "אפשר לבקש קוד חדש בעוד";
-            String actualTextSpan = textSpan.getText();
-            System.out.println("Debug: Actual text span: '" + actualTextSpan + "'");
-
-            if (!actualTextSpan.equals(expectedText)) {
-                System.err.println("Validation Failed: Expected timer text not found. Actual: '" + actualTextSpan + "', Expected: '" + expectedText + "'.");
-                return false;
-            }
-
-            WebElement timerElement = shortWait.until(ExpectedConditions.visibilityOf(container.findElement(timerLocator)));
-            String previousTime = timerElement.getText();
-            System.out.println("Debug: Initial timer value: " + previousTime);
-
-            int elapsed = 0;
-            while (elapsed < maxWaitSeconds) {
-                Thread.sleep(1000);
-                String currentTime = timerElement.getText();
-                System.out.println("Debug: Current timer value: " + currentTime);
-
-                if (!currentTime.equals(previousTime)) {
-                    System.out.println("Timer detected and counting down.");
-                    return true;
-                }
-
-                previousTime = currentTime;
-                elapsed++;
-            }
-
-            System.err.println("Validation Failed: Timer did not start counting down within " + maxWaitSeconds + " seconds.");
-            return false;
-
-        } catch (TimeoutException e) {
-            System.err.println("Error: Timer element or container not found within expected time. " + e.getMessage());
-            return false;
-        } catch (NoSuchElementException e) {
-            System.err.println("Error: Timer element or its text span not present in DOM. " + e.getMessage());
-            return false;
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            System.err.println("Error: Thread interrupted during timer countdown wait. " + e.getMessage());
-            return false;
-        } catch (Exception e) {
-            System.err.println("An unexpected error occurred in isTimerTextAndCountingDown: " + e.getMessage());
-            return false;
+            targetDate = LocalDate.parse(fullDate, formatter);
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("Invalid date format. Expected DD/MM/YYYY. Provided: " + fullDate, e);
         }
-    }
 
-    public WebElement getVerificationCodeSentTextElement() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(verificationCodeSentTextLocator));
-    }
+        click(datePickerYearSelectionButton);
+        selectYearInDatePicker(String.valueOf(targetDate.getYear()));
 
-    public boolean isVerificationCodeTextDisplayedImmediately() {
+        String currentMonthYearText = getText(datePickerMonthYearHeader);
+
+        // במקרה וזה ייצור בעיה - תוכל להתאים את הפורמט בהתאם לאתר שלך
+        LocalDate currentPickerDate;
         try {
-            WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(2));
-            shortWait.until(ExpectedConditions.visibilityOfElementLocated(verificationCodeSentTextLocator));
-            System.out.println("'Verification code sent' text is displayed.");
-            return true;
-        } catch (TimeoutException e) {
-            System.err.println("Validation Failed: The text 'קוד האימות נשלח למספר' was not displayed within 2 seconds. " + e.getMessage());
-            return false;
-        } catch (NoSuchElementException e) {
-            System.err.println("Error: 'Verification code sent' text element not present in DOM. " + e.getMessage());
-            return false;
-        } catch (Exception e) {
-            System.err.println("An unexpected error occurred while checking 'Verification code sent' text: " + e.getMessage());
-            return false;
+            currentPickerDate = LocalDate.parse("01 " + currentMonthYearText, DateTimeFormatter.ofPattern("dd MMMM yyyy"));
+        } catch (DateTimeParseException e) {
+            currentPickerDate = LocalDate.now();
         }
+
+        int monthsDifference = (targetDate.getYear() - currentPickerDate.getYear()) * 12 +
+                (targetDate.getMonthValue() - currentPickerDate.getMonthValue());
+
+        navigateMonthsInDatePicker(monthsDifference);
+
+        selectDayInDatePicker(String.valueOf(targetDate.getDayOfMonth()));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(datePickerView));
     }
 
-    public boolean areResendAndCallButtonsDisabledImmediately() {
+    public void clickContinueButton() {
+        click(continueButton);
+    }
+
+    public boolean isContinueButtonEnabled() {
         try {
-            WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            WebElement resendButtonElement = shortWait.until(ExpectedConditions.visibilityOfElementLocated(resendCodeButton));
-            WebElement callButtonElement = shortWait.until(ExpectedConditions.visibilityOfElementLocated(callMeButton));
-
-            boolean isResendDisabled = !resendButtonElement.isEnabled();
-            boolean isCallDisabled = !callButtonElement.isEnabled();
-
-            if (isResendDisabled && isCallDisabled) {
-                System.out.println("Resend and Call buttons are disabled as expected upon page entry.");
-                return true;
-            } else {
-                if (!isResendDisabled) {
-                    System.err.println("Validation Failed: Resend button is unexpectedly enabled.");
-                }
-                if (!isCallDisabled) {
-                    System.err.println("Validation Failed: Call button is unexpectedly enabled.");
-                }
-                return false;
-            }
+            return wait.until(ExpectedConditions.elementToBeClickable(continueButton)).isEnabled();
         } catch (TimeoutException e) {
-            System.err.println("Error: Resend or Call buttons not visible within expected time. " + e.getMessage());
-            return false;
-        } catch (NoSuchElementException e) {
-            System.err.println("Error: Resend or Call button elements not present in DOM. " + e.getMessage());
-            return false;
-        } catch (Exception e) {
-            System.err.println("An unexpected error occurred while checking initial state of resend/call buttons: " + e.getMessage());
             return false;
         }
     }
 
-    public boolean waitForButtonsToBecomeEnabled(int maxWaitSeconds) {
+    public boolean isIdNumberFieldDisplayed() {
         try {
-            WebDriverWait dynamicWait = new WebDriverWait(driver, Duration.ofSeconds(maxWaitSeconds));
-
-            WebElement resendButtonElement = dynamicWait.until(ExpectedConditions.elementToBeClickable(resendCodeButton));
-            WebElement callButtonElement = dynamicWait.until(ExpectedConditions.elementToBeClickable(callMeButton));
-
-            boolean isResendEnabled = resendButtonElement.isEnabled();
-            boolean isCallEnabled = callButtonElement.isEnabled();
-
-            if (isResendEnabled && isCallEnabled) {
-                System.out.println("Resend and Call buttons are enabled as expected.");
-                return true;
-            } else {
-                if (!isResendEnabled) {
-                    System.err.println("Validation Failed: Resend button is unexpectedly disabled after timer expiration.");
-                }
-                if (!isCallEnabled) {
-                    System.err.println("Validation Failed: Call button is unexpectedly disabled after timer expiration.");
-                }
-                return false;
-            }
-
-        } catch (TimeoutException e) {
-            System.err.println("Error: Resend or Call buttons did not become enabled within " + maxWaitSeconds + " seconds. " + e.getMessage());
-            return false;
-        } catch (NoSuchElementException e) {
-            System.err.println("Error: Resend or Call button elements not present in DOM. " + e.getMessage());
-            return false;
-        } catch (Exception e) {
-            System.err.println("An unexpected error occurred while waiting for buttons to become enabled: " + e.getMessage());
+            return getIdNumberInputField().isDisplayed();
+        } catch (NoSuchElementException | TimeoutException e) {
             return false;
         }
     }
 
-    /**
-     * Verifies if the top image is displayed and has the correct source and alt text.
-     * This version allows the alt attribute to be empty, as per the current website's HTML.
-     * @return True if the image is displayed, has the expected src, and alt text (can be empty), false otherwise.
-     */
-    public boolean isTopImageDisplayedAndCorrect() {
+    public boolean isIssueDateFieldDisplayed() {
         try {
-            WebElement imageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(topImage));
-
-            if (!imageElement.isDisplayed()) {
-                System.err.println("Validation Failed: Top image element is not displayed.");
-                return false;
-            }
-
-            String actualSrc = imageElement.getAttribute("src");
-            String expectedSrcPart = "generic_phase_1_icon.svg";
-            if (!actualSrc.contains(expectedSrcPart)) {
-                System.err.println("Validation Failed: Top image src is incorrect. Actual: '" + actualSrc + "', Expected to contain: '" + expectedSrcPart + "'.");
-                return false;
-            }
-
-            String actualAlt = imageElement.getAttribute("alt");
-            // Modified: Allows alt attribute to be an empty string, but not null.
-            if (actualAlt == null) {
-                System.err.println("Validation Failed: Top image alt text is missing (null).");
-                return false;
-            }
-            // If actualAlt is an empty string "", it will pass this check.
-
-            System.out.println("Top image found, displayed, and attributes verified.");
-            return true;
-
-        } catch (TimeoutException e) {
-            System.err.println("Error: Top image element not visible within expected time. Element: " + topImage + ". " + e.getMessage());
-            return false;
-        } catch (NoSuchElementException e) {
-            System.err.println("Error: Top image element not present in DOM. Element: " + topImage + ". " + e.getMessage());
-            return false;
-        } catch (Exception e) {
-            System.err.println("An unexpected error occurred while verifying top image: " + e.getMessage());
+            return getIssueDateInputField().isDisplayed();
+        } catch (NoSuchElementException | TimeoutException e) {
             return false;
         }
     }
 
-    public boolean isImageLoaded(By imageLocator) {
+    public boolean isBirthDateFieldDisplayed() {
         try {
-            WebElement image = wait.until(ExpectedConditions.visibilityOfElementLocated(imageLocator));
-            boolean loaded = (Boolean) ((org.openqa.selenium.JavascriptExecutor) driver)
-                    .executeScript("return arguments[0].complete && typeof arguments[0].naturalWidth != 'undefined' && arguments[0].naturalWidth > 0;", image);
-            if (loaded) {
-                System.out.println("Image at locator " + imageLocator + " is loaded correctly.");
-            } else {
-                System.err.println("Validation Failed: Image at locator " + imageLocator + " appears to be broken or not fully loaded.");
-            }
-            return loaded;
-        } catch (TimeoutException e) {
-            System.err.println("Error: Image element not visible within expected time for broken image check. Element: " + imageLocator + ". " + e.getMessage());
-            return false;
-        } catch (NoSuchElementException e) {
-            System.err.println("Error: Image element not present in DOM for broken image check. Element: " + imageLocator + ". " + e.getMessage());
-            return false;
-        } catch (Exception e) {
-            System.err.println("An unexpected error occurred while checking if image is loaded: " + e.getMessage());
+            return getBirthDateInputField().isDisplayed();
+        } catch (NoSuchElementException | TimeoutException e) {
             return false;
         }
     }
-    public FourthScreen waitForManualOTPInputAndProceed() {
 
-        return new FourthScreen(driver);
+    public boolean isIssueDateCalendarIconDisplayed() {
+        try {
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(issueDateCalendarIcon)).isDisplayed();
+        } catch (NoSuchElementException | TimeoutException e) {
+            return false;
+        }
     }
+
+    public boolean isBirthDateCalendarIconDisplayed() {
+        try {
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(birthDateCalendarIcon)).isDisplayed();
+        } catch (NoSuchElementException | TimeoutException e) {
+            return false;
+        }
+    }
+
+    public void fillAllRequiredFieldsWithValidData() {
+        enterIdNumber("123456789");
+
+        LocalDate issueDate = LocalDate.now().minusYears(2);
+        enterIssueDate(issueDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+
+        LocalDate birthDate = LocalDate.now().minusYears(25);
+        enterBirthDate(birthDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+    }
+
+    public Fourth_screen completeThirdScreenHappyFlow() {
+        fillAllRequiredFieldsWithValidData();
+        clickContinueButton();
+        Fourth_screen fourthScreen = new Fourth_screen(driver);
+
+        if (!fourthScreen.isOnFourthScreen()) {
+            throw new IllegalStateException("Failed to navigate to the fourth screen.");
+        }
+        return fourthScreen;
+    }
+
 }

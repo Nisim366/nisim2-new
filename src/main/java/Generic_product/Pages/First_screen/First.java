@@ -6,21 +6,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.JavaScriptUtility;
-
-import java.time.Duration;
 
 public class First extends Generic_BasePage {
 
-    private JavaScriptUtility js;
+    private final JavaScriptUtility js;
 
     private final By checkboxInput = By.xpath("//input[@id='meta.consents.privacyNote-checkbox']");
     private final By checkboxLabel = By.xpath("//label[@id='meta.consents.privacyNote-label']//span[contains(@class, 'MuiFormControlLabel-label')]");
-    private final By checkboxContainer = By.xpath("//span[@validationstatus='valid']");
-    private final By checkboxSpan = By.xpath("//span[input[@id='meta.consents.privacyNote-checkbox']]");
-
-
     private final By continueButton = By.xpath("//button[@data-testid='continue-button']");
     private final By headerFirstPage = By.xpath("//h1[@id='page-header' and contains(text(), 'זו תקופה מרגשת')]");
 
@@ -30,16 +23,12 @@ public class First extends Generic_BasePage {
     }
 
     public boolean clickCheckbox() {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         try {
-            // First, click the label (visual clickable element)
             WebElement label = wait.until(ExpectedConditions.elementToBeClickable(checkboxLabel));
             label.click();
             return true;
         } catch (Exception e1) {
-            System.out.println("Failed to click label: " + e1.getMessage());
             try {
-                // Fallback: click the input directly using JavaScript
                 WebElement inputCheckbox = wait.until(ExpectedConditions.presenceOfElementLocated(checkboxInput));
                 js.clickElementByJS(checkboxInput);
                 System.out.println("Clicked checkbox input using JavaScript.");
@@ -51,8 +40,6 @@ public class First extends Generic_BasePage {
         }
     }
 
-
-
     public String getCheckboxLabelText() {
         try {
             WebElement label = wait.until(ExpectedConditions.visibilityOfElementLocated(checkboxLabel));
@@ -63,7 +50,6 @@ public class First extends Generic_BasePage {
         }
     }
 
-
     public boolean isCheckboxSelected() {
         try {
             WebElement checkbox = wait.until(ExpectedConditions.presenceOfElementLocated(checkboxInput));
@@ -73,11 +59,9 @@ public class First extends Generic_BasePage {
         }
     }
 
-
-
     public void clickContinueButton() {
         try {
-            getDriver().findElement(continueButton).click();
+            wait.until(ExpectedConditions.elementToBeClickable(continueButton)).click();
             System.out.println("Clicked on 'Continue' button.");
         } catch (Exception e) {
             System.out.println("Failed to click 'Continue' button: " + e.getMessage());
@@ -93,6 +77,7 @@ public class First extends Generic_BasePage {
             return false;
         }
     }
+
     public boolean verifyReturnedToFirstPage() {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(headerFirstPage));
@@ -105,6 +90,7 @@ public class First extends Generic_BasePage {
             return false;
         }
     }
+
     public Second completeFirstPageHappyFlow() {
         try {
             if (!isCheckboxSelected()) {
@@ -113,10 +99,14 @@ public class First extends Generic_BasePage {
             clickContinueButton();
             return new Second(driver);
         } catch (IllegalStateException e) {
-            throw e; // זורק מחדש חריגות משיטות פנימיות או מקונסטרוקטור Screen2
+            throw e;
         } catch (Exception e) {
             throw new RuntimeException("כשל כללי ב-Happy Flow של המסך הראשון.", e);
         }
     }
 
+    // ✳️ מתודה נוספת למעבר, לפי אחידות בשמות
+    public Second goToSecondScreen() {
+        return completeFirstPageHappyFlow();
+    }
 }

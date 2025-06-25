@@ -1,20 +1,15 @@
 package Generic.Test.Part1.Screens.Screen1.First_screen;
 
 import Generic.Base.BaseTest_Generic;
+import Generic_product.Generic_HomePage;
 import Generic_product.Pages.First_screen.First;
 import Generic_product.Pages.Second_screen.Second;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class Screen1 extends BaseTest_Generic {
 
-    @BeforeEach
-    public void setUp(){
-        First obj = homePage.goToPractice();
-        Assertions.assertTrue(obj.isOnFirstPage(), "Should be on the first page");
 
-    }
 
     @Test
     public void isOnFirstPageReturnsTrue() {
@@ -72,8 +67,6 @@ public class Screen1 extends BaseTest_Generic {
         System.out.println("\u001B[32m=== TEST checkboxLabelDoesNotChangeAfterClick PASSED ===\u001B[0m");
     }
 
-
-
     @Test
     public void checkboxLabelTextIsCorrect() {
         First obj = homePage.goToPractice();
@@ -83,7 +76,7 @@ public class Screen1 extends BaseTest_Generic {
         System.out.println("\u001B[32m=== TEST checkboxLabelTextIsCorrect PASSED ===\u001B[0m");
     }
     @Test
-    public void navigateToSecondPageAfterContinue() {
+    public void testGoToSecondScreen() {
         First obj = homePage.goToPractice();
         if (!obj.isCheckboxSelected()) {
             obj.clickCheckbox();
