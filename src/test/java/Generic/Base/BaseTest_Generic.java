@@ -44,18 +44,7 @@ public class BaseTest_Generic {
         js = (JavascriptExecutor) driver;
     }
 
-    @AfterEach
-    public void globalTearDown() {
-        try {
-            if (driver != null) {
-                driver.quit();
-                System.out.println("✅ Browser closed.");
-            }
-        } catch (Exception e) {
-            System.err.println("❌ Error in globalTearDown:");
-            e.printStackTrace();
-        }
-    }
+
 
     public void navigateToApplicationUrl() {
         try {

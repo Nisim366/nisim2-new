@@ -42,7 +42,7 @@ public class Second extends Generic_BasePage {
         super.clickBackButton();
     }
 
-    public Third_screen completeSecondScreenHappyFlow() {
+    private Third_screen completeSecondScreenHappyFlow() {
         FirstLastName firstLastName = new FirstLastName(driver);
         PhoneField phoneField = new PhoneField(driver);
         EmailFields emailFields = new EmailFields(driver);

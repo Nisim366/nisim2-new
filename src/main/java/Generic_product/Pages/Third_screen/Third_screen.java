@@ -2,16 +2,19 @@ package Generic_product.Pages.Third_screen;
 
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Fourth_screen.Fourth_screen;
+import org.apache.hc.core5.util.Asserts;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.NoSuchElementException;
+import utilities.IsraeliIdGenerator;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Locale;
 
 public class Third_screen extends Generic_BasePage {
 
@@ -20,7 +23,6 @@ public class Third_screen extends Generic_BasePage {
     private final By continueButton = By.xpath("//*[@data-testid='continue-button']");
 
     // NEW LOCATORS for Issue Date
-    // תיקון - צריך להיות אלמנט input, לא p
     private final By issueDateInput = By.cssSelector("[data-testid='applicant.identifierIssueDate-datePicker']");
     private final By issueDateCalendarIcon = By.cssSelector("[data-testid='applicant.identifierIssueDate-datePicker'] + div button");
 
@@ -28,21 +30,59 @@ public class Third_screen extends Generic_BasePage {
     private final By birthDateInput = By.xpath("//label[text()='תאריך לידה']/following-sibling::div//input");
     private final By birthDateCalendarIcon = By.cssSelector("[data-testid='applicant.birthDate-datePicker'] + div button");
 
-    // לוקייטור גנרי להודעות שגיאה 'שדה זה הוא שדה חובה' לכל השדות עם aria-describedby שמתחיל ב-applicant.
+    // Generic required field error messages for all applicant fields
     private final By genericRequiredFieldErrorMessages = By.xpath("//p[contains(text(),'שדה זה הוא שדה חובה') and starts-with(@aria-describedby, 'applicant.')]");
 
-    // Locators for common DatePicker elements
+    // Locators for DatePicker components
     private final By datePickerMonthYearHeader = By.cssSelector(".MuiPickersCalendarHeader-label");
+    private final By datePickerYearSelectionButton = By.cssSelector("button.MuiPickersCalendarHeader-switchViewButton");
     private final By datePickerPrevMonthButton = By.cssSelector("button[aria-label='חודש קודם']");
     private final By datePickerNextMonthButton = By.cssSelector("button[aria-label='חודש הבא']");
-    private final By datePickerYearSelectionButton = By.cssSelector(".MuiPickersCalendarHeader-switchHeader button[aria-label^='Select year']");
-    private final By datePickerDay = By.cssSelector(".MuiDayPicker-root button:not(.Mui-disabled)");
-    private final By datePickerYearInYearView = By.cssSelector(".MuiYearPicker-root button");
-    private final By datePickerView = By.cssSelector(".MuiDialog-container");
+    private final By datePickerDay = By.cssSelector(".MuiPickersDay-root:not(.Mui-disabled)");
+    private final By datePickerYearInYearView = By.cssSelector(".MuiYearCalendar-root button.MuiPickersYear-yearButton");
+    private final By datePickerView = By.cssSelector(".MuiDateCalendar-root");
+
+    private final By datePickerMonthButtons = By.cssSelector("button.MuiPickersMonth-monthButton");
+
 
     public Third_screen(WebDriver driver) {
         super(driver);
     }
+    public enum DatePickerView {
+        YEAR,
+        MONTH,
+        DAY
+    }
+
+    public DatePickerView getCurrentDatePickerView() {
+        // תנסה לבדוק מה מוצג כרגע ע"י מציאת אלמנטים ייחודיים לכל תצוגה
+        if (driver.findElements(By.cssSelector(".MuiYearCalendar-root")).size() > 0) {
+            return DatePickerView.YEAR;
+        } else if (driver.findElements(By.cssSelector(".MuiMonthCalendar-root")).size() > 0) {
+            return DatePickerView.MONTH;
+        } else {
+            return DatePickerView.DAY;
+        }
+    }
+
+    public void switchToYearViewIfNeeded() {
+        DatePickerView currentView = getCurrentDatePickerView();
+        if (currentView != DatePickerView.YEAR) {
+            // לחץ על הכותרת פעם אחת כדי לעבור לתצוגת שנה
+            click(datePickerMonthYearHeader);
+            wait.until(driver -> getCurrentDatePickerView() == DatePickerView.YEAR);
+        }
+    }
+
+    public void switchToMonthViewIfNeeded() {
+        DatePickerView currentView = getCurrentDatePickerView();
+        if (currentView != DatePickerView.MONTH) {
+            // לחץ על הכותרת פעם אחת כדי לעבור לתצוגת חודש
+            click(datePickerMonthYearHeader);
+            wait.until(driver -> getCurrentDatePickerView() == DatePickerView.MONTH);
+        }
+    }
+
 
     public boolean isOnThirdScreen() {
         try {
@@ -120,7 +160,6 @@ public class Third_screen extends Generic_BasePage {
     }
 
     public void selectYearInDatePicker(String year) {
-        click(datePickerYearSelectionButton);
         By yearLocator = By.xpath(String.format("//button[text()='%s']", year));
         wait.until(ExpectedConditions.elementToBeClickable(yearLocator)).click();
         wait.until(ExpectedConditions.invisibilityOfElementLocated(datePickerYearInYearView));
@@ -132,44 +171,66 @@ public class Third_screen extends Generic_BasePage {
                 click(datePickerNextMonthButton);
             }
         } else if (monthsToGo < 0) {
-            for (int i = 0; i > monthsToGo; i--) {
+            for (int i = 0; i < -monthsToGo; i++) {
                 click(datePickerPrevMonthButton);
             }
         }
     }
+    private String etHebrewMonthLabel(int monthNumber) {
+        return switch (monthNumber) {
+            case 1  -> "ינואר";
+            case 2  -> "פברואר";
+            case 3  -> "מרץ";
+            case 4  -> "אפריל";
+            case 5  -> "מאי";
+            case 6  -> "יוני";
+            case 7  -> "יולי";
+            case 8  -> "אוגוסט";
+            case 9  -> "ספטמבר";
+            case 10 -> "אוקטובר";
+            case 11 -> "נובמבר";
+            case 12 -> "דצמבר";
+            default -> throw new IllegalArgumentException("Invalid month number: " + monthNumber);
+        };
+    }
 
     public void selectDateFromDatePicker(String fullDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate targetDate;
-        try {
-            targetDate = LocalDate.parse(fullDate, formatter);
-        } catch (DateTimeParseException e) {
-            throw new IllegalArgumentException("Invalid date format. Expected DD/MM/YYYY. Provided: " + fullDate, e);
-        }
+        LocalDate targetDate = LocalDate.parse(fullDate, formatter);
 
-        click(datePickerYearSelectionButton);
+        // ודא שאתה בתצוגת יום תחילה (כשפותחים את לוח השנה)
+        wait.until(ExpectedConditions.visibilityOfElementLocated(datePickerView));
+
+        // עבור לתצוגת שנה
+        switchToYearViewIfNeeded();
+
         selectYearInDatePicker(String.valueOf(targetDate.getYear()));
 
-        String currentMonthYearText = getText(datePickerMonthYearHeader);
+        // עבור לתצוגת חודש
+        switchToMonthViewIfNeeded();
 
-        // במקרה וזה ייצור בעיה - תוכל להתאים את הפורמט בהתאם לאתר שלך
-        LocalDate currentPickerDate;
-        try {
-            currentPickerDate = LocalDate.parse("01 " + currentMonthYearText, DateTimeFormatter.ofPattern("dd MMMM yyyy"));
-        } catch (DateTimeParseException e) {
-            currentPickerDate = LocalDate.now();
-        }
+        selectMonthInDatePicker(etHebrewMonthLabel(targetDate.getMonthValue()));
 
-        int monthsDifference = (targetDate.getYear() - currentPickerDate.getYear()) * 12 +
-                (targetDate.getMonthValue() - currentPickerDate.getMonthValue());
-
-        navigateMonthsInDatePicker(monthsDifference);
-
+        // עכשיו בחירת יום
         selectDayInDatePicker(String.valueOf(targetDate.getDayOfMonth()));
+
         wait.until(ExpectedConditions.invisibilityOfElementLocated(datePickerView));
     }
 
+    private void waitUntilInputValueIsSet(By locator, String expectedValue) {
+        wait.until(driver -> {
+            String actualValue = driver.findElement(locator).getAttribute("value");
+            return actualValue != null && actualValue.equals(expectedValue);
+        });
+    }
+
     public void clickContinueButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(continueButton));
+        // המתן שכל השדות יכילו ערכים תקינים לפני לחיצה
+        waitUntilInputValueIsSet(idNumberInput, driver.findElement(idNumberInput).getAttribute("value"));
+        waitUntilInputValueIsSet(issueDateInput, driver.findElement(issueDateInput).getAttribute("value"));
+        waitUntilInputValueIsSet(birthDateInput, driver.findElement(birthDateInput).getAttribute("value"));
+
         click(continueButton);
     }
 
@@ -220,26 +281,17 @@ public class Third_screen extends Generic_BasePage {
             return false;
         }
     }
-
-    public void fillAllRequiredFieldsWithValidData() {
-        enterIdNumber("123456789");
-
-        LocalDate issueDate = LocalDate.now().minusYears(2);
-        enterIssueDate(issueDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-
-        LocalDate birthDate = LocalDate.now().minusYears(25);
-        enterBirthDate(birthDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+    public By getMonthButtonByLabel(String hebrewMonth) {
+        return By.cssSelector("button[aria-label='" + hebrewMonth + "']");
     }
 
-    public Fourth_screen completeThirdScreenHappyFlow() {
-        fillAllRequiredFieldsWithValidData();
-        clickContinueButton();
-        Fourth_screen fourthScreen = new Fourth_screen(driver);
-
-        if (!fourthScreen.isOnFourthScreen()) {
-            throw new IllegalStateException("Failed to navigate to the fourth screen.");
+    public void selectMonthInDatePicker(String hebrewMonthLabel) {
+        try {
+            By monthLocator = getMonthButtonByLabel(hebrewMonthLabel);
+            wait.until(ExpectedConditions.elementToBeClickable(monthLocator)).click();
+        } catch (Exception e) {
+            System.err.println("Failed to select month in DatePicker: " + e.getMessage());
+            throw e;
         }
-        return fourthScreen;
     }
-
 }

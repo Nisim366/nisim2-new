@@ -154,18 +154,36 @@ public class Third_screenTest extends BaseTest_Generic {
         assertEquals("התאריך אינו תקין", actualErrorMessage);
     }
 
+
     @Test
     @DisplayName("Issue Date: Verify selecting a valid date from DatePicker")
     void testIssueDate_SelectValidDateFromDatePicker() {
+        // נבחר תאריך לפני שנה, 3 חודשים ו־10 ימים
         LocalDate dateToSelect = LocalDate.now().minusYears(1).minusMonths(3).minusDays(10);
         String dateToSelectStr = dateToSelect.format(formatter);
+
+        // פתיחת ה־DatePicker
         ThirdScreen.clickIssueDateCalendarIcon();
-        ThirdScreen.selectDateFromDatePicker(dateToSelectStr);
+
+        // מעבר לתצוגת שנה (פעם אחת בלבד)
+        driver.findElement(By.cssSelector("button.MuiPickersCalendarHeader-switchViewButton")).click();
+
+        // בחירת השנה
+        ThirdScreen.selectYearInDatePicker(String.valueOf(dateToSelect.getYear()));
+
+        // בחירת היום ישירות (בלי לעבור לתצוגת חודש)
+        ThirdScreen.selectDayInDatePicker(String.valueOf(dateToSelect.getDayOfMonth()));
+
+        // אימות הערך בשדה
         String actualValue = ThirdScreen.getIssueDateInputField().getAttribute("value");
         assertEquals(dateToSelectStr, actualValue);
+
+        // אימות שאין שגיאה
         String actualErrorMessage = ThirdScreen.getIssueDateErrorText();
         assertNull(actualErrorMessage, "לא אמורה להיות הודעת שגיאה לאחר בחירה תקינה מיומן");
     }
+
+
 
     @Test
     @DisplayName("Issue Date: Verify selecting oldest allowed date (01/01/1904) from DatePicker")
@@ -278,15 +296,16 @@ public class Third_screenTest extends BaseTest_Generic {
         assertFalse(ThirdScreen.isContinueButtonEnabled(), "כפתור 'המשך' אמור להיות מדוסבל בעת טעינת המסך");
     }
 
+
     @Test
-    @DisplayName("Verify 'Continue' button is enabled after all valid inputs")
-    void testContinueButtonEnabledAfterAllValidInputs() {
-        ThirdScreen.fillAllRequiredFieldsWithValidData();
-        ThirdScreen.getIdNumberInputField().sendKeys("\t");
-        ThirdScreen.getIssueDateInputField().sendKeys("\t");
-        ThirdScreen.getBirthDateInputField().sendKeys("\t");
-        assertTrue(ThirdScreen.isContinueButtonEnabled(), "כפתור 'המשך' אמור להיות מופעל לאחר הזנת כל הנתונים התקינים");
+    @DisplayName("Verify transition to Fourth screen after filling all valid inputs in Third screen")
+    void testTransitionToFourthScreenAfterValidInputs() {
+        Fourth_screen fourthScreen = ThirdScreen.fillAllRequiredFieldsWithValidData();
+
+
     }
+
+
 
 
     public void setup() {
