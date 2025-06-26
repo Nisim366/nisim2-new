@@ -6,17 +6,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
+import utilities.JavaScriptUtility; // Import the utility class
 
 public class Generic_BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
+    protected JavaScriptUtility jsUtility; // Add an instance of JavaScriptUtility
 
-    // Locator לכפתור Back - ניתן לשנות לפי הצורך
     private final By backButton = By.cssSelector("[data-testid='back-button']");
 
     public Generic_BasePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+        this.jsUtility = new JavaScriptUtility(driver); // Initialize JavaScriptUtility
     }
 
     public WebDriver getDriver() {
@@ -24,23 +26,31 @@ public class Generic_BasePage {
     }
 
     protected WebElement find(By elementLocator) {
-        return driver.findElement(elementLocator);
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
     }
 
     protected void set(By elementLocator, String textToSet) {
-        find(elementLocator).clear();
-        find(elementLocator).sendKeys(textToSet);
+        WebElement element = find(elementLocator); // Find the element first
+        jsUtility.clearUsingCtrlADelete(element);   // Use JS utility to clear
+        element.sendKeys(textToSet);                // Then send keys
     }
 
+    // This method is now redundant since 'set' handles clearing
+    // but leaving it in case there's a specific reason to clear without setting
+    protected void clear(By locator) {
+        WebElement element = find(locator);
+        jsUtility.clearUsingCtrlADelete(element);
+    }
+
+
     protected void click(By elementLocator) {
-        find(elementLocator).click();
+        wait.until(ExpectedConditions.elementToBeClickable(elementLocator)).click();
     }
 
     protected String getText(By elementLocator) {
         return find(elementLocator).getText();
     }
 
-    // לחיצה על כפתור Back
     public void clickBackButton() {
         wait.until(ExpectedConditions.elementToBeClickable(backButton)).click();
     }
