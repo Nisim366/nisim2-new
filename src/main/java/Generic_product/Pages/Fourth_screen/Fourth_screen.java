@@ -24,7 +24,7 @@ public class Fourth_screen extends Generic_BasePage {
     private final By resendCodeButton = By.xpath("//button[contains(., 'לא קיבלתי קוד? שלחו שוב')]");
     private final By callMeButton = By.xpath("//button[contains(., 'שלחו לי קוד בשיחת טלפון')]");
     private final By topImage = By.cssSelector("img.ScreenWrapper__top-image[src*='generic_phase_1_icon.svg']");
-
+    private final By verificationCodeFirstDigitInput = By.cssSelector("input[aria-label^='הזן את ספרה מספר 1 מתוך 6 של קוד האימות']");
     private WebDriverWait wait;
 
     public Fourth_screen(WebDriver driver) {
@@ -34,16 +34,9 @@ public class Fourth_screen extends Generic_BasePage {
 
     public boolean isOnFourthScreen() {
         try {
-            String headerText = wait.until(ExpectedConditions.visibilityOfElementLocated(header)).getText();
-            return headerText.contains("מה קוד האימות שקיבלת?");
-        } catch (TimeoutException e) {
-            System.err.println("Error: Third page header not found within expected time. Element: " + header + ". " + e.getMessage());
-            return false;
-        } catch (NoSuchElementException e) {
-            System.err.println("Error: Third page header element not present in DOM. Element: " + header + ". " + e.getMessage());
-            return false;
-        } catch (Exception e) {
-            System.err.println("An unexpected error occurred while checking if on Third Page: " + e.getMessage());
+            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(verificationCodeFirstDigitInput));
+            return element.isDisplayed();
+        } catch (TimeoutException | NoSuchElementException e) {
             return false;
         }
     }

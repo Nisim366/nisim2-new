@@ -2,11 +2,13 @@ package Generic.Test.Part1.Screens.Screen1.Third_screen;
 
 import Generic.Base.BaseTest_Generic;
 import Generic_product.Pages.First_screen.First;
+import Generic_product.Pages.Fourth_screen.Fourth_screen;
 import Generic_product.Pages.Second_screen.EmailFields;
 import Generic_product.Pages.Second_screen.FirstLastName;
 import Generic_product.Pages.Second_screen.PhoneField;
 import Generic_product.Pages.Second_screen.Second;
 import Generic_product.Pages.Third_screen.Third_screen;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,6 +30,7 @@ public class Third_screenTest extends BaseTest_Generic {
     private PhoneField phoneField;
     private EmailFields emailFields;
     private Third_screen thirdScreen;
+    private Fourth_screen fourthscreen;
 
 
     private final String EXPECTED_HEADER_TEXT_SCREEN_4 = "עכשיו כמה פרטים מזהים";
@@ -44,6 +47,7 @@ public class Third_screenTest extends BaseTest_Generic {
         firstLastName = new FirstLastName(driver);
         phoneField = new PhoneField(driver);
         emailFields = new EmailFields(driver);
+        fourthscreen = new Fourth_screen(driver);
 
         firstPage.goToSecondScreen();
         assertTrue(secondPage.isOnSecondPage(), "לא במסך השני");
@@ -82,8 +86,6 @@ public class Third_screenTest extends BaseTest_Generic {
         boolean isErrorDisplayed = thirdScreen.isBirthDateErrorDisplayed();
         assertFalse(isErrorDisplayed, "Expected no error message for a valid birth date, but an error was displayed.");
     }
-
-
 
     @Test
     @DisplayName("Sanity")
@@ -148,6 +150,10 @@ public class Third_screenTest extends BaseTest_Generic {
         String selectedGender = thirdScreen.getSelectedGender();
         assertEquals("זכר", selectedGender, "Gender selection did not match expected value.");
         assertFalse(thirdScreen.isGenderErrorDisplayed(), "Expected no error message for gender, but an error was displayed.");
+
+        thirdScreen.clickContinueButton();
+        Assertions.assertTrue(fourthscreen.isOnFourthScreen(), "Should be on Fourth page after clicking Continue");
+
     }
 
 

@@ -38,7 +38,7 @@ public class Third_screen extends Generic_BasePage {
     public Third_screen(WebDriver driver) {
         super(driver);
         // משנה את ההמתנה הכללית ל-10 שניות במקום 30
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
 
     // --- מתודות קיימות ---
@@ -51,6 +51,10 @@ public class Third_screen extends Generic_BasePage {
             return false;
         }
     }
+    public void clickContinueButton() {
+        click(continueButton);
+    }
+
     // בחירת מגדר מתוך הרשימה - "זכר" או "נקבה"
     private void selectGender(String genderText) {
         click(genderSelect); // פותח את הרשימה
