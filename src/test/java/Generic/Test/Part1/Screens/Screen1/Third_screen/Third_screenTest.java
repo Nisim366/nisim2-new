@@ -158,14 +158,6 @@ public class Third_screenTest extends BaseTest_Generic {
 
 
 
-
-
-
-
-
-
-
-
     public void setup() {
         try {
             navigateToApplicationUrl();
