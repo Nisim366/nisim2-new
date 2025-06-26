@@ -25,11 +25,13 @@ public class Fourth_screen extends Generic_BasePage {
     private final By callMeButton = By.xpath("//button[contains(., 'שלחו לי קוד בשיחת טלפון')]");
     private final By topImage = By.cssSelector("img.ScreenWrapper__top-image[src*='generic_phase_1_icon.svg']");
     private final By verificationCodeFirstDigitInput = By.cssSelector("input[aria-label^='הזן את ספרה מספר 1 מתוך 6 של קוד האימות']");
+    private final By cityInput = By.cssSelector("input[data-testid='applicant.address.town-input']");
+
     private WebDriverWait wait;
 
     public Fourth_screen(WebDriver driver) {
         super(driver);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
 
     public boolean isOnFourthScreen() {
@@ -42,27 +44,24 @@ public class Fourth_screen extends Generic_BasePage {
     }
 
     public void waitForManualOtpInput() {
+        System.out.println("Waiting 90 seconds for manual OTP input...");
         try {
-            new WebDriverWait(driver, Duration.ofSeconds(90)).until(d -> true);
-        } catch (TimeoutException e) {
-            System.err.println("Manual wait for OTP timed out after 90 seconds.");
-        } catch (Exception e) {
-            System.err.println("An unexpected error occurred during manual OTP wait: " + e.getMessage());
+            Thread.sleep(60000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException("Interrupted during manual OTP input wait", e);
         }
+        System.out.println("Manual OTP input wait finished.");
     }
 
-    public void waitForNextPageHeader(String expectedText) {
-        try {
-            WebDriverWait dynamicWait = new WebDriverWait(driver, Duration.ofSeconds(60));
-            dynamicWait.until(ExpectedConditions.textToBePresentInElementLocated(header, expectedText));
-            System.out.println("Header with text '" + expectedText + "' found.");
-        } catch (TimeoutException e) {
-            System.err.println("Error: Next page header with text '" + expectedText + "' not found within 60 seconds. " + e.getMessage());
-        } catch (NoSuchElementException e) {
-            System.err.println("Error: Next page header element not present in DOM. Element: " + header + ". " + e.getMessage());
-        } catch (Exception e) {
-            System.err.println("An unexpected error occurred while waiting for next page header: " + e.getMessage());
-        }
+
+
+    public void waitForNextScreen() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(cityInput));
+    }
+    public void waitForFifthScreen() {
+        new WebDriverWait(driver, Duration.ofSeconds(60))
+                .until(ExpectedConditions.visibilityOfElementLocated(cityInput));
     }
 
     public void clickBackButton() {
@@ -293,9 +292,5 @@ public class Fourth_screen extends Generic_BasePage {
             System.err.println("An unexpected error occurred while checking if image is loaded: " + e.getMessage());
             return false;
         }
-    }
-    public Third_screen waitForManualOTPInputAndProceed() {
-
-        return new Third_screen(driver);
     }
 }

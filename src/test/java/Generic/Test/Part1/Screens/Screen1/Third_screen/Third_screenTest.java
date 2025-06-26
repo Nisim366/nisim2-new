@@ -117,7 +117,7 @@ public class Third_screenTest extends BaseTest_Generic {
 
     @Test
     @DisplayName("Sanity: Valid ID, today's issue date, birth date and gender without errors")
-    public void testValidIdIssueAndBirthDatesAndGender_NoErrors() {
+    public void testSanity() {
         // יצירת ת"ז תקינה אקראית
         String validId = IsraeliIdGenerator.generateRandomValidIsraeliId();
 

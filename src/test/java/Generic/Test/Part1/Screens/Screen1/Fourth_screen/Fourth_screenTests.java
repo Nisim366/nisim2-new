@@ -1,11 +1,13 @@
 package Generic.Test.Part1.Screens.Screen1.Fourth_screen;
 
 import Generic.Base.BaseTest_Generic;
+import Generic_product.Pages.First_screen.First;
 import Generic_product.Pages.Second_screen.EmailFields;
 import Generic_product.Pages.Second_screen.FirstLastName;
 import Generic_product.Pages.Second_screen.PhoneField;
 import Generic_product.Pages.Second_screen.Second;
 import Generic_product.Pages.Fourth_screen.Fourth_screen;
+import Generic_product.Pages.Third_screen.Third_screen;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 
@@ -15,16 +17,50 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class Fourth_screenTests extends BaseTest_Generic {
 
-    private Fourth_screen FourthScreen;
+    private First firstPage;
     private Second secondPage;
     private FirstLastName firstLastName;
     private PhoneField phoneField;
     private EmailFields emailFields;
+    private Third_screen thirdScreen;
+    private Fourth_screen fourthScreen;
 
     private final String phone = "0532407762";
     private final String firstName = "חן";
     private final String lastName = "הניגון";
     private final String GMail = "yossi@example.com";
+
+    @BeforeEach
+    public void set() {
+        firstPage = new First(driver);
+        secondPage = new Second(driver);
+        firstLastName = new FirstLastName(driver);
+        phoneField = new PhoneField(driver);
+        emailFields = new EmailFields(driver);
+
+        firstPage.goToSecondScreen();
+        assertTrue(secondPage.isOnSecondPage(), "לא במסך השני");
+
+        thirdScreen = secondPage.goTothirdScreen();
+        assertTrue(thirdScreen.isOnThirdScreen(), "לא במסך השלישי");
+
+        fourthScreen = thirdScreen.goToFourthScreen();
+        assertTrue(fourthScreen.isOnFourthScreen(), "לא במסך הרביעי");
+    }
+    @Test
+    public void testManualOtpInputAndProceed() {
+        System.out.println("המתנה להזנת קוד אימות ידנית...");
+        fourthScreen.waitForManualOtpInput(); // המתנה להזנת הקוד ידנית
+
+        System.out.println("בודק שהתקדמנו למסך הבא...");
+        fourthScreen.waitForFifthScreen(); // מחכה לאלמנט הייחודי של המסך החמישי
+
+        // אפשר ליצור מופע של המסך החמישי ולבדוק:
+        // Fift_screen fifthScreen = new Fifth_screen(driver);
+        // assertTrue(fifthScreen.isOnFifthScreen(), "לא במסך החמישי");
+
+        // או לפחות לאמת שהאלמנט הייחודי של המסך החמישי קיים:
+    }
 
 
 
@@ -32,20 +68,20 @@ public class Fourth_screenTests extends BaseTest_Generic {
     @Test
     public void testOtpScreenInitialStateAndTimerBehavior() {
 
-        assertTrue(FourthScreen.isOnFourthScreen(), "Should be on third screen with OTP input.");
+        assertTrue(fourthScreen.isOnFourthScreen(), "Should be on third screen with OTP input.");
 
-        assertTrue(FourthScreen.isTopImageDisplayedAndCorrect(), "Top image should be displayed and have correct attributes.");
-        assertTrue(FourthScreen.isImageLoaded(By.cssSelector("img.ScreenWrapper__top-image[src*='generic_phase_1_icon.svg']")), "Top image should be loaded and not broken.");
+        assertTrue(fourthScreen.isTopImageDisplayedAndCorrect(), "Top image should be displayed and have correct attributes.");
+        assertTrue(fourthScreen.isImageLoaded(By.cssSelector("img.ScreenWrapper__top-image[src*='generic_phase_1_icon.svg']")), "Top image should be loaded and not broken.");
 
 
-        assertTrue(FourthScreen.isVerificationCodeTextDisplayedImmediately(),
+        assertTrue(fourthScreen.isVerificationCodeTextDisplayedImmediately(),
                 "Verification code sent text should be displayed immediately upon page entry.");
 
         int initialTimerCheckWaitSeconds = 5;
-        assertTrue(FourthScreen.isTimerTextAndCountingDown(initialTimerCheckWaitSeconds),
+        assertTrue(fourthScreen.isTimerTextAndCountingDown(initialTimerCheckWaitSeconds),
                 "Timer text should be visible and timer should start counting down within " + initialTimerCheckWaitSeconds + " seconds.");
 
-        assertTrue(FourthScreen.areResendAndCallButtonsDisabledImmediately(),
+        assertTrue(fourthScreen.areResendAndCallButtonsDisabledImmediately(),
                 "Resend and Call buttons should be disabled immediately upon page entry.");
 
         System.out.println("Waiting for timer to expire (approx. 35 seconds) and buttons to enable...");
@@ -56,16 +92,16 @@ public class Fourth_screenTests extends BaseTest_Generic {
             fail("Test interrupted while waiting for timer to expire.");
         }
 
-        assertTrue(FourthScreen.waitForButtonsToBecomeEnabled(10),
+        assertTrue(fourthScreen.waitForButtonsToBecomeEnabled(10),
                 "Resend and Call buttons should become enabled after timer expires.");
     }
 
     @Test
     public void testBackButtonAndNextPageHeader() {
 
-        assertTrue(FourthScreen.isOnFourthScreen(), "Should be on third screen with OTP input.");
+        assertTrue(fourthScreen.isOnFourthScreen(), "Should be on third screen with OTP input.");
 
-        FourthScreen.clickBackButton();
+        fourthScreen.clickBackButton();
 
         System.out.println("Demonstrating waitForNextPageHeader after back button click.");
     }
