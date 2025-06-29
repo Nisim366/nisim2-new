@@ -78,10 +78,18 @@ public class Second extends Generic_BasePage {
 
             clickContinueButton();
 
+// המתנה להופעת שדה תעודת זהות במסך השלישי
+            By identifierField = By.cssSelector("[data-testid='applicant.identifier-input']");
+            wait.until(ExpectedConditions.visibilityOfElementLocated(identifierField));
+
+// יצירת מופע של המסך השלישי
             Third_screen thirdScreen = new Third_screen(driver);
+
+// בדיקה שהמסך אכן נטען
             if (!thirdScreen.isOnThirdScreen()) {
                 throw new IllegalStateException("שגיאה: לא עברנו למסך השלישי בהצלחה.");
             }
+
 
             return thirdScreen;
 

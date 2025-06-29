@@ -34,6 +34,30 @@ public class Generic_BasePage {
         jsUtility.clearUsingCtrlADelete(element);   // Use JS utility to clear
         element.sendKeys(textToSet);                // Then send keys
     }
+    public boolean isElementVisible(By locator) {
+        try {
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    protected boolean isElementEnabled(By locator) {
+        try {
+            WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+            return element.isEnabled();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    protected String getElementAttribute(By locator, String attribute) {
+        try {
+            WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+            return element.getAttribute(attribute);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 
     // This method is now redundant since 'set' handles clearing
     // but leaving it in case there's a specific reason to clear without setting

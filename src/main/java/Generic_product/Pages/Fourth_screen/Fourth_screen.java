@@ -1,6 +1,7 @@
 package Generic_product.Pages.Fourth_screen;
 
 import Generic_product.Base.Generic_BasePage;
+import Generic_product.Pages.Fifth_screen.Fifth_screen;
 import Generic_product.Pages.Third_screen.Third_screen;
 import Generic_product.Pages.Second_screen.Second;
 import org.openqa.selenium.By;
@@ -46,7 +47,7 @@ public class Fourth_screen extends Generic_BasePage {
     public void waitForManualOtpInput() {
         System.out.println("Waiting 90 seconds for manual OTP input...");
         try {
-            Thread.sleep(60000);
+            Thread.sleep(90000);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             throw new RuntimeException("Interrupted during manual OTP input wait", e);
@@ -60,8 +61,7 @@ public class Fourth_screen extends Generic_BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(cityInput));
     }
     public void waitForFifthScreen() {
-        new WebDriverWait(driver, Duration.ofSeconds(60))
-                .until(ExpectedConditions.visibilityOfElementLocated(cityInput));
+        new WebDriverWait(driver, Duration.ofSeconds(60)).until(ExpectedConditions.visibilityOfElementLocated(cityInput));
     }
 
     public void clickBackButton() {
@@ -293,4 +293,9 @@ public class Fourth_screen extends Generic_BasePage {
             return false;
         }
     }
+    public Fifth_screen goToFifthScreen() {
+        waitForFifthScreen(); // מחכה לאלמנט של מסך 5
+        return new Fifth_screen(driver);
+    }
+
 }
