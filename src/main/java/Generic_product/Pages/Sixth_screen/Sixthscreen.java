@@ -5,6 +5,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Sixthscreen extends Generic_BasePage {
 
     // 🔽 סטטוס תעסוקתי
@@ -25,7 +28,6 @@ public class Sixthscreen extends Generic_BasePage {
     private final By averageIncomeInput = By.cssSelector("[data-testid='loanee.monthlyAvgIncome.average-input']");
     private final By continueButton = By.cssSelector("button[data-testid='continue-button']");
 
-
     public Sixthscreen(WebDriver driver) {
         super(driver);
     }
@@ -41,8 +43,25 @@ public class Sixthscreen extends Generic_BasePage {
     }
 
     public String getSelectedEmploymentStatus() {
-        By employmentStatusDisplay = By.cssSelector("div[role='combobox'][aria-label='סטטוס תעסוקתי']");
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(employmentStatusDisplay)).getText().trim();
+        try {
+            Thread.sleep(5000); // המתנה של 5 שניות
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+
+        return driver.findElement(employmentStatusInput).getAttribute("value").trim();
+    }
+
+
+
+
+    private Map<String, String> getEmploymentStatusMap() {
+        Map<String, String> map = new HashMap<>();
+        map.put("שכיר/ה", "employee");
+        map.put("עצמאי/ת", "independent");
+        map.put("ללא הכנסה", "unemployed");
+        map.put("סטודנט/ית", "student");
+        return map;
     }
 
     public void selectOccupationAccounting() {
@@ -56,26 +75,37 @@ public class Sixthscreen extends Generic_BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(accountingOption)).click();
     }
 
-    public String getSelectedOccupation() {
-        By occupationDisplay = By.cssSelector("div[role='combobox'][aria-label='ענף']");
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(occupationDisplay)).getText().trim();
+    public String getVisibleOccupation() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(occupationSelectBox)).getText().trim();
     }
 
-    // 🆕 מקצוע – בחירה בערך ספציפי
+    public String getSubmittedOccupation() {
+        return driver.findElement(occupationInput).getAttribute("value").trim();
+    }
+
     public void selectProfessionAccounting() {
+        waitUntilFieldIsEnabled(professionSelectBox);
         wait.until(ExpectedConditions.elementToBeClickable(professionSelectBox)).click();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            throw new RuntimeException("ההמתנה בין פתיחת הרשימה ללחיצה נקטעה", e);
-        }
         wait.until(ExpectedConditions.elementToBeClickable(professionAccountingOption)).click();
     }
 
-    public String getSelectedProfession() {
-        By professionDisplay = By.cssSelector("div[role='combobox'][aria-label='מקצוע']");
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(professionDisplay)).getText().trim();
+    private void waitUntilFieldIsEnabled(By fieldLocator) {
+        wait.until(driver -> {
+            try {
+                return driver.findElement(fieldLocator).isDisplayed()
+                        && driver.findElement(fieldLocator).isEnabled();
+            } catch (Exception e) {
+                return false;
+            }
+        });
+    }
+
+    public String getVisibleProfession() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(professionSelectBox)).getText().trim();
+    }
+
+    public String getSubmittedProfession() {
+        return driver.findElement(professionInput).getAttribute("value").trim();
     }
 
     public void setAverageIncome(String incomeValue) {
@@ -86,31 +116,14 @@ public class Sixthscreen extends Generic_BasePage {
     public String getAverageIncome() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(averageIncomeInput)).getAttribute("value").trim();
     }
-    // 🧪 בדיקה מלאה לשדה ממוצע הכנסה
-    public boolean isAverageIncomeFieldWorking(String testValue) {
-        setAverageIncome(testValue);
-        return testValue.equals(getAverageIncome());
-    }
 
-    // ✅ שיטת בדיקה מלאה למסך השישי
-    public boolean isSixthScreenFullyFunctional(String status, String expectedOccupation, String expectedProfession, String incomeValue) {
-        selectEmploymentStatus(status);
-        if (!getSelectedEmploymentStatus().equals(status)) return false;
 
-        selectOccupationAccounting();
-        if (!getSelectedOccupation().equals(expectedOccupation)) return false;
 
-        selectProfessionAccounting();
-        if (!getSelectedProfession().equals(expectedProfession)) return false;
-
-        setAverageIncome(incomeValue);
-        return getAverageIncome().equals(incomeValue);
-    }
-
-    // 🆕 לחיצה על כפתור "נמשיך"
     public void clickContinueButton() {
         wait.until(ExpectedConditions.elementToBeClickable(continueButton)).click();
     }
+
+    public String getVisibleEmploymentStatus() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(employmentStatusSelectBox)).getText().trim();
+    }
 }
-
-

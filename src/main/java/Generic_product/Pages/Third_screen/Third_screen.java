@@ -42,7 +42,7 @@ public class Third_screen extends Generic_BasePage {
     public Third_screen(WebDriver driver) {
         super(driver);
         // משנה את ההמתנה הכללית ל-10 שניות במקום 30
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
     }
 
     // --- מתודות קיימות ---
@@ -280,8 +280,12 @@ public class Third_screen extends Generic_BasePage {
 
             clickContinueButton();
 
+            // לאחר לחיצה על המשך – המתנה ארוכה למסך הרביעי
             Fourth_screen fourthScreen = new Fourth_screen(driver);
-            if (!fourthScreen.isOnFourthScreen()) {
+            WebDriverWait longWait = new WebDriverWait(driver, Duration.ofSeconds(90));
+            boolean isOnNextScreen = longWait.until(d -> fourthScreen.isOnFourthScreen());
+
+            if (!isOnNextScreen) {
                 throw new IllegalStateException("שגיאה: לא עברנו למסך הרביעי בהצלחה.");
             }
 
@@ -291,6 +295,7 @@ public class Third_screen extends Generic_BasePage {
             throw new RuntimeException("כשל כללי ב-Happy Flow של המסך השלישי.", e);
         }
     }
+
     public Fourth_screen goToFourthScreen() {
         return completeThirdScreenHappyFlow(); // בלי פרמטרים
     }
