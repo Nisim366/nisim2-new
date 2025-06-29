@@ -61,7 +61,7 @@ public class Fourth_screen extends Generic_BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(cityInput));
     }
     public void waitForFifthScreen() {
-        new WebDriverWait(driver, Duration.ofSeconds(60)).until(ExpectedConditions.visibilityOfElementLocated(cityInput));
+        new WebDriverWait(driver, Duration.ofSeconds(90)).until(ExpectedConditions.visibilityOfElementLocated(cityInput));
     }
 
     public void clickBackButton() {

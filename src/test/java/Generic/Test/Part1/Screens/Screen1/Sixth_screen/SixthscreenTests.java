@@ -12,7 +12,9 @@ import Generic_product.Pages.Sixth_screen.Sixthscreen;
 import Generic_product.Pages.Third_screen.Third_screen;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import utilities.DevToolsHelper;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SixthscreenTests extends BaseTest_Generic {
@@ -34,34 +36,68 @@ public class SixthscreenTests extends BaseTest_Generic {
     private static final String EMPLOYMENT_STATUS_STUDENT = "סטודנט/ית";
     private static final String EMPLOYMENT_STATUS_UNEMPLOYED = "לא מועסק/ת";
 
+    private static final String PROFESSION_CONSULTING = "ייעוץ מס";
+    private static final String PROFESSION_MANAGEMENT = "הנהלת חשבונות";
+    private static final String PROFESSION_ACCOUNTING = "ראיית חשבון";
+
     @BeforeEach
     public void set() {
-        firstPage = new First(driver);
-        secondPage = new Second(driver);
-        firstLastName = new FirstLastName(driver);
-        phoneField = new PhoneField(driver);
-        emailFields = new EmailFields(driver);
-        fifthScreen = new Fifth_screen(driver);
-        sixthscreen = new Sixthscreen(driver);
+        // 👇 פלואו מלא נשמר לשימוש עתידי ( מנוטרל זמנית )
+         firstPage = new First(driver);
+         secondPage = new Second(driver);
+         firstLastName = new FirstLastName(driver);
+         phoneField = new PhoneField(driver);
+         emailFields = new EmailFields(driver);
+         fifthScreen = new Fifth_screen(driver);
+         sixthscreen = new Sixthscreen(driver);
 
-        firstPage.goToSecondScreen();
-        assertTrue(secondPage.isOnSecondPage(), "לא במסך השני");
+         firstPage.goToSecondScreen();
+         assertTrue(secondPage.isOnSecondPage(), "לא במסך השני");
 
-        thirdScreen = secondPage.goTothirdScreen();
-        assertTrue(thirdScreen.isOnThirdScreen(), "לא במסך השלישי");
+         thirdScreen = secondPage.goTothirdScreen();
+         assertTrue(thirdScreen.isOnThirdScreen(), "לא במסך השלישי");
 
-        fourthScreen = thirdScreen.goToFourthScreen();
-        assertTrue(fourthScreen.isOnFourthScreen(), "לא במסך הרביעי");
+         fourthScreen = thirdScreen.goToFourthScreen();
+         assertTrue(fourthScreen.isOnFourthScreen(), "לא במסך הרביעי");
 
-        fifthScreen = fourthScreen.goToFifthScreen();
-        assertTrue(fifthScreen.isOnFifthScreen(), "לא במסך החמישי");
+         fifthScreen = fourthScreen.goToFifthScreen();
+         assertTrue(fifthScreen.isOnFifthScreen(), "לא במסך החמישי");
 
-        sixthscreen = fifthScreen.goToSixthScreen();
-        assertTrue(sixthscreen.isOnSixthScreen(), "לא במסך השישי");
+         sixthscreen = fifthScreen.goToSixthScreen();
+         assertTrue(sixthscreen.isOnSixthScreen(), "לא במסך השישי");
+
+        // 🟢 דילוג ישיר למסך השישי דרך DevToolsHelper
+//        sixthscreen = new Sixthscreen(driver);
+//        DevToolsHelper devToolsHelper = new DevToolsHelper(driver);
+//        devToolsHelper.jumpToScreen("occupationAndProfessionGeneric");
+//        assertTrue(sixthscreen.isOnSixthScreen(), "לא במסך השישי (קפיצה דרך JavaScript)");
     }
 
     @Test
-    public void testSelectEmploymentStatusAndContinue() {
-        sixthscreen.selectEmploymentStatus(EMPLOYMENT_STATUS_EMPLOYEE);
+    public void testEmploymentStatusAndOccupationSelection() {
+        String testIncomeValue = "12345";
+
+        // שלב 1: סטטוס תעסוקתי - עצמאי/ת
+        String expectedStatus = EMPLOYMENT_STATUS_SELF_EMPLOYED;
+        sixthscreen.selectEmploymentStatus(expectedStatus);
+        String actualStatus = sixthscreen.getSelectedEmploymentStatus();
+        assertEquals(expectedStatus, actualStatus, "סטטוס תעסוקתי שנבחר לא תואם לערך המוצג בפועל");
+
+        // שלב 2: ענף - חשבונאות
+        sixthscreen.selectOccupationAccounting();
+        String actualOccupation = sixthscreen.getSelectedOccupation();
+        assertEquals("חשבונאות", actualOccupation, "הענף שנבחר בפועל אינו 'חשבונאות'");
+
+        sixthscreen.selectProfessionAccounting();
+        String actualProfession = sixthscreen.getSelectedProfession();
+        assertEquals(PROFESSION_ACCOUNTING, actualProfession, "המקצוע שנבחר בפועל אינו 'ראיית חשבון'");
+
+        sixthscreen.setAverageIncome(testIncomeValue);
+        String actualIncome = sixthscreen.getAverageIncome();
+        assertEquals(testIncomeValue, actualIncome, "הערך בשדה ממוצע הכנסה לא תואם את הערך שהוזן");
+
+        sixthscreen.clickContinueButton();
+
     }
+
 }

@@ -61,7 +61,8 @@ public class DevToolsHelper {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(stepLocator));
         } catch (TimeoutException e) {
-            System.out.println("⚠️ Timeout waiting for step: " + stepName);
+            System.out.println("allow pasting");
+            System.out.println("ezbob.actions.userState.setCurrentStepByName('"+stepName+"')");
         }
     }
 }
