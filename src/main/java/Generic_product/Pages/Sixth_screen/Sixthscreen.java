@@ -1,6 +1,7 @@
 package Generic_product.Pages.Sixth_screen;
 
 import Generic_product.Base.Generic_BasePage;
+import Generic_product.Pages.Seventh_screen.SeventhScreenFirstPartner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -126,4 +127,22 @@ public class Sixthscreen extends Generic_BasePage {
     public String getVisibleEmploymentStatus() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(employmentStatusSelectBox)).getText().trim();
     }
+    public SeventhScreenFirstPartner completeSixthScreenHappyFlow() {
+        // ערכים קבועים לתרחיש happy path
+        String employmentStatus = "עצמאי/ת";
+        String incomeValue = "12000";
+
+        selectEmploymentStatus(employmentStatus);
+        selectOccupationAccounting();
+        selectProfessionAccounting();
+        setAverageIncome(incomeValue);
+        clickContinueButton();
+
+        return new SeventhScreenFirstPartner(driver);
+    }
+
+    public SeventhScreenFirstPartner goToSeventhScreen() {
+        return completeSixthScreenHappyFlow();
+    }
+
 }
