@@ -1,4 +1,4 @@
-package Generic.Test.Part1.Screens.Screen1.EighthScreen;
+package Generic.Test.Part1.Screens.Screen1.TenthScreen;
 
 import Generic.Base.BaseTest_Generic;
 import Generic_product.Pages.Eighth_Screen.EighthScreenFirstPartner;
@@ -12,13 +12,16 @@ import Generic_product.Pages.Second_screen.PhoneField;
 import Generic_product.Pages.Second_screen.Second;
 import Generic_product.Pages.Seventh_screen.SeventhScreenFirstPartner;
 import Generic_product.Pages.Sixth_screen.Sixthscreen;
+import Generic_product.Pages.Tenth_Screen.TenthScreen;
 import Generic_product.Pages.Third_screen.Third_screen;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import utilities.DevToolsHelper;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class EighthScreenFirstPartnerTest extends BaseTest_Generic {
+public class TenthScreenTests extends BaseTest_Generic {
+
 
     private First firstPage;
     private Second secondPage;
@@ -31,6 +34,9 @@ public class EighthScreenFirstPartnerTest extends BaseTest_Generic {
     private Sixthscreen sixthscreen;
     private SeventhScreenFirstPartner seventhscreen;
     private EighthScreenFirstPartner eighthScreenFirstPartner;
+    private NinthScreen ninthScreen;
+    private TenthScreen tenthScreen;
+
 
     @BeforeEach
     public void set() {
@@ -65,20 +71,23 @@ public class EighthScreenFirstPartnerTest extends BaseTest_Generic {
         eighthScreenFirstPartner = seventhscreen.goToEighthScreen();
         assertTrue(eighthScreenFirstPartner.isOnEighthScreenFirstPartner(), "❌ לא במסך השמיני");
 
-        /*
+        ninthScreen = eighthScreenFirstPartner.goToNinthScreen();
+        assertTrue(ninthScreen.isOnNinthScreen(), "❌ לא במסך התשיעי");
+
+//        tenthScreen = ninthScreen.goToTenthScreen();
+//        assertTrue(tenthScreen.is(), "❌ לא במסך התשיעי");
+
+
+
+
         // 🚀 קפיצה ישירה למסך השמיני (לבדיקות ספציפיות בלבד)
         DevToolsHelper devToolsHelper = new DevToolsHelper(driver);
-        devToolsHelper.jumpToScreen("requestAmountGeneric");
+        devToolsHelper.jumpToScreen("instalmentDetailsGeneric");
         eighthScreenFirstPartner = new EighthScreenFirstPartner(driver);
         assertTrue(eighthScreenFirstPartner.isOnEighthScreenFirstPartner(), "❌ לא במסך השמיני (בקפיצה)");
-        */
-
     }
-
     @Test
     public void testFirstPartnerMaternitySelection() {
-        NinthScreen ninthScreen = eighthScreenFirstPartner.goToNinthScreen();
-        assertTrue(ninthScreen.isOnNinthScreen(), "❌ לא הגענו למסך התשיעי");
-    }
 
+    }
 }
