@@ -36,11 +36,13 @@ public class Generic_BasePage {
     }
     public boolean isElementVisible(By locator) {
         try {
-            return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isDisplayed();
+            WebDriverWait longWait = new WebDriverWait(driver, Duration.ofSeconds(90));
+            return longWait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isDisplayed();
         } catch (Exception e) {
             return false;
         }
     }
+
     protected boolean isElementEnabled(By locator) {
         try {
             WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));

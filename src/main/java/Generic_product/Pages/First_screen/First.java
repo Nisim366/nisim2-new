@@ -97,6 +97,7 @@ public class First extends Generic_BasePage {
                 clickCheckbox();
             }
             clickContinueButton();
+            System.out.println("מסך ראשון ");
             return new Second(driver);
         } catch (IllegalStateException e) {
             throw e;

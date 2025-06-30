@@ -61,6 +61,8 @@ public class SeventhScreenFirstPartner extends Generic_BasePage {
         if (!isFirstPartnerMaternityOptionSelected()) {
             throw new AssertionError("❌ הבחירה לא נשמרה לאחר לחיצה על 'נמשיך'");
         }
+        System.out.println("מסך מטרת הלוואה ");
+
 
         return new EighthScreenFirstPartner(driver);
     }

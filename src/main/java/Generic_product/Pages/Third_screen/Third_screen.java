@@ -288,6 +288,8 @@ public class Third_screen extends Generic_BasePage {
             if (!isOnNextScreen) {
                 throw new IllegalStateException("שגיאה: לא עברנו למסך הרביעי בהצלחה.");
             }
+            System.out.println("מסך תעודת זהות ");
+
 
             return fourthScreen;
 

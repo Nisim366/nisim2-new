@@ -89,6 +89,8 @@ public class Second extends Generic_BasePage {
             if (!thirdScreen.isOnThirdScreen()) {
                 throw new IllegalStateException("שגיאה: לא עברנו למסך השלישי בהצלחה.");
             }
+            System.out.println("מסך פרטים אישיים ");
+
 
 
             return thirdScreen;

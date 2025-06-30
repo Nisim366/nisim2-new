@@ -41,7 +41,13 @@ public class NinthScreen extends Generic_BasePage {
 
     public void selectRepaymentSource(String repaymentSource) {
         clickAndChooseOption(repaymentSourceSelectBox, repaymentSource);
+        try {
+            Thread.sleep(3000); // המתנה של 3 שניות לאחר הבחירה
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt(); // שמירה על התנהגות תקינה במקרה של קטיעה
+        }
     }
+
 
     public String getSelectedRepaymentSource() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(repaymentSourceSelectBox))
@@ -94,6 +100,8 @@ public class NinthScreen extends Generic_BasePage {
         }
 
         clickContinueButton();
+        System.out.println("מסך פרטי החזר הלוואה ");
+
         return new TenthScreen(driver);
     }
 

@@ -61,6 +61,7 @@ public class Fourth_screen extends Generic_BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(cityInput));
     }
     public void waitForFifthScreen() {
+        System.out.println("מסך קוד אימות ");
         new WebDriverWait(driver, Duration.ofSeconds(90)).until(ExpectedConditions.visibilityOfElementLocated(cityInput));
     }
 

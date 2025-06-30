@@ -2,6 +2,7 @@ package Generic.Test.Part1.Screens.Screen1.TenthScreen;
 
 import Generic.Base.BaseTest_Generic;
 import Generic_product.Pages.Eighth_Screen.EighthScreenFirstPartner;
+import Generic_product.Pages.Eleventh_Screen.EleventhScreen;
 import Generic_product.Pages.Fifth_screen.Fifth_screen;
 import Generic_product.Pages.First_screen.First;
 import Generic_product.Pages.Fourth_screen.Fourth_screen;
@@ -36,11 +37,11 @@ public class TenthScreenTests extends BaseTest_Generic {
     private EighthScreenFirstPartner eighthScreenFirstPartner;
     private NinthScreen ninthScreen;
     private TenthScreen tenthScreen;
+    private EleventhScreen eleventhScreen;
 
 
     @BeforeEach
     public void set() {
-
 
         // 🔁 הגעה רגילה
         firstPage = new First(driver);
@@ -74,20 +75,28 @@ public class TenthScreenTests extends BaseTest_Generic {
         ninthScreen = eighthScreenFirstPartner.goToNinthScreen();
         assertTrue(ninthScreen.isOnNinthScreen(), "❌ לא במסך התשיעי");
 
-//        tenthScreen = ninthScreen.goToTenthScreen();
-//        assertTrue(tenthScreen.is(), "❌ לא במסך התשיעי");
+        tenthScreen = ninthScreen.goToTenthScreen();
+        assertTrue(tenthScreen.isOnTenthScreen(), "❌ לא במסך העשירי");
 
 
 
 
+
+
+
+
+         /*
         // 🚀 קפיצה ישירה למסך השמיני (לבדיקות ספציפיות בלבד)
         DevToolsHelper devToolsHelper = new DevToolsHelper(driver);
-        devToolsHelper.jumpToScreen("instalmentDetailsGeneric");
-        eighthScreenFirstPartner = new EighthScreenFirstPartner(driver);
-        assertTrue(eighthScreenFirstPartner.isOnEighthScreenFirstPartner(), "❌ לא במסך השמיני (בקפיצה)");
+        devToolsHelper.jumpToScreen("scrollableConsent");
+        tenthScreen =  new TenthScreen(driver);
+        assertTrue(tenthScreen.isOnTenthScreen(), "❌ לא במסך העשירי (בקפיצה)");
+        */
     }
     @Test
     public void testFirstPartnerMaternitySelection() {
-
+        eleventhScreen = tenthScreen.goToEleventhScreen();
+        assertTrue(eleventhScreen.isOnEleventhScreen(), "❌ לא הגענו למסך ה־11 לאחר לחיצה על 'מאושר'");
     }
+
 }

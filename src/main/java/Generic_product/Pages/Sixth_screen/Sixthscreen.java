@@ -137,6 +137,8 @@ public class Sixthscreen extends Generic_BasePage {
         selectProfessionAccounting();
         setAverageIncome(incomeValue);
         clickContinueButton();
+        System.out.println("מסך מצב תעסוקתי ");
+
 
         return new SeventhScreenFirstPartner(driver);
     }

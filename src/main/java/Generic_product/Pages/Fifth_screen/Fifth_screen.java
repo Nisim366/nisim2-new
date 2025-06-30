@@ -156,6 +156,8 @@ public class Fifth_screen extends Generic_BasePage {
         enterZipCode(zipCode);
 
         clickContinueButton();
+        System.out.println("מסך כתובת מגורים ");
+
 
         return new Sixthscreen(driver);
     }

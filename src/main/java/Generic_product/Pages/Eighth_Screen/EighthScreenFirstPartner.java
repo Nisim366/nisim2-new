@@ -3,7 +3,9 @@ package Generic_product.Pages.Eighth_Screen;
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Ninth_Screen.NinthScreen;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -27,9 +29,18 @@ public class EighthScreenFirstPartner extends Generic_BasePage {
     }
 
     public void enterLoanAmount(String amount) {
-        wait.until(ExpectedConditions.elementToBeClickable(loanAmountInput)).clear();
-        wait.until(ExpectedConditions.elementToBeClickable(loanAmountInput)).sendKeys(amount);
+        WebElement input = wait.until(ExpectedConditions.elementToBeClickable(loanAmountInput));
+        input.sendKeys(amount);
+
+        // שלח TAB כדי לוודא שהערך ננעל בשדה (עוזר כשיש JS מאחורי הקלעים)
+        input.sendKeys(Keys.TAB);
+
+        // המתנה קצרה כדי לוודא שה־DOM עודכן
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException ignored) {}
     }
+
 
     public boolean isLoanAmountCorrectlyEntered(String expectedAmount) {
         String actualWithCommas = wait
@@ -54,6 +65,8 @@ public class EighthScreenFirstPartner extends Generic_BasePage {
         }
 
         clickContinueButton();
+        System.out.println("מסך סכום הלוואה ");
+
         return new NinthScreen(driver);
     }
 
