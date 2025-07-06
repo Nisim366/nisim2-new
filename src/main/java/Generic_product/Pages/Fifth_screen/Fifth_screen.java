@@ -52,7 +52,6 @@ public class Fifth_screen extends Generic_BasePage {
 
     private void enterTextAndSelectFromAutoComplete(By inputLocator, String textToEnter) {
         WebElement input = wait.until(ExpectedConditions.elementToBeClickable(inputLocator));
-        input.clear();
         input.sendKeys(textToEnter);
 
         try {

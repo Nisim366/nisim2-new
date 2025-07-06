@@ -1,6 +1,7 @@
 package Generic.Test.Part1.Screens.Screen1.Third_screen;
 
 import Generic.Base.BaseTest_Generic;
+import Generic_product.Pages.Fifth_screen.Fifth_screen;
 import Generic_product.Pages.First_screen.First;
 import Generic_product.Pages.Fourth_screen.Fourth_screen;
 import Generic_product.Pages.Second_screen.EmailFields;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.DevToolsHelper;
 import utilities.IsraeliIdGenerator;
 
 import java.time.Duration;
@@ -31,6 +33,8 @@ public class Third_screenTest extends BaseTest_Generic {
     private EmailFields emailFields;
     private Third_screen thirdScreen;
     private Fourth_screen fourthscreen;
+    private Fifth_screen fifthScreen;
+
 
 
     private final String EXPECTED_HEADER_TEXT_SCREEN_4 = "עכשיו כמה פרטים מזהים";
@@ -48,6 +52,8 @@ public class Third_screenTest extends BaseTest_Generic {
         phoneField = new PhoneField(driver);
         emailFields = new EmailFields(driver);
         fourthscreen = new Fourth_screen(driver);
+        fifthScreen = new Fifth_screen(driver);
+
 
         firstPage.goToSecondScreen();
         assertTrue(secondPage.isOnSecondPage(), "לא במסך השני");
@@ -55,6 +61,14 @@ public class Third_screenTest extends BaseTest_Generic {
         secondPage.goTothirdScreen();
         thirdScreen = new Third_screen(driver);
         assertTrue(thirdScreen.isOnThirdScreen(), "לא במסך השלישי");
+
+
+        // 🚀 קפיצה ישירה למסך השמיני (לבדיקות ספציפיות בלבד)
+        DevToolsHelper devToolsHelper = new DevToolsHelper(driver);
+        devToolsHelper.jumpToScreen("addressDetailsGeneric");
+        fifthScreen =  new Fifth_screen(driver);
+        assertTrue(fifthScreen.isOnFifthScreen(), "❌ לא במסך החמישי (בקפיצה)");
+
     }
 
     @Test

@@ -38,7 +38,9 @@ public class EighthScreenFirstPartner extends Generic_BasePage {
         // המתנה קצרה כדי לוודא שה־DOM עודכן
         try {
             Thread.sleep(500);
-        } catch (InterruptedException ignored) {}
+        } catch (InterruptedException ignored) {
+
+        }
     }
 
 

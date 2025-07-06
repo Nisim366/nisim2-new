@@ -1,4 +1,4 @@
-package Generic.Test.Part1.Screens.Screen1.EleventhScreen;
+package Generic.Test.Part1.Screens.Screen1.TwelfthScreen;
 
 import Generic.Base.BaseTest_Generic;
 import Generic_product.Pages.Eighth_Screen.EighthScreenFirstPartner;
@@ -16,13 +16,16 @@ import Generic_product.Pages.Sixth_screen.Sixthscreen;
 import Generic_product.Pages.Tenth_Screen.TenthScreen;
 import Generic_product.Pages.Third_screen.Third_screen;
 import Generic_product.Pages.Twelfth_Screen.TwelfthScreenFirstPartner;
+import Generic_product.Pages.Thirteen_Screen.Thirteen_Screen;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class EleventhScreenTest extends BaseTest_Generic {
+public class TwelfthScreenFirstPartnerTest extends BaseTest_Generic {
 
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TwelfthScreenFirstPartnerTest.class.getName());
 
     private First firstPage;
     private Second secondPage;
@@ -40,11 +43,9 @@ public class EleventhScreenTest extends BaseTest_Generic {
     private EleventhScreen eleventhScreen;
     private TwelfthScreenFirstPartner twelfthScreen;
 
-
     @BeforeEach
     public void set() {
-
-        // 🔁 הגעה רגילה
+        // הגעה רגילה עד מסך 12
         firstPage = new First(driver);
         assertTrue(firstPage.isOnFirstPage(), "❌ לא במסך הראשון");
 
@@ -82,15 +83,21 @@ public class EleventhScreenTest extends BaseTest_Generic {
         eleventhScreen = tenthScreen.goToEleventhScreen();
         assertTrue(eleventhScreen.isOnEleventhScreen(), "❌ לא במסך ה־11");
 
-
-    }
-
-    @Test
-    public void testFirstPartnerMaternitySelection() {
-        twelfthScreen = eleventhScreen.goToTwelfthScreen(); // שמירת מופע למסך השנים־עשר
+        twelfthScreen = eleventhScreen.goToTwelfthScreen();
         assertTrue(twelfthScreen.isOnTwelfthScreen(), "❌ לא במסך השנים־עשר");
     }
 
+    @Test
+    public void testThirteenthScreenNavigation() {
+        // שלב 1: יצירת מופע למסך ה־13 דרך לחיצה על "נמשיך"
+        Thirteen_Screen thirteenthScreen = twelfthScreen.goTothirteenScreen();
+
+        // שלב 2: בדיקת נוכחות במסך ה־13
+        assertTrue(thirteenthScreen.isOnThirteenthScreen(), "❌ לא הגענו למסך ה־13 לאחר לחיצה על 'נמשיך'");
+    }
+
+
+
+
 
 }
-

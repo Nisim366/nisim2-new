@@ -49,7 +49,6 @@ public class Fourth_screenTests extends BaseTest_Generic {
     }
     @Test
     public void testManualOtpInputAndProceed() {
-        System.out.println("המתנה להזנת קוד אימות ידנית...");
         fourthScreen.waitForManualOtpInput(); // המתנה להזנת הקוד ידנית
 
         System.out.println("בודק שהתקדמנו למסך הבא...");

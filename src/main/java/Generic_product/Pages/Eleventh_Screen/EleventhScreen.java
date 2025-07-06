@@ -1,10 +1,9 @@
 package Generic_product.Pages.Eleventh_Screen;
 
 import Generic_product.Base.Generic_BasePage;
-import Generic_product.Pages.Twelfth_Screen.TwelfthScreen;
+import Generic_product.Pages.Twelfth_Screen.TwelfthScreenFirstPartner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class EleventhScreen extends Generic_BasePage {
 
@@ -22,16 +21,16 @@ public class EleventhScreen extends Generic_BasePage {
     public void clickContinueButton() {
         click(continueButton); // שימוש ב־Generic_BasePage
     }
-    public TwelfthScreen completeEleventhScreenFlow() {
+    public TwelfthScreenFirstPartner completeEleventhScreenFlow() {
 
 
         clickContinueButton();
         System.out.println("מסך הצעת הלוואה ");
 
 
-        return new TwelfthScreen(driver);
+        return new TwelfthScreenFirstPartner(driver);
     }
-    public TwelfthScreen goToTwelfthScreen() {
+    public TwelfthScreenFirstPartner goToTwelfthScreen() {
         return completeEleventhScreenFlow();
     }
 
