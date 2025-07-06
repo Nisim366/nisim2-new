@@ -1,12 +1,10 @@
 package Generic_product.Pages.fourteen_Screen;
 
 import Generic_product.Base.Generic_BasePage;
+import Generic_product.Pages.Fifteenth_Screen.Fifteenth_screen;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class fourteen_Screen extends Generic_BasePage {
 
@@ -30,6 +28,10 @@ public class fourteen_Screen extends Generic_BasePage {
     public void clickContinueButtonAfterManualProcess() {
         waitForManualProcess();
         wait.until(ExpectedConditions.elementToBeClickable(continueButton)).click();
+    }
+    public Fifteenth_screen goToFifteenthScreen() {
+        clickContinueButtonAfterManualProcess();
+        return new Fifteenth_screen(driver);
     }
 
 

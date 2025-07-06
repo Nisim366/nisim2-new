@@ -1,6 +1,7 @@
-package Generic.Test.Part1.Screens.Screen1.ThirteenScreen;
+package Generic.Test.Part1.Screens.Screen1.Seventeenth_screen;
 
 import Generic.Base.BaseTest_Generic;
+import Generic_product.Pages.Eighteenth_screen.Eighteenth_screen;
 import Generic_product.Pages.Eighth_Screen.EighthScreenFirstPartner;
 import Generic_product.Pages.Eleventh_Screen.EleventhScreen;
 import Generic_product.Pages.Fifteenth_Screen.Fifteenth_screen;
@@ -12,7 +13,9 @@ import Generic_product.Pages.Second_screen.EmailFields;
 import Generic_product.Pages.Second_screen.FirstLastName;
 import Generic_product.Pages.Second_screen.PhoneField;
 import Generic_product.Pages.Second_screen.Second;
+import Generic_product.Pages.Seventeenth_Screen.Seventeenth_screen;
 import Generic_product.Pages.Seventh_screen.SeventhScreenFirstPartner;
+import Generic_product.Pages.Sixteenth_Screen.Sixteenth_Screen;
 import Generic_product.Pages.Sixth_screen.Sixthscreen;
 import Generic_product.Pages.Tenth_Screen.TenthScreen;
 import Generic_product.Pages.Third_screen.Third_screen;
@@ -24,7 +27,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class Thirteenscreen extends BaseTest_Generic {
+public class Seventeenthscreen extends BaseTest_Generic {
 
     private First firstPage;
     private Second secondPage;
@@ -43,6 +46,13 @@ public class Thirteenscreen extends BaseTest_Generic {
     private TwelfthScreenFirstPartner twelfthScreen;
     private Thirteen_Screen thirteenScreen;
     private fourteen_Screen fourteenScreen;
+    private Fifteenth_screen fifteenthscreen;
+    private Sixteenth_Screen sixteenthScreen;
+    private Seventeenth_screen seventeenthScreen;
+    private Eighteenth_screen eighteenthscreen;
+
+
+
 
     @BeforeEach
     public void set() {
@@ -90,20 +100,26 @@ public class Thirteenscreen extends BaseTest_Generic {
         thirteenScreen = twelfthScreen.goTothirteenScreen();
         assertTrue(thirteenScreen.isOnThirteenthScreen(),"❌ לא במסך השלוש־עשר");
 
+        fourteenScreen = thirteenScreen.goToFourteenScreen();
+
+        fifteenthscreen = fourteenScreen.goToFifteenthScreen();
+        assertTrue(fifteenthscreen.isOnFifteenthScreen(),"❌ לא במסך החמש־עשר");
+
+        sixteenthScreen = fifteenthscreen.completeFifteenthScreenFlow(3);
+        assertTrue(sixteenthScreen.isOnSixteenthScreen(),"❌ לא במסך השש־עשר");
+
+        seventeenthScreen = sixteenthScreen.goToSeventeenthScreen();
+        assertTrue(seventeenthScreen.isOnSeventeenthScreen(),"❌ לא במסך השבע־עשר");
 
     }
     @Test
-    public void testGoToFifteenthScreenAfterManualProcess() {
-        fourteen_Screen fourteenScreen = thirteenScreen.goToFourteenScreen();
-        Fifteenth_screen fifteenthScreen = fourteenScreen.goToFifteenthScreen();
+    public void testArriveToSeventeenthScreen() {
+        String ans ="לל";
+        seventeenthScreen.completeSeventeenthScreenFlow(ans);
 
-        assertTrue(fifteenthScreen.isOnFifteenthScreen(), "❌ לא במסך ה־15 – כפתור ההקלטה לא נמצא");
+
     }
-
-
 
 
 
 }
-
-
