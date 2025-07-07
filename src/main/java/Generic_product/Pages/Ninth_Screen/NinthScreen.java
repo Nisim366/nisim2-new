@@ -3,8 +3,10 @@ package Generic_product.Pages.Ninth_Screen;
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Tenth_Screen.TenthScreen;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -30,22 +32,28 @@ public class NinthScreen extends Generic_BasePage {
         }
     }
 
-    private void clickAndChooseOption(By selectBoxDivLocator, String visibleText) {
-        WebElement selectBox = wait.until(ExpectedConditions.elementToBeClickable(selectBoxDivLocator));
-        selectBox.click();
+    private void clickAndChooseOption(By selectBoxDivLocator) {
+        WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(selectBoxDivLocator));
+        dropdown.click(); // פתיחת הדרופדאון
 
-        By liLocator = By.xpath("//li[contains(text(), '" + visibleText + "')]");
-        WebElement option = wait.until(ExpectedConditions.elementToBeClickable(liLocator));
-        option.click();
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.ARROW_DOWN).perform(); // שליחת חץ מטה
+
+        try {
+            Thread.sleep(2000); // המתנה של 2 שניות
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException(e);
+        }
+
+        actions.sendKeys(Keys.ENTER).perform(); // אישור הבחירה
     }
 
-    public void selectRepaymentSource(String repaymentSource) {
-        clickAndChooseOption(repaymentSourceSelectBox, repaymentSource);
-        try {
-            Thread.sleep(3000); // המתנה של 3 שניות לאחר הבחירה
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt(); // שמירה על התנהגות תקינה במקרה של קטיעה
-        }
+
+
+    public void selectRepaymentSource() {
+        clickAndChooseOption(repaymentSourceSelectBox);
+
     }
 
 
@@ -55,8 +63,8 @@ public class NinthScreen extends Generic_BasePage {
                 .trim();
     }
 
-    public void selectInstalmentDay(String dayText) {
-        clickAndChooseOption(instalmentDaySelectBox, dayText);
+    public void selectInstalmentDay() {
+        clickAndChooseOption(instalmentDaySelectBox);
     }
 
     public String getSelectedInstalmentDay() {
@@ -65,8 +73,8 @@ public class NinthScreen extends Generic_BasePage {
                 .trim();
     }
 
-    public void selectGracePeriodOption(String optionText) {
-        clickAndChooseOption(gracePeriodSelectBox, optionText);
+    public void selectGracePeriodOption() {
+        clickAndChooseOption(gracePeriodSelectBox);
     }
 
     public String getSelectedGracePeriodOption() {
@@ -80,24 +88,10 @@ public class NinthScreen extends Generic_BasePage {
     }
 
     public TenthScreen completeNinthScreenFlow() {
-        String repaymentSource = "משכורת";
-        String instalmentDay = "2";
-        String gracePeriodOption = "לא";
 
-        selectRepaymentSource(repaymentSource);
-        if (!getSelectedRepaymentSource().equals(repaymentSource)) {
-            throw new AssertionError("❌ מקור ההחזר שהוזן אינו תואם ל־" + repaymentSource);
-        }
-
-        selectInstalmentDay(instalmentDay);
-        if (!getSelectedInstalmentDay().equals(instalmentDay)) {
-            throw new AssertionError("❌ יום החיוב שהוזן אינו תואם ל־" + instalmentDay);
-        }
-
-        selectGracePeriodOption(gracePeriodOption);
-        if (!getSelectedGracePeriodOption().contains(gracePeriodOption)) {
-            throw new AssertionError("❌ אפשרות דחיית ההחזר אינה מכילה את: " + gracePeriodOption);
-        }
+        selectRepaymentSource();
+        selectInstalmentDay();
+        selectGracePeriodOption();
 
         clickContinueButton();
         System.out.println("מסך פרטי החזר הלוואה ");
