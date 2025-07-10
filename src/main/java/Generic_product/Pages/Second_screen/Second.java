@@ -1,12 +1,14 @@
 package Generic_product.Pages.Second_screen;
 
 import Generic_product.Base.Generic_BasePage;
-import Generic_product.Pages.Fourth_screen.Fourth_screen;
 import Generic_product.Pages.Third_screen.Third_screen;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import utilities.AppData;
+import utilities.EnvConfig;
 import utilities.JavaScriptUtility;
+
 
 public class Second extends Generic_BasePage {
     private final JavaScriptUtility js;
@@ -47,19 +49,25 @@ public class Second extends Generic_BasePage {
         PhoneField phoneField = new PhoneField(driver);
         EmailFields emailFields = new EmailFields(driver);
 
-        // ערכים תקניים מראש
-        String firstName = "חן";
-        String lastName = "הניגון";
-        String phone = "0532407762";
-        String email = "yossi@example.com";
+        EnvConfig.UserData user1 = new EnvConfig.UserData("user1");
+
+
+        String firstName = user1.firstName;
+        String lastName = user1.lastName;
+        String phone = user1.phone;
+        String email = user1.email;
 
         try {
+            // הזנת נתונים
             firstLastName.setFirstName(firstName);
+            System.out.println("שם שהתקבל: " + user1.firstName);
+
             firstLastName.setLastName(lastName);
             phoneField.setPhoneInput(phone);
             emailFields.setEmail(email);
             emailFields.setEmailConfirmation(email);
 
+            // אימות הנתונים מול מה שנשלח
             if (!firstLastName.getFirstName().equals(firstName)) {
                 throw new IllegalStateException("שגיאה: השם הפרטי לא הוזן נכון.");
             }

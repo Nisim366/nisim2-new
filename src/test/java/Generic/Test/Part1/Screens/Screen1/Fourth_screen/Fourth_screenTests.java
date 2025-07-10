@@ -25,11 +25,6 @@ public class Fourth_screenTests extends BaseTest_Generic {
     private Third_screen thirdScreen;
     private Fourth_screen fourthScreen;
 
-    private final String phone = "0532407762";
-    private final String firstName = "חן";
-    private final String lastName = "הניגון";
-    private final String GMail = "yossi@example.com";
-
     @BeforeEach
     public void set() {
         firstPage = new First(driver);
@@ -51,14 +46,8 @@ public class Fourth_screenTests extends BaseTest_Generic {
     public void testManualOtpInputAndProceed() {
         fourthScreen.waitForManualOtpInput(); // המתנה להזנת הקוד ידנית
 
-        System.out.println("בודק שהתקדמנו למסך הבא...");
         fourthScreen.waitForFifthScreen(); // מחכה לאלמנט הייחודי של המסך החמישי
 
-        // אפשר ליצור מופע של המסך החמישי ולבדוק:
-        // Fift_screen fifthScreen = new Fifth_screen(driver);
-        // assertTrue(fifthScreen.isOnFifthScreen(), "לא במסך החמישי");
-
-        // או לפחות לאמת שהאלמנט הייחודי של המסך החמישי קיים:
     }
 
 

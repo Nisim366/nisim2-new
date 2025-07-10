@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.EnvConfig;
 import utilities.IsraeliIdGenerator;
 
 import java.time.Duration;
@@ -228,12 +229,16 @@ public class Third_screen extends Generic_BasePage {
         if (rawDate == null) return null;
         return rawDate.replaceAll("[\\p{Cf}]", "").trim();
     }
+
+
     public Fourth_screen completeThirdScreenHappyFlow() {
-        // ערכים תקניים מראש
-        String validId = IsraeliIdGenerator.generateRandomValidIsraeliId();
-        String todayDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        String validBirthDate = "01/01/2000";
-        String gender = "זכר";
+        // שליפת ערכים מה־env.properties
+        EnvConfig.UserData user = new EnvConfig.UserData("user1");
+
+        String validId = IsraeliIdGenerator.generateRandomValidIsraeliId(); // ת"ז אקראית תקינה
+        String validIssueDate = user.issueDate; // מה־env
+        String validBirthDate = user.birthDate; // מה־env
+        String gender = user.gender;           // מה־env
 
         try {
             enterIdNumber(validId);
@@ -245,10 +250,10 @@ public class Third_screen extends Generic_BasePage {
                 throw new IllegalStateException("שגיאה: הודעת שגיאה מוצגת עבור תעודת זהות תקינה.");
             }
 
-            enterIssueDate(todayDate);
+            enterIssueDate(validIssueDate);
             String actualIssueDateRaw = getEnteredIssueDate();
             String actualIssueDate = cleanDateString(actualIssueDateRaw);
-            if (!actualIssueDate.equals(todayDate)) {
+            if (!actualIssueDate.equals(validIssueDate)) {
                 throw new IllegalStateException("שגיאה: תאריך הנפקה לא הוזן נכון.");
             }
             if (isIssueDateErrorDisplayed()) {
@@ -280,7 +285,7 @@ public class Third_screen extends Generic_BasePage {
 
             clickContinueButton();
 
-            // לאחר לחיצה על המשך – המתנה ארוכה למסך הרביעי
+            // המתנה למסך הרביעי
             Fourth_screen fourthScreen = new Fourth_screen(driver);
             WebDriverWait longWait = new WebDriverWait(driver, Duration.ofSeconds(90));
             boolean isOnNextScreen = longWait.until(d -> fourthScreen.isOnFourthScreen());
@@ -288,15 +293,15 @@ public class Third_screen extends Generic_BasePage {
             if (!isOnNextScreen) {
                 throw new IllegalStateException("שגיאה: לא עברנו למסך הרביעי בהצלחה.");
             }
-            System.out.println("מסך תעודת זהות ");
-
+            System.out.println("✅ עברנו למסך תעודת זהות (מסך רביעי)");
 
             return fourthScreen;
 
         } catch (Exception e) {
-            throw new RuntimeException("כשל כללי ב-Happy Flow של המסך השלישי.", e);
+            throw new RuntimeException("❌ כשל כללי ב-Happy Flow של המסך השלישי.", e);
         }
     }
+
 
     public Fourth_screen goToFourthScreen() {
         return completeThirdScreenHappyFlow(); // בלי פרמטרים

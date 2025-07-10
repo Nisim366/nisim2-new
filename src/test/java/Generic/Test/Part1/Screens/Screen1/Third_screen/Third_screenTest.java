@@ -61,6 +61,7 @@ public class Third_screenTest extends BaseTest_Generic {
         secondPage.goTothirdScreen();
         thirdScreen = new Third_screen(driver);
         assertTrue(thirdScreen.isOnThirdScreen(), "לא במסך השלישי");
+        /*
 
 
         // 🚀 קפיצה ישירה למסך השמיני (לבדיקות ספציפיות בלבד)
@@ -68,7 +69,12 @@ public class Third_screenTest extends BaseTest_Generic {
         devToolsHelper.jumpToScreen("addressDetailsGeneric");
         fifthScreen =  new Fifth_screen(driver);
         assertTrue(fifthScreen.isOnFifthScreen(), "❌ לא במסך החמישי (בקפיצה)");
+        */
 
+    }
+    @Test
+    public void sanity(){
+        thirdScreen.goToFourthScreen();
     }
 
     @Test
@@ -170,22 +176,4 @@ public class Third_screenTest extends BaseTest_Generic {
 
     }
 
-
-
-    public void setup() {
-        try {
-            navigateToApplicationUrl();
-            waitForManualConsoleInputAndScreenTransition(JS_COMMAND_STEP_SCREEN_4);
-            verifyNewScreenHeader(EXPECTED_HEADER_TEXT_SCREEN_4);
-            // המתנה ספציפית לאלמנט שדה תאריך לידה כאינדיקטור למסך הרביעי
-            WebDriverWait localWait = new WebDriverWait(driver, Duration.ofSeconds(30));
-            localWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[text()='תאריך לידה']/following-sibling::div//input")));
-
-            thirdScreen = new Third_screen(driver);
-            assertTrue(thirdScreen.isOnThirdScreen(), "אובייקט ה-Page Object של המסך הרביעי לא אושר כטוען נכון.");
-
-        } catch (Exception e) {
-            fail("❌ כשל בהכנת הסביבה (setup) למסך הרביעי: " + e.getMessage());
-        }
-    }
 }

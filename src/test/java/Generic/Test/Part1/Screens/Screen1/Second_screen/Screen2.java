@@ -11,6 +11,9 @@ import Generic_product.Pages.Third_screen.Third_screen;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import utilities.AppData;
+import utilities.EnvConfig;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -22,10 +25,7 @@ public class Screen2 extends BaseTest_Generic {
     private PhoneField phoneField;
     private EmailFields emailFields;
     private Third_screen thirdPage;
-    private final String phone = "0532407762";
-    private final String firstName = "חן";
-    private final String lastName = "הניגון";
-    private final String GMail = "yossi@example.com";
+
 
     private final String EXPECTED_HEADER_TEXT_SCREEN_2 = "נתחיל בכמה פרטים אישיים";
     private final String JS_COMMAND_STEP_SCREEN_2 = "ezbob.actions.userState.setCurrentStepByName('contactDetailsGeneric')";
@@ -46,25 +46,7 @@ public class Screen2 extends BaseTest_Generic {
 
     @Test
     public void testGoToThirdScreen() {
-
-
-
-        firstLastName.setFirstName(firstName);
-        firstLastName.setLastName(lastName);
-        phoneField.setPhoneInput(phone);
-        emailFields.setEmail(GMail);
-        emailFields.setEmailConfirmation(GMail);
-
-        Assertions.assertEquals(firstName, firstLastName.getFirstName());
-        Assertions.assertEquals(lastName, firstLastName.getLastName());
-        Assertions.assertEquals(phoneField.normalizePhoneForComparison(phone), phoneField.getNormalizedPhoneValue());
-        Assertions.assertEquals(GMail, emailFields.getEmail());
-        Assertions.assertEquals(GMail, emailFields.getEmailConfirmation());
-
-        secondPage.clickContinueButton();
-        Assertions.assertTrue(thirdPage.isOnThirdScreen(), "Should be on third page after clicking Continue");
-
-
-
+        secondPage.goTothirdScreen();
     }
+
 }
