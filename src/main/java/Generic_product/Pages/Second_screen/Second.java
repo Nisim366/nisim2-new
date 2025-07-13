@@ -2,11 +2,10 @@ package Generic_product.Pages.Second_screen;
 
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Third_screen.Third_screen;
+import Generic_product.data.UserData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import utilities.AppData;
-import utilities.EnvConfig;
 import utilities.JavaScriptUtility;
 
 
@@ -24,7 +23,7 @@ public class Second extends Generic_BasePage {
 
     public boolean isOnSecondPage() {
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(headerSecondPage));
+            longwait.until(ExpectedConditions.visibilityOfElementLocated(headerSecondPage));
             String text = getText(headerSecondPage);
             return text.contains("נתחיל בכמה פרטים אישיים");
         } catch (Exception e) {
@@ -32,9 +31,10 @@ public class Second extends Generic_BasePage {
         }
     }
 
+
     public void clickContinueButton() {
         try {
-            wait.until(ExpectedConditions.elementToBeClickable(continueButton)).click();
+            customWait(2).until(ExpectedConditions.elementToBeClickable(continueButton)).click();
         } catch (Exception e) {
             js.clickElementWithJS(continueButton);
         }
@@ -49,25 +49,23 @@ public class Second extends Generic_BasePage {
         PhoneField phoneField = new PhoneField(driver);
         EmailFields emailFields = new EmailFields(driver);
 
-        EnvConfig.UserData user1 = new EnvConfig.UserData("user1");
+        // טעינת נתוני משתמש מסודרים
+        UserData user = new UserData("user2");
 
-
-        String firstName = user1.firstName;
-        String lastName = user1.lastName;
-        String phone = user1.phone;
-        String email = user1.email;
+        String firstName = user.personal.firstName;
+        String lastName = user.personal.lastName;
+        String phone = user.personal.phone;
+        String email = user.personal.email;
 
         try {
             // הזנת נתונים
             firstLastName.setFirstName(firstName);
-            System.out.println("שם שהתקבל: " + user1.firstName);
-
             firstLastName.setLastName(lastName);
             phoneField.setPhoneInput(phone);
             emailFields.setEmail(email);
             emailFields.setEmailConfirmation(email);
 
-            // אימות הנתונים מול מה שנשלח
+            // אימות מול מה שהוזן
             if (!firstLastName.getFirstName().equals(firstName)) {
                 throw new IllegalStateException("שגיאה: השם הפרטי לא הוזן נכון.");
             }
@@ -85,22 +83,9 @@ public class Second extends Generic_BasePage {
             }
 
             clickContinueButton();
+            System.out.println("מסך 2 - נתחיל בכמה פרטים אישיים ");
 
-// המתנה להופעת שדה תעודת זהות במסך השלישי
-            By identifierField = By.cssSelector("[data-testid='applicant.identifier-input']");
-            wait.until(ExpectedConditions.visibilityOfElementLocated(identifierField));
-
-// יצירת מופע של המסך השלישי
             Third_screen thirdScreen = new Third_screen(driver);
-
-// בדיקה שהמסך אכן נטען
-            if (!thirdScreen.isOnThirdScreen()) {
-                throw new IllegalStateException("שגיאה: לא עברנו למסך השלישי בהצלחה.");
-            }
-            System.out.println("מסך פרטים אישיים ");
-
-
-
             return thirdScreen;
 
         } catch (IllegalStateException e) {
@@ -109,6 +94,9 @@ public class Second extends Generic_BasePage {
             throw new RuntimeException("כשל כללי ב-Happy Flow של המסך השני.", e);
         }
     }
+
+
+
 
 
     public Third_screen goTothirdScreen() {

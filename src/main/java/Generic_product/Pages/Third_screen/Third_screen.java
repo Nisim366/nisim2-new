@@ -2,6 +2,7 @@ package Generic_product.Pages.Third_screen;
 
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Fourth_screen.Fourth_screen;
+import Generic_product.data.UserData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,12 +10,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utilities.EnvConfig;
 import utilities.IsraeliIdGenerator;
 
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class Third_screen extends Generic_BasePage {
 
@@ -42,15 +40,13 @@ public class Third_screen extends Generic_BasePage {
 
     public Third_screen(WebDriver driver) {
         super(driver);
-        // משנה את ההמתנה הכללית ל-10 שניות במקום 30
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
     }
 
     // --- מתודות קיימות ---
 
     public boolean isOnThirdScreen() {
         try {
-            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(idNumberInput));
+            WebElement element = longwait.until(ExpectedConditions.visibilityOfElementLocated(idNumberInput));
             return element.isDisplayed();
         } catch (TimeoutException | NoSuchElementException e) {
             return false;
@@ -86,8 +82,9 @@ public class Third_screen extends Generic_BasePage {
 
     // בודק אם מוצגת הודעת שגיאה על שדה המגדר (שדה חובה שלא מולא)
     public boolean isGenderErrorDisplayed() {
+        WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(2));
         try {
-            return wait.until(ExpectedConditions
+            return shortWait.until(ExpectedConditions
                     .visibilityOfElementLocated(SpecificRequiredErrorGeneric)).isDisplayed();
         } catch (TimeoutException | NoSuchElementException e) {
             return false;
@@ -110,13 +107,16 @@ public class Third_screen extends Generic_BasePage {
     }
 
     public String getEnteredIssueDate() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(issueDateInput))
+        WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(2));
+
+        return shortWait.until(ExpectedConditions.visibilityOfElementLocated(issueDateInput))
                 .getAttribute("value");
     }
 
     public boolean isIssueDateErrorDisplayed() {
+        WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(2));
         try {
-            return wait.until(ExpectedConditions.visibilityOfElementLocated(
+            return shortWait.until(ExpectedConditions.visibilityOfElementLocated(
                     By.xpath("//p[contains(text(),'שדה זה הוא שדה חובה') and starts-with(@aria-describedby,'applicant.identifierIssueDate')]")
             )).isDisplayed();
         } catch (TimeoutException | NoSuchElementException e) {
@@ -137,7 +137,9 @@ public class Third_screen extends Generic_BasePage {
     }
 
     public WebElement getIdNumberInputField() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(idNumberInput));
+        WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(2));
+
+        return shortWait.until(ExpectedConditions.visibilityOfElementLocated(idNumberInput));
     }
 
     public void enterIdNumber(String idNumber) {
@@ -146,7 +148,9 @@ public class Third_screen extends Generic_BasePage {
     }
 
     public String getEnteredIdNumber() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(idNumberInput)).getAttribute("value");
+        WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(2));
+
+        return shortWait.until(ExpectedConditions.visibilityOfElementLocated(idNumberInput)).getAttribute("value");
     }
 
     public boolean isIdNumberValueDisplayed(String expectedIdNumber) {
@@ -163,7 +167,7 @@ public class Third_screen extends Generic_BasePage {
         try {
             click(idNumberInput);
             getIdNumberInputField().sendKeys("\t");
-            wait.until(ExpectedConditions.visibilityOfElementLocated(genericRequiredFieldErrorMessages));
+            customWait(2).until(ExpectedConditions.visibilityOfElementLocated(genericRequiredFieldErrorMessages));
             return driver.findElement(SpecificRequiredErrorGeneric).getText();
         } catch (TimeoutException e) {
             return null;
@@ -171,8 +175,9 @@ public class Third_screen extends Generic_BasePage {
     }
 
     public String getIdNumberNineDigitsErrorText() {
+
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(idNumberNineDigitsError));
+            customWait(2).until(ExpectedConditions.visibilityOfElementLocated(idNumberNineDigitsError));
             return driver.findElement(idNumberNineDigitsError).getText();
         } catch (TimeoutException e) {
             throw new NoSuchElementException("Expected 'יש להזין 9 ספרות' error message was not found on the page.", e);
@@ -180,12 +185,12 @@ public class Third_screen extends Generic_BasePage {
     }
 
     public void waitForIdNumberErrorToBe(String expectedText) {
-        wait.until(ExpectedConditions.textToBe(idNumberNineDigitsError, expectedText));
+        customWait(2).until(ExpectedConditions.textToBe(idNumberNineDigitsError, expectedText));
     }
 
     public String getIdNumberInvalidIdErrorText() {
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(idNumberInvalidIdError));
+            customWait(2).until(ExpectedConditions.visibilityOfElementLocated(idNumberInvalidIdError));
             return driver.findElement(idNumberInvalidIdError).getText();
         } catch (TimeoutException e) {
             return null;
@@ -193,8 +198,10 @@ public class Third_screen extends Generic_BasePage {
     }
 
     public boolean isIdNumberErrorDisplayed() {
+        WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(2));
+
         try {
-            return wait.until(ExpectedConditions.visibilityOfElementLocated(
+            return shortWait.until(ExpectedConditions.visibilityOfElementLocated(
                     By.xpath("//p[starts-with(@aria-describedby,'applicant.identifier-label')]"))).isDisplayed();
         } catch (TimeoutException | NoSuchElementException e) {
             return false;
@@ -210,7 +217,9 @@ public class Third_screen extends Generic_BasePage {
     }
 
     public String getEnteredBirthDate() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(birthDateInput))
+        WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(2));
+
+        return shortWait.until(ExpectedConditions.visibilityOfElementLocated(birthDateInput))
                 .getAttribute("value");
     }
 
@@ -232,13 +241,13 @@ public class Third_screen extends Generic_BasePage {
 
 
     public Fourth_screen completeThirdScreenHappyFlow() {
-        // שליפת ערכים מה־env.properties
-        EnvConfig.UserData user = new EnvConfig.UserData("user1");
+        // שליפת ערכים מה־user1.properties
+        UserData user = new UserData("user1");
 
         String validId = IsraeliIdGenerator.generateRandomValidIsraeliId(); // ת"ז אקראית תקינה
-        String validIssueDate = user.issueDate; // מה־env
-        String validBirthDate = user.birthDate; // מה־env
-        String gender = user.gender;           // מה־env
+        String validIssueDate = user.idCard.issueDate; // מה־user1
+        String validBirthDate = user.idCard.birthDate; // מה־user1
+        String gender = user.idCard.gender;            // מה־env
 
         try {
             enterIdNumber(validId);
@@ -284,16 +293,10 @@ public class Third_screen extends Generic_BasePage {
             }
 
             clickContinueButton();
+            System.out.println("מסך 3 - עכשיו כמה פרטים מזהים");
 
             // המתנה למסך הרביעי
             Fourth_screen fourthScreen = new Fourth_screen(driver);
-            WebDriverWait longWait = new WebDriverWait(driver, Duration.ofSeconds(90));
-            boolean isOnNextScreen = longWait.until(d -> fourthScreen.isOnFourthScreen());
-
-            if (!isOnNextScreen) {
-                throw new IllegalStateException("שגיאה: לא עברנו למסך הרביעי בהצלחה.");
-            }
-            System.out.println("✅ עברנו למסך תעודת זהות (מסך רביעי)");
 
             return fourthScreen;
 

@@ -6,13 +6,9 @@ import Generic_product.Pages.Second_screen.EmailFields;
 import Generic_product.Pages.Second_screen.FirstLastName;
 import Generic_product.Pages.Second_screen.PhoneField;
 import Generic_product.Pages.Second_screen.Second;
-import Generic_product.Pages.Fourth_screen.Fourth_screen;
 import Generic_product.Pages.Third_screen.Third_screen;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utilities.AppData;
-import utilities.EnvConfig;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -40,13 +36,15 @@ public class Screen2 extends BaseTest_Generic {
         emailFields = new EmailFields(driver);
 
         firstPage.goToSecondScreen();
-        secondPage.isOnSecondPage();
-    }
+        assertTrue(secondPage.isOnSecondPage(), "❌ לא במסך  השני");
 
+    }
 
     @Test
     public void testGoToThirdScreen() {
         secondPage.goTothirdScreen();
+        assertTrue(thirdPage.isOnThirdScreen(), "❌ לא הגעת במסך השלישי");
+
     }
 
 }

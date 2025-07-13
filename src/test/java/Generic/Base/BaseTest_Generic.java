@@ -35,12 +35,7 @@ public class BaseTest_Generic {
     @BeforeEach
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
-
-        // ✅ מתן הרשאה למיקרופון אוטומטית
-        Map<String, Object> prefs = new HashMap<>();
-        prefs.put("profile.default_content_setting_values.media_stream_mic", 1); // 1 = Allow
-        options.setExperimentalOption("prefs", prefs);
-
+        options.addArguments("--incognito");
 
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();

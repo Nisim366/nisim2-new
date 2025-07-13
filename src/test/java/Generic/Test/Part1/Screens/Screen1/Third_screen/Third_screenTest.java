@@ -1,7 +1,6 @@
 package Generic.Test.Part1.Screens.Screen1.Third_screen;
 
 import Generic.Base.BaseTest_Generic;
-import Generic_product.Pages.Fifth_screen.Fifth_screen;
 import Generic_product.Pages.First_screen.First;
 import Generic_product.Pages.Fourth_screen.Fourth_screen;
 import Generic_product.Pages.Second_screen.EmailFields;
@@ -14,12 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import utilities.DevToolsHelper;
 import utilities.IsraeliIdGenerator;
-
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,7 +27,6 @@ public class Third_screenTest extends BaseTest_Generic {
     private EmailFields emailFields;
     private Third_screen thirdScreen;
     private Fourth_screen fourthscreen;
-    private Fifth_screen fifthScreen;
 
 
 
@@ -52,7 +45,6 @@ public class Third_screenTest extends BaseTest_Generic {
         phoneField = new PhoneField(driver);
         emailFields = new EmailFields(driver);
         fourthscreen = new Fourth_screen(driver);
-        fifthScreen = new Fifth_screen(driver);
 
 
         firstPage.goToSecondScreen();
@@ -75,6 +67,10 @@ public class Third_screenTest extends BaseTest_Generic {
     @Test
     public void sanity(){
         thirdScreen.goToFourthScreen();
+
+        if (!fourthscreen.isOnFourthScreen()) {
+            throw new IllegalStateException("שגיאה: לא עברנו למסך הרביעי בהצלחה.");
+        }
     }
 
     @Test

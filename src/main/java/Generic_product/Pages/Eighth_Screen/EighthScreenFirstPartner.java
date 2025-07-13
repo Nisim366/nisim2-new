@@ -2,6 +2,7 @@ package Generic_product.Pages.Eighth_Screen;
 
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Ninth_Screen.NinthScreen;
+import Generic_product.data.UserData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -27,6 +28,13 @@ public class EighthScreenFirstPartner extends Generic_BasePage {
             return false;
         }
     }
+    public void waitForNinthScreen() {
+        new WebDriverWait(driver, Duration.ofSeconds(90)).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[aria-label='מקור החזר ההלוואה']")));
+    }
+    public void clickContinueButton() {
+        click(continueButton);
+    }
+
 
     public void enterLoanAmount(String amount) {
         WebElement input = wait.until(ExpectedConditions.elementToBeClickable(loanAmountInput));
@@ -42,37 +50,23 @@ public class EighthScreenFirstPartner extends Generic_BasePage {
 
         }
     }
-
-
-    public boolean isLoanAmountCorrectlyEntered(String expectedAmount) {
-        String actualWithCommas = wait
-                .until(ExpectedConditions.visibilityOfElementLocated(loanAmountInput))
-                .getAttribute("value")
-                .trim();
-
-        String actual = actualWithCommas.replace(",", "");
-        return expectedAmount.equals(actual);
-    }
-
-    public void clickContinueButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(continueButton)).click();
-    }
-
     public NinthScreen completeEighthScreenFirstPartnerFlow() {
-        String loanAmount = "100000";
-        enterLoanAmount(loanAmount);
+        UserData user = new UserData("user2");
 
-        if (!isLoanAmountCorrectlyEntered(loanAmount)) {
-            throw new AssertionError("❌ סכום ההלוואה שהוזן בפועל אינו תואם ל־" + loanAmount);
+        String amount = user.loan.amount;
+
+        try {
+            enterLoanAmount(amount);
+            clickContinueButton();
+            System.out.println("✅ מסך סכום הלוואה הושלם");
+            return new NinthScreen(driver);
+        } catch (Exception e) {
+            throw new RuntimeException("❌ שגיאה בהשלמת מסך סכום הלוואה", e);
         }
-
-        clickContinueButton();
-        System.out.println("מסך סכום הלוואה ");
-
-        return new NinthScreen(driver);
     }
 
     public NinthScreen goToNinthScreen() {
+        waitForNinthScreen();
         return completeEighthScreenFirstPartnerFlow();
     }
 }

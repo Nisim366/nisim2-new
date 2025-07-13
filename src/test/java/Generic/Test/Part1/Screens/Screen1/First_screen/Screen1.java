@@ -5,18 +5,33 @@ import Generic_product.Generic_HomePage;
 import Generic_product.Pages.First_screen.First;
 import Generic_product.Pages.Second_screen.Second;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Screen1 extends BaseTest_Generic {
 
+    private First firstPage;
 
+
+    @BeforeEach
+    public void set() {
+        firstPage = new First(driver);
+        assertTrue(firstPage.isOnFirstPage(), "❌ לא במסך הראשון");
+    }
 
     @Test
-    public void isOnFirstPageReturnsTrue() {
-        First obj = homePage.goToPractice();
-        Assertions.assertTrue(obj.isOnFirstPage(), "Should be on the first page");
-        System.out.println("\u001B[32m=== TEST isOnFirstPageReturnsTrue PASSED ===\u001B[0m");
+    public void testGoToSecondScreen() {
+        Second secondPage = firstPage.goToSecondScreen();
+        assertTrue(secondPage.isOnSecondPage(), "❌ לא הגעת למסך השני");
     }
+
+
+
+
+
+
 
     @Test
     public void checkboxIsNotSelectedInitially() {
@@ -75,18 +90,7 @@ public class Screen1 extends BaseTest_Generic {
         Assertions.assertFalse(label.isEmpty(), "Checkbox label should not be empty");
         System.out.println("\u001B[32m=== TEST checkboxLabelTextIsCorrect PASSED ===\u001B[0m");
     }
-    @Test
-    public void testGoToSecondScreen() {
-        First obj = homePage.goToPractice();
-        if (!obj.isCheckboxSelected()) {
-            obj.clickCheckbox();
-        }
-        obj.clickContinueButton();
-        Second secondPage = new Second(driver);
 
-        Assertions.assertTrue(secondPage.isOnSecondPage(), "Should be on second page after clicking Continue");
-        System.out.println("\u001B[32m=== TEST navigateToSecondPageAfterContinue PASSED ===\u001B[0m");
-    }
 
 
 

@@ -6,30 +6,47 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.JavaScriptUtility;
+
+import java.time.Duration;
 
 public class First extends Generic_BasePage {
 
     private final JavaScriptUtility js;
-
+    private final By headerSecondPage = By.xpath("//h1[@id='page-header' and contains(text(),'נתחיל בכמה פרטים אישיים')]");
     private final By checkboxInput = By.xpath("//input[@id='meta.consents.privacyNote-checkbox']");
     private final By checkboxLabel = By.xpath("//label[@id='meta.consents.privacyNote-label']//span[contains(@class, 'MuiFormControlLabel-label')]");
     private final By continueButton = By.xpath("//button[@data-testid='continue-button']");
     private final By headerFirstPage = By.xpath("//h1[@id='page-header' and contains(text(), 'זו תקופה מרגשת')]");
 
+
+
     public First(WebDriver driver) {
         super(driver);
         js = new JavaScriptUtility(driver);
+
     }
+
+    public boolean isOnFirstPage() {
+        try {
+            longwait.until(ExpectedConditions.visibilityOfElementLocated(headerFirstPage));
+            String text = getText(headerFirstPage);
+            return text.contains("זו תקופה מרגשת");
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 
     public boolean clickCheckbox() {
         try {
-            WebElement label = wait.until(ExpectedConditions.elementToBeClickable(checkboxLabel));
+            WebElement label = customWait(2).until(ExpectedConditions.elementToBeClickable(checkboxLabel));
             label.click();
             return true;
         } catch (Exception e1) {
             try {
-                WebElement inputCheckbox = wait.until(ExpectedConditions.presenceOfElementLocated(checkboxInput));
+                WebElement inputCheckbox = customWait(2).until(ExpectedConditions.presenceOfElementLocated(checkboxInput));
                 js.clickElementByJS(checkboxInput);
                 System.out.println("Clicked checkbox input using JavaScript.");
                 return true;
@@ -42,7 +59,7 @@ public class First extends Generic_BasePage {
 
     public String getCheckboxLabelText() {
         try {
-            WebElement label = wait.until(ExpectedConditions.visibilityOfElementLocated(checkboxLabel));
+            WebElement label = customWait(2).until(ExpectedConditions.visibilityOfElementLocated(checkboxLabel));
             return label.getText();
         } catch (Exception e) {
             System.out.println("Label not found or error: " + e.getMessage());
@@ -52,7 +69,7 @@ public class First extends Generic_BasePage {
 
     public boolean isCheckboxSelected() {
         try {
-            WebElement checkbox = wait.until(ExpectedConditions.presenceOfElementLocated(checkboxInput));
+            WebElement checkbox = customWait(2).until(ExpectedConditions.presenceOfElementLocated(checkboxInput));
             return checkbox.isSelected();
         } catch (Exception e) {
             return false;
@@ -61,26 +78,17 @@ public class First extends Generic_BasePage {
 
     public void clickContinueButton() {
         try {
-            wait.until(ExpectedConditions.elementToBeClickable(continueButton)).click();
-            System.out.println("Clicked on 'Continue' button.");
+            customWait(2).until(ExpectedConditions.elementToBeClickable(continueButton)).click();
         } catch (Exception e) {
             System.out.println("Failed to click 'Continue' button: " + e.getMessage());
         }
     }
 
-    public boolean isOnFirstPage() {
-        try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(headerFirstPage));
-            String text = getText(headerFirstPage);
-            return text.contains("זו תקופה מרגשת");
-        } catch (Exception e) {
-            return false;
-        }
-    }
+
 
     public boolean verifyReturnedToFirstPage() {
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(headerFirstPage));
+            customWait(2).until(ExpectedConditions.visibilityOfElementLocated(headerFirstPage));
             String text = getText(headerFirstPage);
             boolean result = text.contains("זו תקופה מרגשת");
             System.out.println("Verify returned to first page: " + result);
@@ -97,8 +105,11 @@ public class First extends Generic_BasePage {
                 clickCheckbox();
             }
             clickContinueButton();
-            System.out.println("מסך ראשון ");
-            return new Second(driver);
+            System.out.println("מסך 1 - זו תקופה מרגשת, ממש! ");
+
+            Second secondPage = new Second(driver);
+            return secondPage;
+
         } catch (IllegalStateException e) {
             throw e;
         } catch (Exception e) {
@@ -106,8 +117,10 @@ public class First extends Generic_BasePage {
         }
     }
 
-    // ✳️ מתודה נוספת למעבר, לפי אחידות בשמות
+
     public Second goToSecondScreen() {
-        return completeFirstPageHappyFlow();
+        Second secondPage = completeFirstPageHappyFlow();
+        return secondPage;
     }
+
 }

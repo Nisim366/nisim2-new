@@ -2,12 +2,15 @@ package Generic_product.Pages.Sixth_screen;
 
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Seventh_screen.SeventhScreenFirstPartner;
+import Generic_product.data.UserData;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class Sixthscreen extends Generic_BasePage {
 
@@ -37,11 +40,7 @@ public class Sixthscreen extends Generic_BasePage {
         return isElementVisible(employmentStatusSelectBox);
     }
 
-    public void selectEmploymentStatus(String statusText) {
-        wait.until(ExpectedConditions.elementToBeClickable(employmentStatusSelectBox)).click();
-        By optionLocator = By.xpath("//li[@role='option' and normalize-space(text())='" + statusText.trim() + "']");
-        wait.until(ExpectedConditions.elementToBeClickable(optionLocator)).click();
-    }
+
 
     public String getSelectedEmploymentStatus() {
         try {
@@ -53,28 +52,29 @@ public class Sixthscreen extends Generic_BasePage {
         return driver.findElement(employmentStatusInput).getAttribute("value").trim();
     }
 
+    public void selectComboBoxWithArrowAndEnter(By selectBox) {
+        wait.until(ExpectedConditions.elementToBeClickable(selectBox)).click();
 
-
-
-    private Map<String, String> getEmploymentStatusMap() {
-        Map<String, String> map = new HashMap<>();
-        map.put("שכיר/ה", "employee");
-        map.put("עצמאי/ת", "independent");
-        map.put("ללא הכנסה", "unemployed");
-        map.put("סטודנט/ית", "student");
-        return map;
-    }
-
-    public void selectOccupationAccounting() {
-        wait.until(ExpectedConditions.elementToBeClickable(occupationSelectBox)).click();
         try {
-            Thread.sleep(2000);
+            Thread.sleep(2000); // המתנה לאחר פתיחת התפריט
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-            throw new RuntimeException("ההמתנה בין פתיחת הרשימה ללחיצה נקטעה", e);
+            throw new RuntimeException("ההמתנה נקטעה לאחר פתיחת הרשימה", e);
         }
-        wait.until(ExpectedConditions.elementToBeClickable(accountingOption)).click();
+
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.ARROW_DOWN).perform();
+
+        try {
+            Thread.sleep(2000); // המתנה לאחר חץ מטה
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException("ההמתנה נקטעה לאחר חץ מטה", e);
+        }
+        actions.sendKeys(Keys.ENTER).perform();
     }
+
+
 
     public String getVisibleOccupation() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(occupationSelectBox)).getText().trim();
@@ -127,23 +127,27 @@ public class Sixthscreen extends Generic_BasePage {
     public String getVisibleEmploymentStatus() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(employmentStatusSelectBox)).getText().trim();
     }
-    public SeventhScreenFirstPartner completeSixthScreenHappyFlow() {
-        // ערכים קבועים לתרחיש happy path
-        String employmentStatus = "עצמאי/ת";
-        String incomeValue = "12000";
 
-        selectEmploymentStatus(employmentStatus);
-        selectOccupationAccounting();
-        selectProfessionAccounting();
+
+
+    public SeventhScreenFirstPartner completeSixthScreenHappyFlow() {
+        UserData user = new UserData("user2");
+
+        String incomeValue = user.employment.income;           // לדוגמה: "12000"
+
+        selectComboBoxWithArrowAndEnter(employmentStatusSelectBox);
+        selectComboBoxWithArrowAndEnter(occupationSelectBox);
+        selectComboBoxWithArrowAndEnter(professionSelectBox);
         setAverageIncome(incomeValue);
         clickContinueButton();
-        System.out.println("מסך מצב תעסוקתי ");
-
+        System.out.println("✅ מסך מצב תעסוקתי הושלם");
 
         return new SeventhScreenFirstPartner(driver);
     }
 
+
     public SeventhScreenFirstPartner goToSeventhScreen() {
+        waitForSevenScreen();
         return completeSixthScreenHappyFlow();
     }
 

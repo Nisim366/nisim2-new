@@ -2,11 +2,15 @@ package Generic_product.Pages.Fifth_screen;
 
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Sixth_screen.Sixthscreen;
+import Generic_product.data.UserData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class Fifth_screen extends Generic_BasePage {
 
@@ -28,19 +32,14 @@ public class Fifth_screen extends Generic_BasePage {
     public boolean isOnFifthScreen() {
         return isElementVisible(townInput);
     }
+    public void waitForSixScreen() {
+        new WebDriverWait(driver, Duration.ofSeconds(90)).until(ExpectedConditions.visibilityOfElementLocated(townInput));
+    }
 
     // --- מתודות עבור שדה עיר ---
-    public boolean isTownInputVisible() {
-        return isElementVisible(townInput);
-    }
 
-    public boolean isTownInputEnabled() {
-        return isElementEnabled(townInput);
-    }
 
-    public String getTownInputValue() {
-        return getElementAttribute(townInput, "value");
-    }
+
 
     public void clearTownInput() {
         clear(townInput);
@@ -72,45 +71,6 @@ public class Fifth_screen extends Generic_BasePage {
         enterTextAndSelectFromAutoComplete(streetInput, town);
     }
 
-
-
-
-
-
-
-
-
-
-
-    // --- מתודות עבור שדה רחוב ---
-    public boolean isStreetInputVisible() {
-        return isElementVisible(streetInput);
-    }
-
-    public boolean isStreetInputEnabled() {
-        return isElementEnabled(streetInput);
-    }
-
-    public String getStreetInputValue() {
-        return getElementAttribute(streetInput, "value");
-    }
-
-
-    public void clearStreetInput() {
-        clear(streetInput);
-    }
-
-    public void enterStreet(String street) {
-        set(streetInput, street);
-    }
-
-
-
-    // --- מתודות עבור שדות נוספים ---
-    public boolean isHouseNumberInputVisible() {
-        return isElementVisible(houseNumberInput);
-    }
-
     public void enterHouseNumber(String number) {
         set(houseNumberInput, number);
     }
@@ -140,29 +100,38 @@ public class Fifth_screen extends Generic_BasePage {
 
 
 
+
+
     public Sixthscreen completeFifthScreenHappyFlow() {
-        // ערכים קבועים לתרחיש happy path
-        String town = "אבו";
-        String street = "אבו";
-        String houseNumber = "15";
-        String apartment = "3";
-        String zipCode = "6900000";
+        UserData user = new UserData("user2");
 
-        enterTownAndSelect(town);
-        enterstreetAndSelect(street);
-        enterHouseNumber(houseNumber);
-        enterApartment(apartment);
-        enterZipCode(zipCode);
+        String town = user.address.town;
+        String street = user.address.street;
+        String houseNumber = user.address.houseNumber;
+        String apartment = user.address.apartment;
+        String zipCode = user.address.zipCode;
 
-        clickContinueButton();
-        System.out.println("מסך כתובת מגורים ");
+        try {
+            enterTownAndSelect(town);
+            enterstreetAndSelect(street);
+            enterHouseNumber(houseNumber);
+            enterApartment(apartment);
+            enterZipCode(zipCode);
 
-
-        return new Sixthscreen(driver);
+            clickContinueButton();
+            System.out.println("✅ מסך כתובת מגורים הושלם");
+            return new Sixthscreen(driver);
+        } catch (Exception e) {
+            throw new RuntimeException("❌ שגיאה בהשלמת מסך הכתובת (המסך החמישי).", e);
+        }
     }
 
 
+
+
+
     public Sixthscreen goToSixthScreen() {
+        waitForSixScreen();
         return completeFifthScreenHappyFlow();
     }
 

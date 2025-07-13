@@ -70,7 +70,7 @@ public class SeventhScreenFirstPartnerTest extends BaseTest_Generic {
     @Test
     public void testFirstPartnerMaternitySelection() {
         EighthScreenFirstPartner eighthScreen = seventhscreen.goToEighthScreen();
-        assertTrue(eighthScreen.isOnEighthScreenFirstPartner(), "❌ לא הגענו למסך השמיני לאחר השלמת מסך השביעי");
+        assertTrue(eighthScreen.isOnEighthScreenFirstPartner(), "❌ לא הגענו למסך השמיני ");
     }
 
 

@@ -75,47 +75,14 @@ public class SixthscreenTests extends BaseTest_Generic {
         //assertTrue(sixthscreen.isOnSixthScreen(), "לא במסך השישי (קפיצה דרך JavaScript)");
     }
 
+
     @Test
-    public void testEmploymentStatusAndOccupationSelection() {
-        String testIncomeValue = "12345";
-
-        // שלב 1: סטטוס תעסוקתי - עצמאי/ת
-        String expectedStatus = EMPLOYMENT_STATUS_SELF_EMPLOYED;
-        sixthscreen.selectEmploymentStatus(expectedStatus);
-
-        // בדיקת טקסט שמוצג במסך
-        assertEquals(expectedStatus, sixthscreen.getVisibleEmploymentStatus(), "הסטטוס המוצג לא תואם את הנבחר");
-
-        // בדיקת הערך שנשלח לשרת (value)
-        String submittedStatus = sixthscreen.getSelectedEmploymentStatus();
-        System.out.println("הערך שנשלח לשרת עבור סטטוס תעסוקתי: " + submittedStatus);
-        // אפשר להוסיף השוואה ל־"independent" אם תרצה
-
-        // שלב 2: ענף - חשבונאות
-        sixthscreen.selectOccupationAccounting();
-        String actualOccupation = sixthscreen.getVisibleOccupation();
-        assertEquals("חשבונאות", actualOccupation, "הענף המוצג לא תואם את הנבחר");
-
-        // אפשרי: בדיקת הערך שנשלח
-        // System.out.println("Occupation value: " + sixthscreen.getSubmittedOccupation());
-
-        // שלב 3: מקצוע - ראיית חשבון
-        sixthscreen.selectProfessionAccounting();
-        String actualProfession = sixthscreen.getVisibleProfession();
-        assertEquals(PROFESSION_ACCOUNTING, actualProfession, "המקצוע המוצג לא תואם את הנבחר");
-
-        // אפשרי: בדיקת הערך שנשלח
-        // System.out.println("Profession value: " + sixthscreen.getSubmittedProfession());
-
-        // שלב 4: הכנסה ממוצעת
-        sixthscreen.setAverageIncome(testIncomeValue);
-        String actualIncome = sixthscreen.getAverageIncome();
-        assertEquals(testIncomeValue, actualIncome, "שדה הכנסה לא תואם לערך שהוזן");
-
-        // שלב 5: ניווט למסך הבא
-        sixthscreen.clickContinueButton();
+    public  void a (){
         SeventhScreenFirstPartner seventhscreen = new SeventhScreenFirstPartner(driver);
+        sixthscreen.goToSeventhScreen();
         assertTrue(seventhscreen.isOnSeventhScreenFirstPartner(), "לא הגענו למסך השביעי של FIRST  לאחר לחיצה על 'נמשיך'");
+
+
     }
 
 

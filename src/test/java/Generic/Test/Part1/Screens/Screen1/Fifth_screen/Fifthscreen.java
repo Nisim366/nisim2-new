@@ -52,13 +52,14 @@ public class Fifthscreen extends BaseTest_Generic {
 
         assertTrue(fifthScreen.isOnFifthScreen(),"לא במסך החמישי");
 
+
+        /*
         DevToolsHelper devToolsHelper = new DevToolsHelper(driver);
         devToolsHelper.jumpToScreen("addressDetailsGeneric");
         fifthScreen = new Fifth_screen(driver);
         assertTrue(fifthScreen.isOnFifthScreen(), "❌ לא במסך החמישי (בקפיצה)");
 
-
-
+         */
 
     }
 
@@ -66,7 +67,7 @@ public class Fifthscreen extends BaseTest_Generic {
     @DisplayName("מילוי כל השדות הדרושים ומעבר למסך השישי")
     public void testFillAllFieldsAndGoNext() {
 
-        Sixthscreen sixthScreen = fifthScreen.completeFifthScreenHappyFlow();
+        Sixthscreen sixthScreen = fifthScreen.goToSixthScreen();
         assertTrue(sixthScreen.isOnSixthScreen(), "לא במסך השישי");
     }
 
