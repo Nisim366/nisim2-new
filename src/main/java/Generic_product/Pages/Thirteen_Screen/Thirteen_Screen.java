@@ -18,13 +18,15 @@ public class Thirteen_Screen extends Generic_BasePage {
     public Thirteen_Screen(WebDriver driver) {
         super(driver);
     }
+    public boolean isOnThirteenthScreen() {
+        By instructionHeader = By.xpath("//*[contains(text(), 'חשוב לשים לב')]");
+        return isElementVisible(instructionHeader, 90); // שימוש במתודה הגנרית
+    }
+
 
     public void clickContinueButton() {
         click(continueButton);
     }
-
-
-
 
 
     public fourteen_Screen completeThirteenScreenFlow() {
@@ -34,22 +36,5 @@ public class Thirteen_Screen extends Generic_BasePage {
     public fourteen_Screen goToFourteenScreen() {
         return completeThirteenScreenFlow();
     }
-
-
-
-
-    public boolean isOnThirteenthScreen() {
-        try {
-            By instructionHeader = By.xpath("//*[contains(text(), 'חשוב לשים לב')]");
-            WebDriverWait localWait = new WebDriverWait(driver, Duration.ofSeconds(60));
-            return localWait.until(ExpectedConditions.visibilityOfElementLocated(instructionHeader)).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-
-
-
 
 }

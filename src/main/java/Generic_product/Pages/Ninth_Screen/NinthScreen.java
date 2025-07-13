@@ -24,16 +24,11 @@ public class NinthScreen extends Generic_BasePage {
     }
 
     public boolean isOnNinthScreen() {
-        try {
-            WebDriverWait localWait = new WebDriverWait(driver, Duration.ofSeconds(60));
-            return localWait.until(ExpectedConditions.visibilityOfElementLocated(repaymentSourceSelectBox)).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        return  isElementVisible(repaymentSourceSelectBox);
     }
 
-    private void clickAndChooseOption(By selectBoxDivLocator) {
-        WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(selectBoxDivLocator));
+    public void clickAndChooseOption(By selectBoxDivLocator) {
+        WebElement dropdown = customWait(2).until(ExpectedConditions.elementToBeClickable(selectBoxDivLocator));
         dropdown.click(); // פתיחת הדרופדאון
 
         Actions actions = new Actions(driver);
@@ -58,7 +53,7 @@ public class NinthScreen extends Generic_BasePage {
 
 
     public String getSelectedRepaymentSource() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(repaymentSourceSelectBox))
+        return customWait(2).until(ExpectedConditions.visibilityOfElementLocated(repaymentSourceSelectBox))
                 .getText()
                 .trim();
     }
@@ -68,7 +63,7 @@ public class NinthScreen extends Generic_BasePage {
     }
 
     public String getSelectedInstalmentDay() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(instalmentDaySelectBox))
+        return customWait(2).until(ExpectedConditions.visibilityOfElementLocated(instalmentDaySelectBox))
                 .getText()
                 .trim();
     }
@@ -78,13 +73,13 @@ public class NinthScreen extends Generic_BasePage {
     }
 
     public String getSelectedGracePeriodOption() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(gracePeriodSelectBox))
+        return customWait(2).until(ExpectedConditions.visibilityOfElementLocated(gracePeriodSelectBox))
                 .getText()
                 .trim();
     }
 
     public void clickContinueButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(continueButton)).click();
+        customWait(2).until(ExpectedConditions.elementToBeClickable(continueButton)).click();
     }
 
     public TenthScreen completeNinthScreenFlow() {

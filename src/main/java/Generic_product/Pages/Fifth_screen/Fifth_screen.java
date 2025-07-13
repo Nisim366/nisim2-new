@@ -50,7 +50,7 @@ public class Fifth_screen extends Generic_BasePage {
     }
 
     private void enterTextAndSelectFromAutoComplete(By inputLocator, String textToEnter) {
-        WebElement input = wait.until(ExpectedConditions.elementToBeClickable(inputLocator));
+        WebElement input = customWait(2).until(ExpectedConditions.elementToBeClickable(inputLocator));
         input.sendKeys(textToEnter);
 
         try {
@@ -97,11 +97,6 @@ public class Fifth_screen extends Generic_BasePage {
     }
 
 
-
-
-
-
-
     public Sixthscreen completeFifthScreenHappyFlow() {
         UserData user = new UserData("user2");
 
@@ -125,10 +120,6 @@ public class Fifth_screen extends Generic_BasePage {
             throw new RuntimeException("❌ שגיאה בהשלמת מסך הכתובת (המסך החמישי).", e);
         }
     }
-
-
-
-
 
     public Sixthscreen goToSixthScreen() {
         waitForSixScreen();

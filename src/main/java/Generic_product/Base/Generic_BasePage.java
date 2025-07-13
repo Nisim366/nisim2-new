@@ -58,7 +58,7 @@ public class Generic_BasePage {
 
     // ✅ בדיקת האם אלמנט מוצג – ברירת מחדל: 10 שניות
     public boolean isElementVisible(By locator) {
-        return isElementVisible(locator, 10);
+        return isElementVisible(locator, 90);
     }
 
     // ✅ בדיקה אם אלמנט מופיע ומופעל

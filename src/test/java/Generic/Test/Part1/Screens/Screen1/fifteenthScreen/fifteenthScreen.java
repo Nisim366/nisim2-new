@@ -103,7 +103,6 @@ public class fifteenthScreen extends BaseTest_Generic {
     public void testHappyFlowToFifteenthScreen() {
         int secondsToRecord =  4;
         fifteenthscreen.completeFifteenthScreenFlow(secondsToRecord);
-
         assertTrue(sixteenthScreen.isOnSixteenthScreen(), "❌ לא במסך ה־16");
 
 

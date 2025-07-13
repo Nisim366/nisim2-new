@@ -89,10 +89,8 @@ public class TwelfthScreenFirstPartnerTest extends BaseTest_Generic {
 
     @Test
     public void testThirteenthScreenNavigation() {
-        // שלב 1: יצירת מופע למסך ה־13 דרך לחיצה על "נמשיך"
         Thirteen_Screen thirteenthScreen = twelfthScreen.goTothirteenScreen();
 
-        // שלב 2: בדיקת נוכחות במסך ה־13
         assertTrue(thirteenthScreen.isOnThirteenthScreen(), "❌ לא הגענו למסך ה־13 לאחר לחיצה על 'נמשיך'");
     }
 

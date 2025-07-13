@@ -27,7 +27,7 @@ public class fourteen_Screen extends Generic_BasePage {
 
     public void clickContinueButtonAfterManualProcess() {
         waitForManualProcess();
-        wait.until(ExpectedConditions.elementToBeClickable(continueButton)).click();
+        customWait(15).until(ExpectedConditions.elementToBeClickable(continueButton)).click();
     }
     public Fifteenth_screen goToFifteenthScreen() {
         clickContinueButtonAfterManualProcess();

@@ -46,7 +46,7 @@ public class Fourth_screenTests extends BaseTest_Generic {
     public void testManualOtpInputAndProceed() {
         fourthScreen.waitForManualOtpInput(); // המתנה להזנת הקוד ידנית
 
-        fourthScreen.waitForFifthScreen(); // מחכה לאלמנט הייחודי של המסך החמישי
+        fourthScreen.isOnFourthScreen(); // מחכה לאלמנט הייחודי של המסך החמישי
 
     }
 

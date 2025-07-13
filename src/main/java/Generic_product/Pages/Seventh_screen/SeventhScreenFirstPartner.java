@@ -20,9 +20,7 @@ public class SeventhScreenFirstPartner extends Generic_BasePage {
     public SeventhScreenFirstPartner(WebDriver driver) {
         super(driver);
     }
-    public void waitForEigthScreen() {
-        new WebDriverWait(driver, Duration.ofSeconds(90)).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid='loanRequest.amount-input']")));
-    }
+
 
     // בדיקה האם המסך השביעי של FIRST פתוח
     public boolean isOnSeventhScreenFirstPartner() {
@@ -36,19 +34,19 @@ public class SeventhScreenFirstPartner extends Generic_BasePage {
 
     // לחיצה על מימון חופשת לידה
     public void selectFirstPartnerMaternityOption() {
-        wait.until(ExpectedConditions.elementToBeClickable(firstLoanPurposeMaternityOption)).click();
+        customWait(2).until(ExpectedConditions.elementToBeClickable(firstLoanPurposeMaternityOption)).click();
     }
 
     // בדיקה אם נבחר מימון חופשת לידה
     public boolean isFirstPartnerMaternityOptionSelected() {
         try {
-            return wait.until(ExpectedConditions.visibilityOfElementLocated(selectedMaternityOption)).isDisplayed();
+            return customWait(2).until(ExpectedConditions.visibilityOfElementLocated(selectedMaternityOption)).isDisplayed();
         } catch (Exception e) {
             return false;
         }
     }
     public void clickContinueButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(continueButton)).click();
+        customWait(2).until(ExpectedConditions.elementToBeClickable(continueButton)).click();
     }
 
     public EighthScreenFirstPartner completeSeventhScreenFirstPartnerHappyFlow() {
@@ -64,7 +62,6 @@ public class SeventhScreenFirstPartner extends Generic_BasePage {
     }
 
     public EighthScreenFirstPartner goToEighthScreen() {
-        waitForEigthScreen();
         return completeSeventhScreenFirstPartnerHappyFlow();
     }
 

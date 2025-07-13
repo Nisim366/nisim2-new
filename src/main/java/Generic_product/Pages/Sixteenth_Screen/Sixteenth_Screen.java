@@ -21,12 +21,7 @@ public class Sixteenth_Screen extends Generic_BasePage {
     }
 
     public boolean isOnSixteenthScreen() {
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-            return wait.until(ExpectedConditions.visibilityOfElementLocated(residentYes)).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        return isElementVisible(residentYes);
     }
 
     public void selectAllAnswersAsTrue() {

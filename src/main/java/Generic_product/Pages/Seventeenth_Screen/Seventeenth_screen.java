@@ -26,16 +26,11 @@ public class Seventeenth_screen extends Generic_BasePage {
     }
 
     public boolean isOnSeventeenthScreen() {
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-            return wait.until(ExpectedConditions.visibilityOfElementLocated(securityQuestionDropdown)).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        return  isElementVisible(securityQuestionDropdown);
     }
 
     public void selectFirstSecurityQuestionOption() {
-        WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(securityQuestionDropdown));
+        WebElement dropdown = customWait(2).until(ExpectedConditions.elementToBeClickable(securityQuestionDropdown));
         dropdown.click(); // פתיחת הדרופדאון
 
         Actions actions = new Actions(driver);
@@ -50,18 +45,19 @@ public class Seventeenth_screen extends Generic_BasePage {
         actions.sendKeys(Keys.ENTER).perform(); // אישור הבחירה
     }
     public void enterSecurityAnswer(String answer) {
-        WebElement inputField = wait.until(ExpectedConditions.elementToBeClickable(securityAnswerInput));
+        WebElement inputField = customWait(2).until(ExpectedConditions.elementToBeClickable(securityAnswerInput));
         inputField.click(); // לוודא שהפוקוס בשדה
         inputField.sendKeys(answer); // הזנת הטקסט
     }
 
     public void clickContinueButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(continueButton)).click();
+        customWait(2).until(ExpectedConditions.elementToBeClickable(continueButton)).click();
     }
 
     public Eighteenth_screen completeSeventeenthScreenFlow(String answer) {
         selectFirstSecurityQuestionOption(); // בוחר שאלה ראשונה
-        enterSecurityAnswer(answer);         // מזין את התשובה
+        enterSecurityAnswer(answer);
+        System.out.println(" מסך 17 - שם המסך ");// מזין את התשובה
         clickContinueButton();               // לוחץ על המשך
         return new Eighteenth_screen(driver); // ממשיך למסך הבא
     }

@@ -84,7 +84,7 @@ public class NinthScreenTests extends BaseTest_Generic {
     @Test
     public void testFirstPartnerMaternitySelection() {
         TenthScreen tenthScreen = ninthScreen.goToTenthScreen();
-        assertTrue(tenthScreen.isOnTenthScreen(), "❌ לא הגענו למסך העשירי לאחר השלמת מסך תשיעי");
+        assertTrue(tenthScreen.isOnTenthScreen(), "❌ לא הגענו למסך העשיר ");
     }
 
 

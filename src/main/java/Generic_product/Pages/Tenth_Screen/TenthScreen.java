@@ -13,7 +13,7 @@ import java.time.Duration;
 public class TenthScreen extends Generic_BasePage {
 
     private final By transactionNumberParagraph = By.xpath("//p[contains(text(), 'מספר עסקה:')]");
-    By toggleConsentButton = By.xpath("//button[@id='toggle-dates-button']");
+    private final By toggleConsentButton = By.xpath("//button[@id='toggle-dates-button']");
     private final By approveButton = By.cssSelector("button[data-testid='continue-button']");
 
 
@@ -25,18 +25,12 @@ public class TenthScreen extends Generic_BasePage {
     }
 
     public boolean isOnTenthScreen() {
-        try {
-            WebDriverWait localWait = new WebDriverWait(driver, Duration.ofSeconds(60));
-            return localWait.until(ExpectedConditions.visibilityOfElementLocated(transactionNumberParagraph)).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
-
+        return  isElementVisible(transactionNumberParagraph);
     }
     public void expandConsentAndScrollDownFor8Seconds() {
         try {
             // לחץ על הכפתור "שינוי תוקף ההסכמה"
-            WebElement button = wait.until(ExpectedConditions.elementToBeClickable(toggleConsentButton));
+            WebElement button = customWait(2).until(ExpectedConditions.elementToBeClickable(toggleConsentButton));
             button.click();
 
             // המתן חצי שנייה לאחר לחיצה (לוודא שההרחבה נפתחת)
@@ -57,7 +51,7 @@ public class TenthScreen extends Generic_BasePage {
     }
     public void clickApproveButton() {
         try {
-            WebElement button = wait.until(ExpectedConditions.elementToBeClickable(approveButton));
+            WebElement button = customWait(2).until(ExpectedConditions.elementToBeClickable(approveButton));
             button.click();
         } catch (Exception e) {
             throw new RuntimeException("❌ לא ניתן היה ללחוץ על כפתור 'מאושר': " + e.getMessage(), e);
@@ -65,7 +59,7 @@ public class TenthScreen extends Generic_BasePage {
     }
     public EleventhScreen completeTenthScreenFlow() {
         // שלב 1: פתיחת תוקף הסכמה
-        WebElement toggleButton = wait.until(ExpectedConditions.elementToBeClickable(toggleConsentButton));
+        WebElement toggleButton = customWait(2).until(ExpectedConditions.elementToBeClickable(toggleConsentButton));
         toggleButton.click();
 
         // שלב 2: גלילה באמצעות חיצים מטה במשך 8 שניות
@@ -82,8 +76,7 @@ public class TenthScreen extends Generic_BasePage {
         }
 
         // שלב 3: לחיצה על כפתור "מאושר"
-        By approveButton = By.cssSelector("button[data-testid='continue-button']");
-        WebElement approve = wait.until(ExpectedConditions.elementToBeClickable(approveButton));
+        WebElement approve = customWait(2).until(ExpectedConditions.elementToBeClickable(approveButton));
         approve.click();
         System.out.println("מסך אישור פניה למאגר אשראי ");
 

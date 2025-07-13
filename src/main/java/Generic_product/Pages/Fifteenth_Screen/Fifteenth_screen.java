@@ -1,7 +1,9 @@
 package Generic_product.Pages.Fifteenth_Screen;
 
 import Generic_product.Base.Generic_BasePage;
+import Generic_product.Pages.Seventeenth_Screen.Seventeenth_screen;
 import Generic_product.Pages.Sixteenth_Screen.Sixteenth_Screen;
+import Generic_product.Pages.fourteen_Screen.fourteen_Screen;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,12 +22,7 @@ public class Fifteenth_screen extends Generic_BasePage {
     }
 
     public boolean isOnFifteenthScreen() {
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-            return wait.until(ExpectedConditions.visibilityOfElementLocated(voiceRecordButton)).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        return  isElementVisible(voiceRecordButton);
     }
     public void startAndStopRecording(int secondsToRecord) {
         click(voiceRecordButton); // התחלת הקלטה
@@ -43,11 +40,11 @@ public class Fifteenth_screen extends Generic_BasePage {
         click(voiceRecordButton);
     }
     public void clickContinueButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(continueButton)).click();
+        customWait(2).until(ExpectedConditions.elementToBeClickable(continueButton)).click();
     }
 
     public Sixteenth_Screen completeFifteenthScreenFlow(int recordingDurationSeconds) {
-        wait.until(ExpectedConditions.elementToBeClickable(voiceRecordButton)).click();
+        customWait(5).until(ExpectedConditions.elementToBeClickable(voiceRecordButton)).click();
 
         try {
             Thread.sleep(recordingDurationSeconds * 1000L);
@@ -55,11 +52,15 @@ public class Fifteenth_screen extends Generic_BasePage {
             Thread.currentThread().interrupt();
             throw new RuntimeException("❌ ההמתנה להקלטה הופסקה", e);
         }
-        wait.until(ExpectedConditions.elementToBeClickable(voiceRecordButton)).click();
+        customWait(2).until(ExpectedConditions.elementToBeClickable(voiceRecordButton)).click();
 
-        wait.until(ExpectedConditions.elementToBeClickable(continueButton)).click();
+        customWait(2).until(ExpectedConditions.elementToBeClickable(continueButton)).click();
 
         return new Sixteenth_Screen(driver);
+    }
+
+    public Sixteenth_Screen goToSixteenthScreen() {
+        return completeFifteenthScreenFlow(3);
     }
 
 

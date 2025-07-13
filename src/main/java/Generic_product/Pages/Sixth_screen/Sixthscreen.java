@@ -53,7 +53,7 @@ public class Sixthscreen extends Generic_BasePage {
     }
 
     public void selectComboBoxWithArrowAndEnter(By selectBox) {
-        wait.until(ExpectedConditions.elementToBeClickable(selectBox)).click();
+        customWait(2).until(ExpectedConditions.elementToBeClickable(selectBox)).click();
 
         try {
             Thread.sleep(2000); // המתנה לאחר פתיחת התפריט
@@ -77,7 +77,7 @@ public class Sixthscreen extends Generic_BasePage {
 
 
     public String getVisibleOccupation() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(occupationSelectBox)).getText().trim();
+        return customWait(2).until(ExpectedConditions.visibilityOfElementLocated(occupationSelectBox)).getText().trim();
     }
 
     public String getSubmittedOccupation() {
@@ -86,12 +86,12 @@ public class Sixthscreen extends Generic_BasePage {
 
     public void selectProfessionAccounting() {
         waitUntilFieldIsEnabled(professionSelectBox);
-        wait.until(ExpectedConditions.elementToBeClickable(professionSelectBox)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(professionAccountingOption)).click();
+        customWait(2).until(ExpectedConditions.elementToBeClickable(professionSelectBox)).click();
+        customWait(2).until(ExpectedConditions.elementToBeClickable(professionAccountingOption)).click();
     }
 
     private void waitUntilFieldIsEnabled(By fieldLocator) {
-        wait.until(driver -> {
+        customWait(2).until(driver -> {
             try {
                 return driver.findElement(fieldLocator).isDisplayed()
                         && driver.findElement(fieldLocator).isEnabled();
@@ -102,7 +102,7 @@ public class Sixthscreen extends Generic_BasePage {
     }
 
     public String getVisibleProfession() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(professionSelectBox)).getText().trim();
+        return customWait(2).until(ExpectedConditions.visibilityOfElementLocated(professionSelectBox)).getText().trim();
     }
 
     public String getSubmittedProfession() {
@@ -110,22 +110,22 @@ public class Sixthscreen extends Generic_BasePage {
     }
 
     public void setAverageIncome(String incomeValue) {
-        wait.until(ExpectedConditions.elementToBeClickable(averageIncomeInput)).clear();
-        wait.until(ExpectedConditions.elementToBeClickable(averageIncomeInput)).sendKeys(incomeValue);
+        customWait(2).until(ExpectedConditions.elementToBeClickable(averageIncomeInput)).clear();
+        customWait(2).until(ExpectedConditions.elementToBeClickable(averageIncomeInput)).sendKeys(incomeValue);
     }
 
     public String getAverageIncome() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(averageIncomeInput)).getAttribute("value").trim();
+        return customWait(2).until(ExpectedConditions.visibilityOfElementLocated(averageIncomeInput)).getAttribute("value").trim();
     }
 
 
 
     public void clickContinueButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(continueButton)).click();
+        customWait(2).until(ExpectedConditions.elementToBeClickable(continueButton)).click();
     }
 
     public String getVisibleEmploymentStatus() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(employmentStatusSelectBox)).getText().trim();
+        return customWait(2).until(ExpectedConditions.visibilityOfElementLocated(employmentStatusSelectBox)).getText().trim();
     }
 
 
@@ -147,7 +147,6 @@ public class Sixthscreen extends Generic_BasePage {
 
 
     public SeventhScreenFirstPartner goToSeventhScreen() {
-        waitForSevenScreen();
         return completeSixthScreenHappyFlow();
     }
 

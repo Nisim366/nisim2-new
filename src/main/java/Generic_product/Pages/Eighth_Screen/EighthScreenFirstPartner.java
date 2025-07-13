@@ -21,23 +21,16 @@ public class EighthScreenFirstPartner extends Generic_BasePage {
     }
 
     public boolean isOnEighthScreenFirstPartner() {
-        try {
-            WebDriverWait localWait = new WebDriverWait(driver, Duration.ofSeconds(60));
-            return localWait.until(ExpectedConditions.visibilityOfElementLocated(loanAmountInput)).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+         return isElementVisible(loanAmountInput);
     }
-    public void waitForNinthScreen() {
-        new WebDriverWait(driver, Duration.ofSeconds(90)).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[aria-label='מקור החזר ההלוואה']")));
-    }
+
     public void clickContinueButton() {
         click(continueButton);
     }
 
 
     public void enterLoanAmount(String amount) {
-        WebElement input = wait.until(ExpectedConditions.elementToBeClickable(loanAmountInput));
+        WebElement input = customWait(2).until(ExpectedConditions.elementToBeClickable(loanAmountInput));
         input.sendKeys(amount);
 
         // שלח TAB כדי לוודא שהערך ננעל בשדה (עוזר כשיש JS מאחורי הקלעים)
@@ -66,7 +59,6 @@ public class EighthScreenFirstPartner extends Generic_BasePage {
     }
 
     public NinthScreen goToNinthScreen() {
-        waitForNinthScreen();
         return completeEighthScreenFirstPartnerFlow();
     }
 }
