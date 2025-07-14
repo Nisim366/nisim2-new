@@ -2,6 +2,7 @@ package Generic_product.Pages.Seventeenth_Screen;
 
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Eighteenth_screen.Eighteenth_screen;
+import Generic_product.Pages.Thirteen_Screen.Thirteen_Screen;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -60,6 +61,9 @@ public class Seventeenth_screen extends Generic_BasePage {
         System.out.println(" מסך 17 - שם המסך ");// מזין את התשובה
         clickContinueButton();               // לוחץ על המשך
         return new Eighteenth_screen(driver); // ממשיך למסך הבא
+    }
+    public Eighteenth_screen goToNineteenthscreen() {
+        return completeSeventeenthScreenFlow("ששש");
     }
 
 

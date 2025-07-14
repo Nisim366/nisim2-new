@@ -36,6 +36,15 @@ public class BaseTest_Generic {
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
 
+        // הגדרות למניעת פופאפים של הרשאות דפדפן
+        Map<String, Object> prefs = new HashMap<>();
+        prefs.put("profile.default_content_setting_values.media_stream_mic", 1);      // לאשר מיקרופון
+        prefs.put("profile.default_content_setting_values.media_stream_camera", 1);   // לאשר מצלמה
+        prefs.put("profile.default_content_setting_values.geolocation", 1);           // לאשר מיקום (אם נדרש)
+        prefs.put("profile.default_content_setting_values.notifications", 1);         // לאשר התראות
+
+        options.setExperimentalOption("prefs", prefs);
+
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.get(Generic_URL);

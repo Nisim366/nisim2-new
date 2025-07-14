@@ -1,4 +1,4 @@
-package Generic.Test.Part1.Screens.Screen1.Seventeenth_screen;
+package Generic.Test.Part1.Screens.Screen1.Eighteenthscreen;
 
 import Generic.Base.BaseTest_Generic;
 import Generic_product.Pages.Eighteenth_screen.Eighteenth_screen;
@@ -8,6 +8,7 @@ import Generic_product.Pages.Fifteenth_Screen.Fifteenth_screen;
 import Generic_product.Pages.Fifth_screen.Fifth_screen;
 import Generic_product.Pages.First_screen.First;
 import Generic_product.Pages.Fourth_screen.Fourth_screen;
+import Generic_product.Pages.Nineteenth_screen.Nineteenthscreen;
 import Generic_product.Pages.Ninth_Screen.NinthScreen;
 import Generic_product.Pages.Second_screen.EmailFields;
 import Generic_product.Pages.Second_screen.FirstLastName;
@@ -27,7 +28,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class Seventeenthscreen extends BaseTest_Generic {
+public class eighteenthscreen extends BaseTest_Generic {
 
     private First firstPage;
     private Second secondPage;
@@ -50,6 +51,7 @@ public class Seventeenthscreen extends BaseTest_Generic {
     private Sixteenth_Screen sixteenthScreen;
     private Seventeenth_screen seventeenthScreen;
     private Eighteenth_screen eighteenthscreen;
+    private Nineteenthscreen nineteenthscreen;
 
 
 
@@ -111,15 +113,14 @@ public class Seventeenthscreen extends BaseTest_Generic {
         seventeenthScreen = sixteenthScreen.goToSeventeenthScreen();
         assertTrue(seventeenthScreen.isOnSeventeenthScreen(),"❌ לא במסך השבע־עשר");
 
+        eighteenthscreen = seventeenthScreen.goToNineteenthscreen();
+        assertTrue(eighteenthscreen.isOnEighteenthscreen(), "❌ לא במסך השמונה־עשר");
     }
     @Test
-    public void testArriveToSeventeenthScreen() {
-        String ans ="לל";
-
-        eighteenthscreen = seventeenthScreen.completeSeventeenthScreenFlow(ans);
-        assertTrue(eighteenthscreen.isOnEighteenthscreen(),"❌ לא במסך השמונה־עשר");
+    public void a(){
+        nineteenthscreen = eighteenthscreen.goToNineteenthScreen();
+        assertTrue(nineteenthscreen.isOnNineteenthScreen(),"❌ לא במסך התשע־עשר");
     }
-
 
 
 }
