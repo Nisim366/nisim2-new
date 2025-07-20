@@ -1,8 +1,6 @@
 package Generic.Base;
 
 import Generic_product.Generic_HomePage;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -30,7 +28,13 @@ public class BaseTest_Generic {
     protected JavaScriptUtility jsUtil;
     protected WebDriverWait wait;
 
-    private final String Generic_URL = "https://app.stage.greenlend.co.il/customer/wizard?channel=c4poqltt";
+    protected final String first = "c4poqltt";
+    protected final String twist = "7syhrhck";
+    protected final String contractors = "jaqp7673";
+    protected final String greenlend = "9qj3xzud";
+    protected final String easyResult = "b6q6w49y"; // שנה כאן לכל לקוח
+
+    protected final String Generic_URL = "https://app.stage.greenlend.co.il/customer/wizard?channel=" + first;
 
     @BeforeEach
     public void setUp() {

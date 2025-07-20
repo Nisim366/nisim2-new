@@ -27,6 +27,14 @@ public class JavaScriptUtility {
             e.printStackTrace();
         }
     }
+    public void scrollToElementJS(WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    public void clickElementWithJS(WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+    }
+
 
     // Click on element using JavaScript
     public void clickElementWithJS(By locator) {
