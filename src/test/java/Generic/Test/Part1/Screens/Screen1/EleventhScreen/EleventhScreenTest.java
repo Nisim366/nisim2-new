@@ -11,7 +11,7 @@ import Generic_product.Pages.Second_screen.EmailFields;
 import Generic_product.Pages.Second_screen.FirstLastName;
 import Generic_product.Pages.Second_screen.PhoneField;
 import Generic_product.Pages.Second_screen.Second;
-import Generic_product.Pages.Seventh_screen.SeventhScreenFirstPartner;
+import Generic_product.Pages.Seventh_screen.SeventhScreen;
 import Generic_product.Pages.Sixth_screen.Sixthscreen;
 import Generic_product.Pages.Tenth_Screen.TenthScreen;
 import Generic_product.Pages.Third_screen.Third_screen;
@@ -33,7 +33,7 @@ public class EleventhScreenTest extends BaseTest_Generic {
     private Fourth_screen fourthScreen;
     private Fifth_screen fifthScreen;
     private Sixthscreen sixthscreen;
-    private SeventhScreenFirstPartner seventhscreen;
+    private SeventhScreen seventhscreen;
     private EighthScreenFirstPartner eighthScreenFirstPartner;
     private NinthScreen ninthScreen;
     private TenthScreen tenthScreen;
@@ -68,7 +68,7 @@ public class EleventhScreenTest extends BaseTest_Generic {
         assertTrue(sixthscreen.isOnSixthScreen(), "❌ לא במסך השישי");
 
         seventhscreen = sixthscreen.goToSeventhScreen();
-        assertTrue(seventhscreen.isOnSeventhScreenFirstPartner(), "❌ לא במסך השביעי");
+        assertTrue(seventhscreen.isOnSeventhScreen(), "❌ לא במסך השביעי");
 
         eighthScreenFirstPartner = seventhscreen.goToEighthScreen();
         assertTrue(eighthScreenFirstPartner.isOnEighthScreenFirstPartner(), "❌ לא במסך השמיני");

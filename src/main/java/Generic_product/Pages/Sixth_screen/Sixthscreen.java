@@ -1,15 +1,13 @@
 package Generic_product.Pages.Sixth_screen;
 
 import Generic_product.Base.Generic_BasePage;
-import Generic_product.Pages.Seventh_screen.SeventhScreenFirstPartner;
+import Generic_product.Pages.Seventh_screen.SeventhScreen;
 import Generic_product.data.UserData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
 
 
 public class Sixthscreen extends Generic_BasePage {
@@ -130,7 +128,7 @@ public class Sixthscreen extends Generic_BasePage {
 
 
 
-    public SeventhScreenFirstPartner completeSixthScreenHappyFlow() {
+    public SeventhScreen completeSixthScreenHappyFlow() {
         UserData user = new UserData("user2");
 
         String incomeValue = user.employment.income;           // לדוגמה: "12000"
@@ -142,11 +140,11 @@ public class Sixthscreen extends Generic_BasePage {
         clickContinueButton();
         System.out.println("✅ מסך מצב תעסוקתי הושלם");
 
-        return new SeventhScreenFirstPartner(driver);
+        return new SeventhScreen(driver);
     }
 
 
-    public SeventhScreenFirstPartner goToSeventhScreen() {
+    public SeventhScreen goToSeventhScreen() {
         return completeSixthScreenHappyFlow();
     }
 

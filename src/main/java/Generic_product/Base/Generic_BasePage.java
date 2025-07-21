@@ -1,14 +1,12 @@
 package Generic_product.Base;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.JavaScriptUtility;
 import java.time.Duration;
-import java.util.NoSuchElementException;
 
 public class Generic_BasePage {
 
@@ -103,13 +101,4 @@ public class Generic_BasePage {
     public void clickBackButton() {
         click(backButton, 2);
     }
-    public boolean isElementClickable(By locator) {
-        try {
-            WebElement element = driver.findElement(locator);
-            return element.isDisplayed() && element.isEnabled();
-        } catch (NoSuchElementException | StaleElementReferenceException e) {
-            return false;
-        }
-    }
-
 }

@@ -8,7 +8,7 @@ import Generic_product.Pages.Second_screen.EmailFields;
 import Generic_product.Pages.Second_screen.FirstLastName;
 import Generic_product.Pages.Second_screen.PhoneField;
 import Generic_product.Pages.Second_screen.Second;
-import Generic_product.Pages.Seventh_screen.SeventhScreenFirstPartner;
+import Generic_product.Pages.Seventh_screen.SeventhScreen;
 import Generic_product.Pages.Sixth_screen.Sixthscreen;
 import Generic_product.Pages.Third_screen.Third_screen;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,7 +28,7 @@ public class SixthscreenTests extends BaseTest_Generic {
     private Fourth_screen fourthScreen;
     private Fifth_screen fifthScreen;
     private Sixthscreen sixthscreen;
-    private SeventhScreenFirstPartner seventhscreen;
+    private SeventhScreen seventhscreen;
 
     // 🔒 קבועים לשדה סטטוס תעסוקתי:
     private static final String EMPLOYMENT_STATUS_EMPLOYEE = "שכיר/ה";
@@ -51,7 +51,7 @@ public class SixthscreenTests extends BaseTest_Generic {
         emailFields = new EmailFields(driver);
         fifthScreen = new Fifth_screen(driver);
         sixthscreen = new Sixthscreen(driver);
-        seventhscreen = new SeventhScreenFirstPartner(driver);
+        seventhscreen = new SeventhScreen(driver);
 
 
         firstPage.goToSecondScreen();
@@ -78,9 +78,9 @@ public class SixthscreenTests extends BaseTest_Generic {
 
     @Test
     public  void a (){
-        SeventhScreenFirstPartner seventhscreen = new SeventhScreenFirstPartner(driver);
+        SeventhScreen seventhscreen = new SeventhScreen(driver);
         sixthscreen.goToSeventhScreen();
-        assertTrue(seventhscreen.isOnSeventhScreenFirstPartner(), "לא הגענו למסך השביעי של FIRST  לאחר לחיצה על 'נמשיך'");
+        assertTrue(seventhscreen.isOnSeventhScreen(), "לא הגענו למסך השביעי של FIRST  לאחר לחיצה על 'נמשיך'");
 
 
     }

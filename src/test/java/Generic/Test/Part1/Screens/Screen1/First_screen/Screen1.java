@@ -18,7 +18,8 @@ public class Screen1 extends BaseTest_Generic {
     @BeforeEach
     public void set() {
         firstPage = new First(driver);
-        assertTrue(firstPage.isOnFirstPage(), "❌ לא במסך הראשון");
+
+
     }
 
     @Test

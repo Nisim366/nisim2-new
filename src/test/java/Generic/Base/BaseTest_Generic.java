@@ -28,13 +28,18 @@ public class BaseTest_Generic {
     protected JavaScriptUtility jsUtil;
     protected WebDriverWait wait;
 
-    protected final String first = "c4poqltt";
-    protected final String twist = "7syhrhck";
-    protected final String contractors = "jaqp7673";
-    protected final String greenlend = "9qj3xzud";
-    protected final String easyResult = "b6q6w49y"; // שנה כאן לכל לקוח
+    // בסיס ה-URL
+    // סיומות לכל התהליכים
+    protected final String KABLANIM = "jaqp7673";
+    protected final String FIRST = "c4poqltt";
+    protected final String GREENLEND = "9qj3xzud";
+    protected final String RESULT = "b6q6w49y";
+    protected final String TWIST = "7syhrhck";
+    protected final String BASE_URL = "https://app.stage.greenlend.co.il/customer/wizard?channel=" + KABLANIM;
 
-    protected final String Generic_URL = "https://app.stage.greenlend.co.il/customer/wizard?channel=" + first;
+
+
+
 
     @BeforeEach
     public void setUp() {
@@ -51,7 +56,7 @@ public class BaseTest_Generic {
 
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-        driver.get(Generic_URL);
+        driver.get(BASE_URL);
 
         wait = new WebDriverWait(driver, Duration.ofSeconds(90));
         jsUtil = new JavaScriptUtility(driver);
