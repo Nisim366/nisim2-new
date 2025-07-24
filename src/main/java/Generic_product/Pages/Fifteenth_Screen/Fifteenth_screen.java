@@ -53,6 +53,7 @@ public class Fifteenth_screen extends Generic_BasePage {
             throw new RuntimeException("❌ ההמתנה להקלטה הופסקה", e);
         }
         customWait(2).until(ExpectedConditions.elementToBeClickable(voiceRecordButton)).click();
+        System.out.println("מסך 15 - הקלטה קולית");
 
         customWait(2).until(ExpectedConditions.elementToBeClickable(continueButton)).click();
 

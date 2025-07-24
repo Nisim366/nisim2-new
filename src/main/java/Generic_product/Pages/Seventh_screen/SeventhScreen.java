@@ -1,7 +1,9 @@
 package Generic_product.Pages.Seventh_screen;
 
 import Generic_product.Base.Generic_BasePage;
-import Generic_product.Pages.Eighth_Screen.EighthScreenFirstPartner;
+import Generic_product.Pages.Eighth_Screen.EighthScreen;
+import Generic_product.config.ClientContext;
+import Generic_product.data.UserData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -101,17 +103,17 @@ public class SeventhScreen extends Generic_BasePage {
         return chosenPurpose;
     }
 
-    public EighthScreenFirstPartner completeSeventhScreenHappyFlow() {
-        // המתנה לטעינת המסך לפני בחירה
-        isOnSeventhScreen(); // מבטיח שהמסך נטען
+    public EighthScreen completeSeventhScreenHappyFlow() {
+        isOnSeventhScreen(); // המתנה לטעינת המסך
+
         String chosen = selectLoanPurposeOptionFromEnvOrRandom();
 
         clickContinueButton();
-        System.out.println("מסך מטרת הלוואה, נבחר: " + chosen);
-        return new EighthScreenFirstPartner(driver);
+        System.out.println("מסך 7 -  מטרת הלוואה, נבחר: " + chosen);
+        return new EighthScreen(driver);
     }
 
-    public EighthScreenFirstPartner goToEighthScreen() {
+    public EighthScreen goToEighthScreen() {
         return completeSeventhScreenHappyFlow();
     }
 }

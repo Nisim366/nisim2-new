@@ -2,6 +2,7 @@ package Generic_product.Pages.Second_screen;
 
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Third_screen.Third_screen;
+import Generic_product.config.ClientContext;
 import Generic_product.data.UserData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -44,13 +45,14 @@ public class Second extends Generic_BasePage {
         super.clickBackButton();
     }
 
+
     private Third_screen completeSecondScreenHappyFlow() {
         FirstLastName firstLastName = new FirstLastName(driver);
         PhoneField phoneField = new PhoneField(driver);
         EmailFields emailFields = new EmailFields(driver);
 
-        // טעינת נתוני משתמש מסודרים
-        UserData user = new UserData("user2");
+        // ✅ טוען את קובץ הלקוח לפי ההגדרה המרכזית
+        UserData user = new UserData(ClientContext.getClient());
 
         String firstName = user.personal.firstName;
         String lastName = user.personal.lastName;
@@ -65,7 +67,7 @@ public class Second extends Generic_BasePage {
             emailFields.setEmail(email);
             emailFields.setEmailConfirmation(email);
 
-            // אימות מול מה שהוזן
+            // אימות
             if (!firstLastName.getFirstName().equals(firstName)) {
                 throw new IllegalStateException("שגיאה: השם הפרטי לא הוזן נכון.");
             }
@@ -85,8 +87,7 @@ public class Second extends Generic_BasePage {
             clickContinueButton();
             System.out.println("מסך 2 - נתחיל בכמה פרטים אישיים ");
 
-            Third_screen thirdScreen = new Third_screen(driver);
-            return thirdScreen;
+            return new Third_screen(driver);
 
         } catch (IllegalStateException e) {
             throw e;
@@ -94,6 +95,7 @@ public class Second extends Generic_BasePage {
             throw new RuntimeException("כשל כללי ב-Happy Flow של המסך השני.", e);
         }
     }
+
 
 
 

@@ -35,7 +35,7 @@ public class BaseTest_Generic {
     protected final String GREENLEND = "9qj3xzud";
     protected final String RESULT = "b6q6w49y";
     protected final String TWIST = "7syhrhck";
-    protected final String BASE_URL = "https://app.stage.greenlend.co.il/customer/wizard?channel=" + KABLANIM;
+    protected final String BASE_URL = "https://app.stage.greenlend.co.il/customer/wizard?channel=" + RESULT;
 
 
 

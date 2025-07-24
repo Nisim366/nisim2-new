@@ -2,6 +2,7 @@ package Generic_product.Pages.Third_screen;
 
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Fourth_screen.Fourth_screen;
+import Generic_product.config.ClientContext;
 import Generic_product.data.UserData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -241,13 +242,13 @@ public class Third_screen extends Generic_BasePage {
 
 
     public Fourth_screen completeThirdScreenHappyFlow() {
-        // שליפת ערכים מה־user1.properties
-        UserData user = new UserData("user1");
+        // שליפת ערכים מהקובץ של הלקוח לפי הסביבה (user1, user2 וכו')
+        UserData user = new UserData(ClientContext.getClient());
 
         String validId = IsraeliIdGenerator.generateRandomValidIsraeliId(); // ת"ז אקראית תקינה
-        String validIssueDate = user.idCard.issueDate; // מה־user1
-        String validBirthDate = user.idCard.birthDate; // מה־user1
-        String gender = user.idCard.gender;            // מה־env
+        String validIssueDate = user.idCard.issueDate;
+        String validBirthDate = user.idCard.birthDate;
+        String gender = user.idCard.gender;
 
         try {
             enterIdNumber(validId);
@@ -295,15 +296,13 @@ public class Third_screen extends Generic_BasePage {
             clickContinueButton();
             System.out.println("מסך 3 - עכשיו כמה פרטים מזהים");
 
-            // המתנה למסך הרביעי
-            Fourth_screen fourthScreen = new Fourth_screen(driver);
-
-            return fourthScreen;
+            return new Fourth_screen(driver);
 
         } catch (Exception e) {
             throw new RuntimeException("❌ כשל כללי ב-Happy Flow של המסך השלישי.", e);
         }
     }
+
 
 
     public Fourth_screen goToFourthScreen() {

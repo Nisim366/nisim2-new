@@ -2,6 +2,7 @@ package Generic_product.Pages.Fifth_screen;
 
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Sixth_screen.Sixthscreen;
+import Generic_product.config.ClientContext;
 import Generic_product.data.UserData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -98,7 +99,7 @@ public class Fifth_screen extends Generic_BasePage {
 
 
     public Sixthscreen completeFifthScreenHappyFlow() {
-        UserData user = new UserData("user2");
+        UserData user = new UserData(ClientContext.getClient());
 
         String town = user.address.town;
         String street = user.address.street;
@@ -114,7 +115,7 @@ public class Fifth_screen extends Generic_BasePage {
             enterZipCode(zipCode);
 
             clickContinueButton();
-            System.out.println("✅ מסך כתובת מגורים הושלם");
+            System.out.println("מסך 5 - מהי כתובת המגורים שלך ?");
             return new Sixthscreen(driver);
         } catch (Exception e) {
             throw new RuntimeException("❌ שגיאה בהשלמת מסך הכתובת (המסך החמישי).", e);

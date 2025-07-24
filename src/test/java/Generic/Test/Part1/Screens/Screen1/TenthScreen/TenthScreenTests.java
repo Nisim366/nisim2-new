@@ -1,7 +1,7 @@
 package Generic.Test.Part1.Screens.Screen1.TenthScreen;
 
 import Generic.Base.BaseTest_Generic;
-import Generic_product.Pages.Eighth_Screen.EighthScreenFirstPartner;
+import Generic_product.Pages.Eighth_Screen.EighthScreen;
 import Generic_product.Pages.Eleventh_Screen.EleventhScreen;
 import Generic_product.Pages.Fifth_screen.Fifth_screen;
 import Generic_product.Pages.First_screen.First;
@@ -33,7 +33,7 @@ public class TenthScreenTests extends BaseTest_Generic {
     private Fifth_screen fifthScreen;
     private Sixthscreen sixthscreen;
     private SeventhScreen seventhscreen;
-    private EighthScreenFirstPartner eighthScreenFirstPartner;
+    private EighthScreen eighthScreenFirstPartner;
     private NinthScreen ninthScreen;
     private TenthScreen tenthScreen;
     private EleventhScreen eleventhScreen;
@@ -69,7 +69,7 @@ public class TenthScreenTests extends BaseTest_Generic {
         assertTrue(seventhscreen.isOnSeventhScreen(), "❌ לא במסך השביעי");
 
         eighthScreenFirstPartner = seventhscreen.goToEighthScreen();
-        assertTrue(eighthScreenFirstPartner.isOnEighthScreenFirstPartner(), "❌ לא במסך השמיני");
+        assertTrue(eighthScreenFirstPartner.isOnEighthScreen(), "❌ לא במסך השמיני");
 
         ninthScreen = eighthScreenFirstPartner.goToNinthScreen();
         assertTrue(ninthScreen.isOnNinthScreen(), "❌ לא במסך התשיעי");

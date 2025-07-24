@@ -2,14 +2,16 @@ package Generic_product.Pages.Twelfth_Screen;
 
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Thirteen_Screen.Thirteen_Screen;
+import Generic_product.config.ClientContext;
+import Generic_product.data.UserData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import java.util.logging.Logger;
 
-public class TwelfthScreenFirstPartner extends Generic_BasePage {
+public class TwelfthScreen extends Generic_BasePage {
 
-    private static final Logger logger = Logger.getLogger(TwelfthScreenFirstPartner.class.getName());
+    private static final Logger logger = Logger.getLogger(TwelfthScreen.class.getName());
 
     private final By termSlider = By.cssSelector("span[data-testid='loanRequest.term-muiSlider']");
     private final By continueButton = By.cssSelector("[data-testid='continue-button']");
@@ -18,7 +20,7 @@ public class TwelfthScreenFirstPartner extends Generic_BasePage {
     // טקסט חלקי שמופיע במסך הבא לאחר סיום תהליך הזיהוי הידני
     private final String partialTextConfirmation = "המסמכים הוגשו";
 
-    public TwelfthScreenFirstPartner(WebDriver driver) {
+    public TwelfthScreen(WebDriver driver) {
         super(driver);
     }
 
@@ -30,13 +32,16 @@ public class TwelfthScreenFirstPartner extends Generic_BasePage {
         click(continueButton);
     }
 
-    public Thirteen_Screen completeTwelfthScreenFirstPartnerFlow() {
+    public Thirteen_Screen completeTwelfthScreenFlow() {
+        UserData user = new UserData(ClientContext.getClient());
+        System.out.println("מסך 12 - סכום החזר חודשי");
+
         clickContinueButton();
         return new Thirteen_Screen(driver);
     }
 
     public Thirteen_Screen goTothirteenScreen() {
-        return completeTwelfthScreenFirstPartnerFlow();
+        return completeTwelfthScreenFlow();
     }
 
 

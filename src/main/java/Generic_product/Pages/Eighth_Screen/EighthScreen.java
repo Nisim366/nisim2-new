@@ -2,25 +2,23 @@ package Generic_product.Pages.Eighth_Screen;
 
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Ninth_Screen.NinthScreen;
+import Generic_product.config.ClientContext;
 import Generic_product.data.UserData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-
-public class EighthScreenFirstPartner extends Generic_BasePage {
+public class EighthScreen extends Generic_BasePage {
     private final By loanAmountInput = By.cssSelector("[data-testid='loanRequest.amount-input']");
     private final By continueButton = By.cssSelector("[data-testid='continue-button']");
 
-    public EighthScreenFirstPartner(WebDriver driver) {
+    public EighthScreen(WebDriver driver) {
         super(driver);
     }
 
-    public boolean isOnEighthScreenFirstPartner() {
+    public boolean isOnEighthScreen() {
          return isElementVisible(loanAmountInput);
     }
 
@@ -43,15 +41,15 @@ public class EighthScreenFirstPartner extends Generic_BasePage {
 
         }
     }
-    public NinthScreen completeEighthScreenFirstPartnerFlow() {
-        UserData user = new UserData("user2");
+    public NinthScreen completeEighthScreenFlow() {
+        UserData user = new UserData(ClientContext.getClient()); // 👈 טעינה דינמית לפי לקוח
 
         String amount = user.loan.amount;
 
         try {
             enterLoanAmount(amount);
             clickContinueButton();
-            System.out.println("✅ מסך סכום הלוואה הושלם");
+            System.out.println(" מסך 8 - מהו סכום הלוואה המבוקש?");
             return new NinthScreen(driver);
         } catch (Exception e) {
             throw new RuntimeException("❌ שגיאה בהשלמת מסך סכום הלוואה", e);
@@ -59,6 +57,6 @@ public class EighthScreenFirstPartner extends Generic_BasePage {
     }
 
     public NinthScreen goToNinthScreen() {
-        return completeEighthScreenFirstPartnerFlow();
+        return completeEighthScreenFlow();
     }
 }

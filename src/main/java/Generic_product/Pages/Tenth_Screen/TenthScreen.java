@@ -2,6 +2,8 @@ package Generic_product.Pages.Tenth_Screen;
 
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Eleventh_Screen.EleventhScreen;
+import Generic_product.config.ClientContext;
+import Generic_product.data.UserData;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -58,6 +60,9 @@ public class TenthScreen extends Generic_BasePage {
         }
     }
     public EleventhScreen completeTenthScreenFlow() {
+
+        UserData user = new UserData(ClientContext.getClient());
+
         // שלב 1: פתיחת תוקף הסכמה
         WebElement toggleButton = customWait(2).until(ExpectedConditions.elementToBeClickable(toggleConsentButton));
         toggleButton.click();
@@ -78,7 +83,7 @@ public class TenthScreen extends Generic_BasePage {
         // שלב 3: לחיצה על כפתור "מאושר"
         WebElement approve = customWait(2).until(ExpectedConditions.elementToBeClickable(approveButton));
         approve.click();
-        System.out.println("מסך אישור פניה למאגר אשראי ");
+        System.out.println("מסך 10 - אישור פניה למאגר אשראי ");
 
 
         return new EleventhScreen(driver);

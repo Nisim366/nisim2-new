@@ -2,6 +2,7 @@ package Generic_product.Pages.Sixth_screen;
 
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Seventh_screen.SeventhScreen;
+import Generic_product.config.ClientContext;
 import Generic_product.data.UserData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -129,16 +130,14 @@ public class Sixthscreen extends Generic_BasePage {
 
 
     public SeventhScreen completeSixthScreenHappyFlow() {
-        UserData user = new UserData("user2");
-
-        String incomeValue = user.employment.income;           // לדוגמה: "12000"
+        UserData user = new UserData(ClientContext.getClient());
 
         selectComboBoxWithArrowAndEnter(employmentStatusSelectBox);
         selectComboBoxWithArrowAndEnter(occupationSelectBox);
         selectComboBoxWithArrowAndEnter(professionSelectBox);
-        setAverageIncome(incomeValue);
+        setAverageIncome(user.employment.income);
         clickContinueButton();
-        System.out.println("✅ מסך מצב תעסוקתי הושלם");
+        System.out.println(" מסך 6 - מהו מצבך תעסוקתי ?");
 
         return new SeventhScreen(driver);
     }

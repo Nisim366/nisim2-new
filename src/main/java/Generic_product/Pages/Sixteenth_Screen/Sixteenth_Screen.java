@@ -31,6 +31,7 @@ public class Sixteenth_Screen extends Generic_BasePage {
     }
 
     public void clickContinue() {
+        System.out.println("מסך 16 - שאלות נכון - לא נכון");
         click(continueButton);
     }
 

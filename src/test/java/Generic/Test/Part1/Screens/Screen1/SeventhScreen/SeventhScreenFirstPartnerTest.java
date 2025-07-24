@@ -1,7 +1,7 @@
 package Generic.Test.Part1.Screens.Screen1.SeventhScreen;
 
 import Generic.Base.BaseTest_Generic;
-import Generic_product.Pages.Eighth_Screen.EighthScreenFirstPartner;
+import Generic_product.Pages.Eighth_Screen.EighthScreen;
 import Generic_product.Pages.Fifth_screen.Fifth_screen;
 import Generic_product.Pages.First_screen.First;
 import Generic_product.Pages.Fourth_screen.Fourth_screen;
@@ -72,8 +72,8 @@ public class SeventhScreenFirstPartnerTest extends BaseTest_Generic {
 
     @Test
     public void testFirstPartnerMaternitySelection() {
-        EighthScreenFirstPartner eighthScreen = seventhscreen.goToEighthScreen();
-        assertTrue(eighthScreen.isOnEighthScreenFirstPartner(), "❌ לא הגענו למסך השמיני ");
+        EighthScreen eighthScreen = seventhscreen.goToEighthScreen();
+        assertTrue(eighthScreen.isOnEighthScreen(), "❌ לא הגענו למסך השמיני ");
     }
 
 

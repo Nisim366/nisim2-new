@@ -27,6 +27,8 @@ public class fourteen_Screen extends Generic_BasePage {
 
     public void clickContinueButtonAfterManualProcess() {
         waitForManualProcess();
+        System.out.println("מסך 14 - מסך אוטנטיקס");
+
         customWait(15).until(ExpectedConditions.elementToBeClickable(continueButton)).click();
     }
     public Fifteenth_screen goToFifteenthScreen() {

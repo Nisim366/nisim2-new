@@ -13,6 +13,8 @@ public class UserData {
     public final AddressInfo address;
     public final EmploymentInfo employment;
     public final LoanInfo loan;
+    public final String securityAnswer;
+
 
 
 
@@ -32,6 +34,8 @@ public class UserData {
             this.address = new AddressInfo(props);
             this.employment = new EmploymentInfo(props);
             this.loan = new LoanInfo(props);
+            this.securityAnswer = props.getProperty("securityAnswer", "123456");
+
 
 
 

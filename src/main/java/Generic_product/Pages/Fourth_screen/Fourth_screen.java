@@ -270,6 +270,7 @@ public class Fourth_screen extends Generic_BasePage {
         }
     }
     public Fifth_screen goToFifthScreen() {
+        System.out.println(" מסך 4 - קוד אימות ");
         return new Fifth_screen(driver);
     }
 

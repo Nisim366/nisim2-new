@@ -2,6 +2,8 @@ package Generic_product.Pages.Ninth_Screen;
 
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Tenth_Screen.TenthScreen;
+import Generic_product.config.ClientContext;
+import Generic_product.data.UserData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -83,13 +85,15 @@ public class NinthScreen extends Generic_BasePage {
     }
 
     public TenthScreen completeNinthScreenFlow() {
+        // טעינת נתוני הלקוח – גם אם כרגע לא בשימוש ישיר כאן
+        UserData user = new UserData(ClientContext.getClient());
 
-        selectRepaymentSource();
-        selectInstalmentDay();
-        selectGracePeriodOption();
+        selectRepaymentSource();     // ייתכן משתמש ב־user
+        selectInstalmentDay();       // כנ"ל
+        selectGracePeriodOption();   // כנ"ל
 
         clickContinueButton();
-        System.out.println("מסך פרטי החזר הלוואה ");
+        System.out.println("מסך 9 - מהם פרטי החזר הלוואה ? ");
 
         return new TenthScreen(driver);
     }

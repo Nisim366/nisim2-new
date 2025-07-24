@@ -1,7 +1,7 @@
 package Generic.Test.Part1.Screens.Screen1.Sixteenthscreen;
 
 import Generic.Base.BaseTest_Generic;
-import Generic_product.Pages.Eighth_Screen.EighthScreenFirstPartner;
+import Generic_product.Pages.Eighth_Screen.EighthScreen;
 import Generic_product.Pages.Eleventh_Screen.EleventhScreen;
 import Generic_product.Pages.Fifteenth_Screen.Fifteenth_screen;
 import Generic_product.Pages.Fifth_screen.Fifth_screen;
@@ -19,7 +19,7 @@ import Generic_product.Pages.Sixth_screen.Sixthscreen;
 import Generic_product.Pages.Tenth_Screen.TenthScreen;
 import Generic_product.Pages.Third_screen.Third_screen;
 import Generic_product.Pages.Thirteen_Screen.Thirteen_Screen;
-import Generic_product.Pages.Twelfth_Screen.TwelfthScreenFirstPartner;
+import Generic_product.Pages.Twelfth_Screen.TwelfthScreen;
 import Generic_product.Pages.fourteen_Screen.fourteen_Screen;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,11 +38,11 @@ public class Sixteenthscreen extends BaseTest_Generic {
     private Fifth_screen fifthScreen;
     private Sixthscreen sixthscreen;
     private SeventhScreen seventhscreen;
-    private EighthScreenFirstPartner eighthScreenFirstPartner;
+    private EighthScreen eighthScreenFirstPartner;
     private NinthScreen ninthScreen;
     private TenthScreen tenthScreen;
     private EleventhScreen eleventhScreen;
-    private TwelfthScreenFirstPartner twelfthScreen;
+    private TwelfthScreen twelfthScreen;
     private Thirteen_Screen thirteenScreen;
     private fourteen_Screen fourteenScreen;
     private Fifteenth_screen fifteenthscreen;
@@ -80,7 +80,7 @@ public class Sixteenthscreen extends BaseTest_Generic {
         assertTrue(seventhscreen.isOnSeventhScreen(), "❌ לא במסך השביעי");
 
         eighthScreenFirstPartner = seventhscreen.goToEighthScreen();
-        assertTrue(eighthScreenFirstPartner.isOnEighthScreenFirstPartner(), "❌ לא במסך השמיני");
+        assertTrue(eighthScreenFirstPartner.isOnEighthScreen(), "❌ לא במסך השמיני");
 
         ninthScreen = eighthScreenFirstPartner.goToNinthScreen();
         assertTrue(ninthScreen.isOnNinthScreen(), "❌ לא במסך התשיעי");

@@ -3,6 +3,8 @@ package Generic_product.Pages.Seventeenth_Screen;
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Eighteenth_screen.Eighteenth_screen;
 import Generic_product.Pages.Thirteen_Screen.Thirteen_Screen;
+import Generic_product.config.ClientContext;
+import Generic_product.data.UserData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -55,16 +57,20 @@ public class Seventeenth_screen extends Generic_BasePage {
         customWait(2).until(ExpectedConditions.elementToBeClickable(continueButton)).click();
     }
 
-    public Eighteenth_screen completeSeventeenthScreenFlow(String answer) {
+    public Eighteenth_screen completeSeventeenthScreenFlow() {
+        UserData user = new UserData(ClientContext.getClient());
+
         selectFirstSecurityQuestionOption(); // בוחר שאלה ראשונה
-        enterSecurityAnswer(answer);
-        System.out.println(" מסך 17 - שם המסך ");// מזין את התשובה
-        clickContinueButton();               // לוחץ על המשך
-        return new Eighteenth_screen(driver); // ממשיך למסך הבא
+        enterSecurityAnswer(user.securityAnswer); // ⬅️ תשובה מה־.properties
+        System.out.println(" מסך 17 - שאלת הזדהות ");
+        clickContinueButton();
+        return new Eighteenth_screen(driver);
     }
+
     public Eighteenth_screen goToNineteenthscreen() {
-        return completeSeventeenthScreenFlow("ששש");
+        return completeSeventeenthScreenFlow();
     }
+
 
 
 
