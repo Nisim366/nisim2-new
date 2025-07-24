@@ -9,18 +9,31 @@ import utilities.JavaScriptUtility;
 
 import java.time.Duration;
 
-public class Mormimg_BasePage {
+public class Morning_BasePage {
 
     protected WebDriver driver;
     protected JavaScriptUtility jsUtility;
     protected final WebDriverWait longwait;
-    private final By backButton = By.cssSelector("[data-testid='back-button']");
+    protected final By continueButton = By.cssSelector("[data-testid='continue-button']");
+    By welcomeBackButton = By.cssSelector("[data-testid='onboarding-close-welcome-back-dialog']");
 
-    public Mormimg_BasePage(WebDriver driver) {
+
+    public Morning_BasePage(WebDriver driver) {
         this.driver = driver;
         this.longwait = new WebDriverWait(driver, Duration.ofSeconds(90));
         this.jsUtility = new JavaScriptUtility(driver);
     }
+    public void handleWelcomeBackPopupIfExists() {
+        try {
+            WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(15));
+            WebElement element = shortWait.until(ExpectedConditions.elementToBeClickable(welcomeBackButton));
+            element.click();
+            System.out.println("🟢 כפתור 'חזרה לתהליך' זוהה ונלחץ");
+        } catch (Exception e) {
+            System.out.println("ℹ️ כפתור 'חזרה לתהליך' לא הופיע – ממשיכים כרגיל");
+        }
+    }
+
 
     // ✅ מאפשר יצירת WebDriverWait מותאם זמן
     public WebDriverWait customWait(int seconds) {
@@ -98,9 +111,9 @@ public class Mormimg_BasePage {
         return customFind(locator, seconds).getText();
     }
 
-    // ✅ לחיצה על כפתור חזרה – זמן ברירת מחדל 2 שניות
-    public void clickBackButton() {
-        click(backButton, 2);
-    }
+     public void clickContinueButton() {
+         click(continueButton, 2);
+     }
+
 
 }

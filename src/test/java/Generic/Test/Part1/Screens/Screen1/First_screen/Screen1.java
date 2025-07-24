@@ -14,12 +14,11 @@ public class Screen1 extends BaseTest_Generic {
 
     private First firstPage;
 
-
     @BeforeEach
     public void set() {
+
+        // 🔁 הגעה רגילה
         firstPage = new First(driver);
-
-
     }
 
     @Test
@@ -27,12 +26,6 @@ public class Screen1 extends BaseTest_Generic {
         Second secondPage = firstPage.goToSecondScreen();
         assertTrue(secondPage.isOnSecondPage(), "❌ לא הגעת למסך השני");
     }
-
-
-
-
-
-
 
     @Test
     public void checkboxIsNotSelectedInitially() {
