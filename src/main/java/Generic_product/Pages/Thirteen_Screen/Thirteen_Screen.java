@@ -3,13 +3,9 @@ package Generic_product.Pages.Thirteen_Screen;
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.fourteen_Screen.fourteen_Screen;
 import Generic_product.config.ClientContext;
-import Generic_product.data.UserData;
+import Generic_product.data.Generic_UserData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class Thirteen_Screen extends Generic_BasePage {
 
@@ -32,7 +28,7 @@ public class Thirteen_Screen extends Generic_BasePage {
 
 
     public fourteen_Screen completeThirteenScreenFlow() {
-        UserData user = new UserData(ClientContext.getClient());
+        Generic_UserData user = new Generic_UserData(ClientContext.getClient());
         System.out.println("מסך 13 - מסך תחילת אוטנטיקס");
 
         clickContinueButton();

@@ -3,7 +3,7 @@ package Generic_product.Pages.Fifth_screen;
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Sixth_screen.Sixthscreen;
 import Generic_product.config.ClientContext;
-import Generic_product.data.UserData;
+import Generic_product.data.Generic_UserData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -99,7 +99,7 @@ public class Fifth_screen extends Generic_BasePage {
 
 
     public Sixthscreen completeFifthScreenHappyFlow() {
-        UserData user = new UserData(ClientContext.getClient());
+        Generic_UserData user = new Generic_UserData(ClientContext.getClient());
 
         String town = user.address.town;
         String street = user.address.street;
@@ -123,6 +123,7 @@ public class Fifth_screen extends Generic_BasePage {
     }
 
     public Sixthscreen goToSixthScreen() {
+
         waitForSixScreen();
         return completeFifthScreenHappyFlow();
     }

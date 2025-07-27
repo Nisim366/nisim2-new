@@ -3,7 +3,7 @@ package Generic_product.Pages.Eighth_Screen;
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Ninth_Screen.NinthScreen;
 import Generic_product.config.ClientContext;
-import Generic_product.data.UserData;
+import Generic_product.data.Generic_UserData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -42,7 +42,7 @@ public class EighthScreen extends Generic_BasePage {
         }
     }
     public NinthScreen completeEighthScreenFlow() {
-        UserData user = new UserData(ClientContext.getClient()); // 👈 טעינה דינמית לפי לקוח
+        Generic_UserData user = new Generic_UserData(ClientContext.getClient()); // 👈 טעינה דינמית לפי לקוח
 
         String amount = user.loan.amount;
 

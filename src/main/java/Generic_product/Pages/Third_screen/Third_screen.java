@@ -3,7 +3,7 @@ package Generic_product.Pages.Third_screen;
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Fourth_screen.Fourth_screen;
 import Generic_product.config.ClientContext;
-import Generic_product.data.UserData;
+import Generic_product.data.Generic_UserData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -243,7 +243,7 @@ public class Third_screen extends Generic_BasePage {
 
     public Fourth_screen completeThirdScreenHappyFlow() {
         // שליפת ערכים מהקובץ של הלקוח לפי הסביבה (user1, user2 וכו')
-        UserData user = new UserData(ClientContext.getClient());
+        Generic_UserData user = new Generic_UserData(ClientContext.getClient());
 
         String validId = IsraeliIdGenerator.generateRandomValidIsraeliId(); // ת"ז אקראית תקינה
         String validIssueDate = user.idCard.issueDate;

@@ -3,7 +3,7 @@ package Generic_product.Pages.Second_screen;
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Third_screen.Third_screen;
 import Generic_product.config.ClientContext;
-import Generic_product.data.UserData;
+import Generic_product.data.Generic_UserData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -52,7 +52,7 @@ public class Second extends Generic_BasePage {
         EmailFields emailFields = new EmailFields(driver);
 
         // ✅ טוען את קובץ הלקוח לפי ההגדרה המרכזית
-        UserData user = new UserData(ClientContext.getClient());
+        Generic_UserData user = new Generic_UserData(ClientContext.getClient());
 
         String firstName = user.personal.firstName;
         String lastName = user.personal.lastName;

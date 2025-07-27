@@ -3,14 +3,10 @@ package Generic_product.Pages.Tenth_Screen;
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Eleventh_Screen.EleventhScreen;
 import Generic_product.config.ClientContext;
-import Generic_product.data.UserData;
+import Generic_product.data.Generic_UserData;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import utilities.JavaScriptUtility;
-
-import java.time.Duration;
 
 public class TenthScreen extends Generic_BasePage {
 
@@ -61,7 +57,7 @@ public class TenthScreen extends Generic_BasePage {
     }
     public EleventhScreen completeTenthScreenFlow() {
 
-        UserData user = new UserData(ClientContext.getClient());
+        Generic_UserData user = new Generic_UserData(ClientContext.getClient());
 
         // שלב 1: פתיחת תוקף הסכמה
         WebElement toggleButton = customWait(2).until(ExpectedConditions.elementToBeClickable(toggleConsentButton));

@@ -2,8 +2,6 @@ package Generic_product.Pages.Seventh_screen;
 
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Eighth_Screen.EighthScreen;
-import Generic_product.config.ClientContext;
-import Generic_product.data.UserData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

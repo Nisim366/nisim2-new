@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
-public class UserData {
+public class Generic_UserData {
 
     public final PersonalInfo personal;
     public final IdCardInfo idCard;
@@ -18,7 +18,7 @@ public class UserData {
 
 
 
-    public UserData(String userName) {
+    public Generic_UserData(String userName) {
         try {
             Properties props = new Properties();
 

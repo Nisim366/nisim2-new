@@ -13,16 +13,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class FirstScreenTest extends Morning_BaseTest {
 
     private First_screen firstPage;
+    private  Second_screen secondPage;
 
     @BeforeEach
-    public void set() {
-
+    public void setUp() {
         firstPage = new First_screen(driver);
+        handleWelcomeBackPopupIfExists(false); // false כי עדיין לא בדקתי איפה אני
+
+        secondPage = new Second_screen(driver);
     }
 
     @Test
     public void testGoToSecondScreen() {
         Second_screen seondPage = firstPage.goToSecondScreen();
+        assertTrue(seondPage.isOnSecondPage(), "❌ לא במסך השני");
     }
+
 
 }

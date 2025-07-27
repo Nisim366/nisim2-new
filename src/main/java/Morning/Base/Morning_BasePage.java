@@ -1,6 +1,7 @@
 package Morning.Base;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,7 +16,7 @@ public class Morning_BasePage {
     protected JavaScriptUtility jsUtility;
     protected final WebDriverWait longwait;
     protected final By continueButton = By.cssSelector("[data-testid='continue-button']");
-    By welcomeBackButton = By.cssSelector("[data-testid='onboarding-close-welcome-back-dialog']");
+    protected final By welcomeBackButton = By.cssSelector("[data-testid='onboarding-close-welcome-back-dialog']");
 
 
     public Morning_BasePage(WebDriver driver) {
@@ -114,6 +115,34 @@ public class Morning_BasePage {
      public void clickContinueButton() {
          click(continueButton, 2);
      }
+    public boolean isOnCorrectScreen(int expectedStep) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        try {
+            Object result = js.executeScript("return ezbob.actions.userState.getCurrentStep();");
+            if (result != null) {
+                int currentStep = Integer.parseInt(result.toString());
+                return currentStep == expectedStep;
+            }
+        } catch (Exception e) {
+            System.out.println("❌ שגיאה בהרצת currentStep: " + e.getMessage());
+        }
+        return false;
+    }
+    public int getCurrentStepFromConsole() {
+        try {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            Object result = js.executeScript("return ezbob.actions.userState.getCurrentStep();");
+            return result != null ? Integer.parseInt(result.toString()) : -1;
+        } catch (Exception e) {
+            System.out.println("❌ שגיאה בקריאת currentStep: " + e.getMessage());
+            return -1;
+        }
+    }
+    public boolean isOnPage(int expectedStep) {
+        return getCurrentStepFromConsole() == expectedStep;
+    }
+
+
 
 
 }

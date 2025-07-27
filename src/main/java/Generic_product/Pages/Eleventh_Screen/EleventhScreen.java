@@ -3,7 +3,7 @@ package Generic_product.Pages.Eleventh_Screen;
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Twelfth_Screen.TwelfthScreen;
 import Generic_product.config.ClientContext;
-import Generic_product.data.UserData;
+import Generic_product.data.Generic_UserData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -24,7 +24,7 @@ public class EleventhScreen extends Generic_BasePage {
         click(continueButton); // שימוש ב־Generic_BasePage
     }
     public TwelfthScreen completeEleventhScreenFlow() {
-        UserData user = new UserData(ClientContext.getClient());
+        Generic_UserData user = new Generic_UserData(ClientContext.getClient());
 
 
 

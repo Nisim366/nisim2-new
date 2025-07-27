@@ -2,10 +2,10 @@ package Morning.Base;
 
 import Generic_product.Generic_HomePage;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.JavaScriptUtility;
 
@@ -19,7 +19,7 @@ public class Morning_BaseTest {
     protected JavaScriptUtility jsUtil;
     protected WebDriverWait wait;
 
-    protected final String URL = "https://morning.stage.greenlend.co.il/customer/wizard?code=rMhLeN6Dql9MsYMb1VFIT0FrfbPUiJIsSnZn9Mh3CLmDiZsMvNXp1%2FQ8QpqvrgeEtd2zfhF5ZS9W2sk3DnbVLg%2B5r81aJ2JUtNtOmcYvvH8%3D";
+    protected final String URL = "https://morning.stage.greenlend.co.il/customer/wizard?code=b86NfisXNB%2FqgO6KttWYatynLTpoDI7VpjaC61NLwywViYR4Hqj3yi38GlCWMjRWmp7zx3suMr32jaDt68p4EdG4ISWxDd80ZpXut39c2C4%3D";
 
 
     @BeforeEach
@@ -30,11 +30,34 @@ public class Morning_BaseTest {
         driver.manage().window().maximize();
         driver.get(URL);
 
-        wait = new WebDriverWait(driver, Duration.ofSeconds(90));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         jsUtil = new JavaScriptUtility(driver);
         js = (JavascriptExecutor) driver;
 
     }
+    protected void handleWelcomeBackPopupIfExists(boolean isAlreadyOnScreen) {
+        if (isAlreadyOnScreen) {
+            System.out.println("✅ כבר במסך הרצוי – לא בודק חזרה לתהליך");
+            return;
+        }
+
+        try {
+            By welcomeBackButton = By.cssSelector("[data-testid='onboarding-close-welcome-back-dialog']");
+            WebDriverWait popupWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebElement button = popupWait.until(ExpectedConditions.elementToBeClickable(welcomeBackButton));
+            button.click();
+            System.out.println("🟢 כפתור 'חזרה לתהליך' זוהה ונלחץ");
+        } catch (TimeoutException e) {
+            System.out.println("ℹ️ כפתור 'חזרה לתהליך' לא הופיע – ממשיכים כרגיל");
+        } catch (Exception e) {
+            System.out.println("⚠️ שגיאה לא צפויה בעת בדיקת הפופ־אפ: " + e.getMessage());
+        }
+    }
+
+
+
+
+
 
 
 }

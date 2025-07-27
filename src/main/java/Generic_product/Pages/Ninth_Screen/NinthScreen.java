@@ -3,16 +3,13 @@ package Generic_product.Pages.Ninth_Screen;
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Tenth_Screen.TenthScreen;
 import Generic_product.config.ClientContext;
-import Generic_product.data.UserData;
+import Generic_product.data.Generic_UserData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class NinthScreen extends Generic_BasePage {
 
@@ -86,7 +83,7 @@ public class NinthScreen extends Generic_BasePage {
 
     public TenthScreen completeNinthScreenFlow() {
         // טעינת נתוני הלקוח – גם אם כרגע לא בשימוש ישיר כאן
-        UserData user = new UserData(ClientContext.getClient());
+        Generic_UserData user = new Generic_UserData(ClientContext.getClient());
 
         selectRepaymentSource();     // ייתכן משתמש ב־user
         selectInstalmentDay();       // כנ"ל
