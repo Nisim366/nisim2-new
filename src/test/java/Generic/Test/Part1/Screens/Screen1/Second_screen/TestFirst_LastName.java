@@ -35,16 +35,16 @@ public class TestFirst_LastName extends BaseTest_Generic {
     }
     */
 
-    @BeforeEach
-    public void setUp() {
-        super.setUp();
-        devTools = new DevToolsHelper(driver);
-        devTools.openDevToolsAndGoToConsole();
-        devTools.jumpToScreen(targetScreen);
-        assertTrue(secondPage.isOnSecondPage(), "אובייקט ה-Page Object של המסך השני לא אושר כטוען נכון.");
-        secondPage = new Second(driver);
-        FirstLastNameField = new FirstLastName(driver);
-    }
+//    @BeforeEach
+//    public void setUp() {
+//        super.setUp();
+//        devTools = new DevToolsHelper(driver);
+//        devTools.openDevToolsAndGoToConsole();
+//        devTools.jumpToScreen(targetScreen);
+//        assertTrue(secondPage.isOnSecondPage(), "אובייקט ה-Page Object של המסך השני לא אושר כטוען נכון.");
+//        secondPage = new Second(driver);
+//        FirstLastNameField = new FirstLastName(driver);
+//    }
 
     @Test
     public void testLastNameIsDisplayedAndRequired() {

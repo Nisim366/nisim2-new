@@ -10,11 +10,11 @@ public class Navigation extends BaseTest_Generic {
     public static String targetScreen = "contactDetailsGeneric";
     private DevToolsHelper devTools;
 
-    @BeforeEach
-    public void setUp() {
-        super.setUp();
-        devTools = new DevToolsHelper(driver);
-    }
+//    @BeforeEach
+//    public void setUp() {
+//        super.setUp();
+//        devTools = new DevToolsHelper(driver);
+//    }
 
     @Test
     public void openDevToolsAndJumpToTargetScreen() {

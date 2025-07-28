@@ -2,6 +2,7 @@ package Generic.Base;
 
 import Generic_product.Generic_HomePage;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -19,22 +20,23 @@ import java.util.Map;
 
 public class BaseTest_Generic {
 
-    protected WebDriver driver;
-    protected Generic_HomePage homePage;
-    protected JavascriptExecutor js;
-    protected JavaScriptUtility jsUtil;
-    protected WebDriverWait wait;
+    protected static WebDriver driver;
+    protected static JavascriptExecutor js;
+    protected static JavaScriptUtility jsUtil;
+    protected static WebDriverWait wait;
+    protected static Generic_HomePage homePage;
 
 
-    protected final String KABLANIM = "jaqp7673";
-    protected final String FIRST = "c4poqltt";
-    protected final String GREENLEND = "9qj3xzud";
-    protected final String RESULT = "b6q6w49y";
-    protected final String TWIST = "7syhrhck";
-    protected final String BASE_URL = "https://app.stage.greenlend.co.il/customer/wizard?channel=" + RESULT;
 
-    @BeforeEach
-    public void setUp() {
+    protected static final String KABLANIM = "jaqp7673";
+    protected static final String FIRST = "c4poqltt";
+    protected static final String GREENLEND = "9qj3xzud";
+    protected static final String RESULT = "b6q6w49y";
+    protected static final String TWIST = "7syhrhck";
+    protected static  final String BASE_URL = "https://app.stage.greenlend.co.il/customer/wizard?channel=" + RESULT;
+
+    @BeforeAll
+    public static void setUp() {
         ChromeOptions options = new ChromeOptions();
 
         // הגדרות למניעת פופאפים של הרשאות דפדפן

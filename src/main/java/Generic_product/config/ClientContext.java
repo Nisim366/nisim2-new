@@ -2,7 +2,7 @@ package Generic_product.config;
 
 public class ClientContext {
 
-    private static String clientName = "user3"; // ברירת מחדל
+    private static String clientName = "user2"; // ברירת מחדל
 
     public static void setClient(String name) {
         clientName = name;

@@ -2,6 +2,7 @@ package Generic_product.Pages.First_screen;
 
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Second_screen.Second;
+import Morning.Processes.Sole.Second_screen;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
