@@ -66,6 +66,7 @@ public class Second extends Generic_BasePage {
             phoneField.setPhoneInput(phone);
             emailFields.setEmail(email);
             emailFields.setEmailConfirmation(email);
+            System.out.println(email);
 
             // אימות
             if (!firstLastName.getFirstName().equals(firstName)) {

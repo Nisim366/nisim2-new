@@ -57,11 +57,12 @@ public class Seventeenth_screen extends Generic_BasePage {
         Generic_UserData user = new Generic_UserData(ClientContext.getClient());
 
         selectFirstSecurityQuestionOption(); // בוחר שאלה ראשונה
-        enterSecurityAnswer(user.securityAnswer); // ⬅️ תשובה מה־.properties
-        System.out.println(" מסך 17 - שאלת הזדהות ");
+        enterSecurityAnswer(user.security.securityAnswer);
+        System.out.println("מסך 17 - שאלת הזדהות");
         clickContinueButton();
         return new Eighteenth_screen(driver);
     }
+
 
     public Eighteenth_screen goToNineteenthscreen() {
         return completeSeventeenthScreenFlow();

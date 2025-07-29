@@ -13,7 +13,9 @@ public class Generic_UserData {
     public final AddressInfo address;
     public final EmploymentInfo employment;
     public final LoanInfo loan;
-    public final String securityAnswer;
+    public final SecurityInfo security; // ⬅️ הוספת השדה החדש
+    public final BankInfo bank; // ⬅️ שדה חדש
+
 
 
 
@@ -34,7 +36,10 @@ public class Generic_UserData {
             this.address = new AddressInfo(props);
             this.employment = new EmploymentInfo(props);
             this.loan = new LoanInfo(props);
-            this.securityAnswer = props.getProperty("securityAnswer", "123456");
+            this.security = new SecurityInfo(props);
+            this.bank = new BankInfo(props); // ⬅️ טוען את המידע מהסביבה
+
+
 
 
 
@@ -82,11 +87,11 @@ public class Generic_UserData {
         public final String zipCode;
 
         public AddressInfo(Properties props) {
-            this.town = props.getProperty("town", "");
-            this.street = props.getProperty("street", "");
-            this.houseNumber = props.getProperty("houseNumber", "");
-            this.apartment = props.getProperty("apartment", "");
-            this.zipCode = props.getProperty("zipCode", "");
+            this.town = props.getProperty("town", "אבו");
+            this.street = props.getProperty("street", "אבו");
+            this.houseNumber = props.getProperty("houseNumber", "1");
+            this.apartment = props.getProperty("apartment", "דירה");
+            this.zipCode = props.getProperty("zipCode", "12121");
         }
     }
 
@@ -111,6 +116,29 @@ public class Generic_UserData {
             this.amount = props.getProperty("amount", "1000");
         }
     }
+
+
+    public static class SecurityInfo {
+        public final String securityAnswer;
+
+        public SecurityInfo(Properties props) {
+            this.securityAnswer = props.getProperty("securityAnswer", "תשובה מהסביבה");
+        }
+    }
+
+    public static class BankInfo {
+        public final String bankCode;
+        public final String branchCode;
+        public final String accountNumber;
+
+        public BankInfo(Properties props) {
+            this.bankCode = props.getProperty("bankCode", "11");
+            this.branchCode = props.getProperty("branchCode", "123");
+            this.accountNumber = props.getProperty("accountNumber", "12345678");
+        }
+    }
+
+
 
 
 

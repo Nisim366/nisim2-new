@@ -2,6 +2,8 @@ package Generic_product.Pages.Eighteenth_screen;
 
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Nineteenth_screen.Nineteenthscreen;
+import Generic_product.config.ClientContext;
+import Generic_product.data.Generic_UserData;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -66,24 +68,24 @@ public class Eighteenth_screen extends Generic_BasePage {
         customWait(2).until(ExpectedConditions.elementToBeClickable(continueButton)).click();
     }
 
-
-
     public Nineteenthscreen completeEighteenthScreenFlow(String bankCode, String branchCode, String accountNumber) {
         selectBank(bankCode);
         selectBranch(branchCode);
         enterAccountNumber(accountNumber);
         clickContinueButton();
-        System.out.println(" מסך 18 - שם המסך ");// מזין את התשובה
-
+        System.out.println("מסך 18 - פרטי בנק");
         return new Nineteenthscreen(driver);
     }
 
-    public Nineteenthscreen goToNineteenthScreen() {
-        String defaultBankCode = "11";
-        String defaultBranchCode = "123";
-        String defaultAccountNumber = "12345678";
 
-        return completeEighteenthScreenFlow(defaultBankCode, defaultBranchCode, defaultAccountNumber);
+
+    public Nineteenthscreen goToNineteenthScreen() {
+        Generic_UserData user = new Generic_UserData(ClientContext.getClient());
+        return completeEighteenthScreenFlow(
+                user.bank.bankCode,
+                user.bank.branchCode,
+                user.bank.accountNumber
+        );
     }
 
 

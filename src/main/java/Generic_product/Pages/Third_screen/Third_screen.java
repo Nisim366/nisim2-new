@@ -252,6 +252,7 @@ public class Third_screen extends Generic_BasePage {
 
         try {
             enterIdNumber(validId);
+            System.out.println(validId);
             String actualIdValue = getEnteredIdNumber();
             if (!actualIdValue.equals(validId)) {
                 throw new IllegalStateException("שגיאה: תעודת הזהות לא הוזנה נכון.");
