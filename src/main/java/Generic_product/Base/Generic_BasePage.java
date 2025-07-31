@@ -1,8 +1,6 @@
 package Generic_product.Base;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.JavaScriptUtility;
@@ -20,6 +18,34 @@ public class Generic_BasePage {
         this.longwait = new WebDriverWait(driver, Duration.ofSeconds(90));
         this.jsUtility = new JavaScriptUtility(driver);
     }
+    public void selectAutocompleteOption(By fieldLocator, int arrowDownPresses) {
+        try {
+            // ממתין שהשדה יהיה לחיץ
+            customWait(2).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+            WebElement inputField = driver.findElement(fieldLocator);
+
+            // לוחץ על השדה לקבלת פוקוס
+            inputField.click();
+
+            // המתנה קטנה לטעינת האפשרויות
+            Thread.sleep(2000);
+
+            // לוחץ חץ מטה לפי מספר הלחיצות שנשלח
+            for (int i = 0; i < arrowDownPresses; i++) {
+                inputField.sendKeys(Keys.ARROW_DOWN);
+                Thread.sleep(500); // ⏳ המתנה של חצי שנייה בין כל לחיצה
+            }
+
+            // מאשר את הבחירה
+            inputField.sendKeys(Keys.ENTER);
+
+        } catch (TimeoutException e) {
+            throw new RuntimeException("⏳ Timeout – לא נמצאה אפשרות בשדה: " + fieldLocator, e);
+        } catch (Exception e) {
+            throw new RuntimeException("❌ שגיאה כללית בבחירת ערך בשדה: " + fieldLocator, e);
+        }
+    }
+
 
     // ✅ מאפשר יצירת WebDriverWait מותאם זמן
     public WebDriverWait customWait(int seconds) {

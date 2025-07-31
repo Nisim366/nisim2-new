@@ -13,6 +13,7 @@ import Generic_product.Pages.Sixth_screen.Sixthscreen;
 import Generic_product.Pages.Third_screen.Third_screen;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import utilities.DevToolsHelper;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -52,6 +53,7 @@ public class SixthscreenTests extends BaseTest_Generic {
         fifthScreen = new Fifth_screen(driver);
         sixthscreen = new Sixthscreen(driver);
         seventhscreen = new SeventhScreen(driver);
+        /*
 
 
         firstPage.goToSecondScreen();
@@ -68,11 +70,12 @@ public class SixthscreenTests extends BaseTest_Generic {
 
         sixthscreen = fifthScreen.goToSixthScreen();
         assertTrue(sixthscreen.isOnSixthScreen(), "לא במסך השישי");
+         */
 
-        //sixthscreen = new Sixthscreen(driver);
-        //DevToolsHelper devToolsHelper = new DevToolsHelper(driver);
-        //devToolsHelper.jumpToScreen("occupationAndProfessionGeneric");
-        //assertTrue(sixthscreen.isOnSixthScreen(), "לא במסך השישי (קפיצה דרך JavaScript)");
+        sixthscreen = new Sixthscreen(driver);
+        DevToolsHelper devToolsHelper = new DevToolsHelper(driver);
+        devToolsHelper.jumpToScreen("occupationAndProfessionGeneric");
+        assertTrue(sixthscreen.isOnSixthScreen(), "לא במסך השישי (קפיצה דרך JavaScript)");
     }
 
 

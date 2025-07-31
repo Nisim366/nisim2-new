@@ -42,7 +42,9 @@ public class Eighteenth_screen extends Generic_BasePage {
             throw new RuntimeException("❌ שגיאה כללית בבחירת ערך אוטומטי בשדה: " + fieldLocator, e);
         }
     }
-
+    public void selectAutocomplete() {
+        selectAutocompleteOption(bankInput, 2); // ירידה פעמיים למטה
+    }
     public void selectBank(String value) {
         selectAutocompleteValue(bankInput, value);
     }

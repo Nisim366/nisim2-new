@@ -1,7 +1,7 @@
 package Generic_product.config;
 
 public class ClientContext {
-    private static Client client = Client.TWIST; // ברירת מחדל
+    private static Client client = Client.BALKAR; // ברירת מחדל
 
 
 
