@@ -15,10 +15,11 @@ import Generic_product.Pages.Sixth_screen.Sixthscreen;
 import Generic_product.Pages.Third_screen.Third_screen;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import utilities.DevToolsHelper;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class EighthScreenFirstPartnerTest extends BaseTest_Generic {
+public class EighthScreenTest extends BaseTest_Generic {
 
     private First firstPage;
     private Second secondPage;
@@ -34,6 +35,7 @@ public class EighthScreenFirstPartnerTest extends BaseTest_Generic {
 
     @BeforeEach
     public void set() {
+          /*
 
 
         // 🔁 הגעה רגילה
@@ -64,14 +66,15 @@ public class EighthScreenFirstPartnerTest extends BaseTest_Generic {
 
         eighthScreenFirstPartner = seventhscreen.goToEighthScreen();
         assertTrue(eighthScreenFirstPartner.isOnEighthScreen(), "❌ לא במסך השמיני");
+        */
 
-        /*
+
         // 🚀 קפיצה ישירה למסך השמיני (לבדיקות ספציפיות בלבד)
         DevToolsHelper devToolsHelper = new DevToolsHelper(driver);
         devToolsHelper.jumpToScreen("requestAmountGeneric");
-        eighthScreenFirstPartner = new EighthScreenFirstPartner(driver);
-        assertTrue(eighthScreenFirstPartner.isOnEighthScreenFirstPartner(), "❌ לא במסך השמיני (בקפיצה)");
-        */
+        eighthScreenFirstPartner = new EighthScreen(driver);
+        assertTrue(eighthScreenFirstPartner.isOnEighthScreen(), "❌ לא במסך השמיני (בקפיצה)");
+
 
     }
 

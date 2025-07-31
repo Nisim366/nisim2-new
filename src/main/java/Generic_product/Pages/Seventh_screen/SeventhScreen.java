@@ -2,6 +2,9 @@ package Generic_product.Pages.Seventh_screen;
 
 import Generic_product.Base.Generic_BasePage;
 import Generic_product.Pages.Eighth_Screen.EighthScreen;
+import Generic_product.config.ClientContext;
+import Generic_product.data.Generic_UserData;
+import Generic_product.enums.EmploymentStatus;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,9 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.InputStream;
 import java.time.Duration;
-import java.util.List;
-import java.util.Properties;
-import java.util.Random;
+import java.util.*;
 
 public class SeventhScreen extends Generic_BasePage {
 
@@ -34,6 +35,15 @@ public class SeventhScreen extends Generic_BasePage {
             return false;
         }
     }
+    public void selectLoanPurpose(String purpose) {
+        By option = By.cssSelector("[data-testid='loanRequest.loanPurpose-toggleButtonGroup-" + purpose + "']");
+
+        // המתנה ולחיצה
+        customWait(5).until(ExpectedConditions.elementToBeClickable(option)).click();
+
+        System.out.println("✅ נבחר יעד הלוואה: " + purpose);
+    }
+
 
 
 
@@ -100,16 +110,27 @@ public class SeventhScreen extends Generic_BasePage {
         System.out.println("נבחרה אופציה: " + chosenPurpose);
         return chosenPurpose;
     }
+    public void selectOptionByTestId(String testId) {
+        By option = By.cssSelector("[data-testid='" + testId + "']");
+        customWait(2).until(ExpectedConditions.elementToBeClickable(option)).click();
+    }
+
 
     public EighthScreen completeSeventhScreenHappyFlow() {
-        isOnSeventhScreen(); // המתנה לטעינת המסך
+        isOnSeventhScreen();
 
-        String chosen = selectLoanPurposeOptionFromEnvOrRandom();
+        Generic_UserData user = new Generic_UserData(ClientContext.getClient());
+
+        EmploymentStatus.LoanPurpose chosenPurpose = user.loanPurpose;
+        By option = By.cssSelector("[data-testid='loanRequest.loanPurpose-toggleButtonGroup-" + chosenPurpose.getValue() + "']");
+        customWait(1).until(ExpectedConditions.elementToBeClickable(option)).click();
 
         clickContinueButton();
-        System.out.println("מסך 7 -  מטרת הלוואה, נבחר: " + chosen);
+        System.out.println("מסך 7 - מטרת הלוואה, נבחר: " + chosenPurpose.getValue());
+
         return new EighthScreen(driver);
     }
+
 
     public EighthScreen goToEighthScreen() {
         return completeSeventhScreenHappyFlow();

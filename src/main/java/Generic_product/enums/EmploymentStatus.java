@@ -84,4 +84,39 @@ public enum EmploymentStatus {
             throw new IllegalArgumentException("❌ ערך לא חוקי ל־Occupation: " + envValue);
         }
     }
+
+    public enum LoanPurpose {
+        MATERNITY_LEAVE("MATERNITY_LEAVE"),         // מימון חופשת לידה
+        EVENT("EVENT"),                             // אירוע
+        MATERNITY_PACKAGE("MATERNITY_PACKAGE"),     // חבילה ללידה
+        DEBT_COVERAGE("DEBT_COVERAGE"),             // כיסוי יתרת חוב
+        VEHICLE("VEHICLE"),                         // רכב
+        VACATION("VACATION"),                       // חופשה
+        ANY("ANY");                                 // לכל מטרה
+
+
+        private final String value;
+
+        LoanPurpose(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public static LoanPurpose fromEnv(String envValue) {
+            if (envValue == null || envValue.isBlank()) {
+                throw new IllegalArgumentException("❌ לא הוגדר loanPurpose בסביבה או בקובץ");
+            }
+
+            for (LoanPurpose purpose : values()) {
+                if (purpose.value.equalsIgnoreCase(envValue)) {
+                    return purpose;
+                }
+            }
+            throw new IllegalArgumentException("❌ ערך לא חוקי ל־LoanPurpose: " + envValue);
+        }
+    }
+
 }

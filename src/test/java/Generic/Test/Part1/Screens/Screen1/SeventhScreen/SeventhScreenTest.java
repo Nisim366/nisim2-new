@@ -18,7 +18,7 @@ import utilities.DevToolsHelper;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class SeventhScreenFirstPartnerTest extends BaseTest_Generic {
+public class SeventhScreenTest extends BaseTest_Generic {
 
     private First firstPage;
     private Second secondPage;

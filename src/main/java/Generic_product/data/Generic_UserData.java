@@ -1,5 +1,6 @@
 package Generic_product.data;
 
+import Generic_product.enums.EmploymentStatus;
 import utilities.EmailGenerator;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -15,6 +16,8 @@ public class Generic_UserData {
     public final LoanInfo loan;
     public final SecurityInfo security; // ⬅️ הוספת השדה החדש
     public final BankInfo bank; // ⬅️ שדה חדש
+    public final EmploymentStatus.LoanPurpose loanPurpose;
+
 
 
 
@@ -38,6 +41,8 @@ public class Generic_UserData {
             this.loan = new LoanInfo(props);
             this.security = new SecurityInfo(props);
             this.bank = new BankInfo(props); // ⬅️ טוען את המידע מהסביבה
+            this.loanPurpose = EmploymentStatus.LoanPurpose.fromEnv(props.getProperty("loanPurpose"));
+
 
 
 

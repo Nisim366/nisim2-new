@@ -110,14 +110,6 @@ public class Sixthscreen extends Generic_BasePage {
         });
     }
 
-    public String getVisibleProfession() {
-        return customWait(2).until(ExpectedConditions.visibilityOfElementLocated(professionSelectBox)).getText().trim();
-    }
-
-    public String getSubmittedProfession() {
-        return driver.findElement(professionInput).getAttribute("value").trim();
-    }
-
     public void setAverageIncome(String incomeValue) {
         customWait(2).until(ExpectedConditions.elementToBeClickable(averageIncomeInput)).clear();
         customWait(2).until(ExpectedConditions.elementToBeClickable(averageIncomeInput)).sendKeys(incomeValue);
@@ -146,20 +138,13 @@ public class Sixthscreen extends Generic_BasePage {
 
 
     public SeventhScreen completeSixthScreenHappyFlow() {
+
         Generic_UserData user = new Generic_UserData(ClientContext.getClient());
 
-// סטטוס תעסוקתי
         selectComboBoxOption(employmentStatusSelectBox, employmentStatusOptions, EmploymentStatus.fromEnv(user.employment.status).getValue());
-
-// ענף
         selectComboBoxOption(occupationSelectBox, occupationOptions, user.employment.occupation);
-
-// מקצוע
         selectComboBoxOption(professionSelectBox, occupationOptions, user.employment.profession);
 
-
-
-        // שאר השדות
         setAverageIncome(user.employment.income);
         clickContinueButton();
 
