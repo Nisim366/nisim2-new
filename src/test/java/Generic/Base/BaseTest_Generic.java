@@ -33,7 +33,8 @@ public class BaseTest_Generic {
     protected static final String GREENLEND = "9qj3xzud";
     protected static final String RESULT = "b6q6w49y";
     protected static final String TWIST = "7syhrhck";
-    protected static  final String BASE_URL = "https://app.stage.greenlend.co.il/customer/wizard?channel=" + RESULT;
+    protected  static final String BALKAR = "6y94l81n";
+    protected static  final String BASE_URL = "https://app.stage.greenlend.co.il/customer/wizard?channel=" + TWIST;
 
     @BeforeAll
     public static void setUp() {
