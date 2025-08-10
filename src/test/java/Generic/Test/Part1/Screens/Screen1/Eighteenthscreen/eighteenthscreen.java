@@ -25,7 +25,6 @@ import Generic_product.Pages.Twelfth_Screen.TwelfthScreen;
 import Generic_product.Pages.fourteen_Screen.fourteen_Screen;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class eighteenthscreen extends BaseTest_Generic {

@@ -119,14 +119,11 @@ public class SeventhScreen extends Generic_BasePage {
     public EighthScreen completeSeventhScreenHappyFlow() {
         isOnSeventhScreen();
 
-        Generic_UserData user = new Generic_UserData(ClientContext.getClient());
-
-        EmploymentStatus.LoanPurpose chosenPurpose = user.loanPurpose;
-        By option = By.cssSelector("[data-testid='loanRequest.loanPurpose-toggleButtonGroup-" + chosenPurpose.getValue() + "']");
-        customWait(1).until(ExpectedConditions.elementToBeClickable(option)).click();
+        // בחירה של מטרת הלוואה (מה־ENV או רנדומלית)
+        String chosenPurpose = selectLoanPurposeOptionFromEnvOrRandom();
 
         clickContinueButton();
-        System.out.println("מסך 7 - מטרת הלוואה, נבחר: " + chosenPurpose.getValue());
+        System.out.println("מסך 7 - מטרת הלוואה, נבחר: " + chosenPurpose);
 
         return new EighthScreen(driver);
     }
